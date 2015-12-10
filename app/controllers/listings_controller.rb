@@ -7,6 +7,19 @@ class ListingsController < ApplicationController
   end
 
   def index
+    @listings = Listing.all
+
+    if request.xhr?
+      return render json: @listings
+    end
+  end
+
+  def search
+    lat = params[:lat]
+    lng = params[:lng]
+    Listing.where('lat >= ?', lat -1).where('lat <= ?', lat +1)
+    .where('lng >= ?', lng -1).where('lng >= ?', lng +1)
+
   end
 
 end
