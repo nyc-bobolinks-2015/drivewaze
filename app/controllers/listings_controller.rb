@@ -15,11 +15,14 @@ class ListingsController < ApplicationController
   end
 
   def search
-    lat = params[:lat]
-    lng = params[:lng]
-    Listing.where('lat >= ?', lat -1).where('lat <= ?', lat +1)
-    .where('lng >= ?', lng -1).where('lng >= ?', lng +1)
+    westBound = params[:westBound]
+    eastBound = params[:eastBound]
+    southBound = params[:southBound]
+    northBound = params[:northBound]
+    @listings = Listing.where('latitude >= ?', southBound).where('latitude <= ?', northBound)
+    .where('longitude >= ?', westBound).where('longitude <= ?', eastBound)
 
+    return render json: @listings
   end
 
 end
