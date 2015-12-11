@@ -1,3 +1,49 @@
+
+<% if current_user.id == @booking.user_id %>
+
+
+<h3> <%= @booking.user.first_name %>, chat with <%= @booking.listing.user.first_name %> about your rental at <%= @booking.listing.street %>, <%= @booking.listing.city %> </h3>
+
+<div id='messagesDiv'></div>
+
+
+<%= form_for [@booking, @message] do |f| %>
+<%= f.label :sender %>
+<%= f.text_field :sender,:value => @booking.user.first_name, :id => "names" %>
+<%= f.label :body %>
+<%= f.text_field :body, :id => "messages" %>
+<% end %>
+
+
+<ul id='example-messages' class="example-chat-messages"></ul>
+
+<% end %>
+
 <script type="text/javascript" charset="utf-8">
-var pusher = new Pusher('52de3ae026c15fc8be07')
+var myDataref = new Firebase('https://drivewaze.firebaseio.com/');
+
+var messageField = $("#messages");
+var nameField = $('#names');
+var messageList = $("example-messages")
+
+messageField.keypress(function(e){
+  if (e.keyCode == 13){
+    var username = nameField.val();
+    var message = messageField.val();
+
+    myDataref.push({name:username, text:message});
+    messageField.val('');
+  }
+});
+  myDataref.on('child_added', function(snapshot) {
+    var message = snapshot.val();
+    displayChatMessage(message.name, message.text);
+  });
+
+  function displayChatMessage(name, text) {
+        $('<div/>').text(text).prepend($('<em/>').text(name+': ')).appendTo($('#messagesDiv'));
+        // $("#names").val("")
+        $('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
+      };
+
 </script>
