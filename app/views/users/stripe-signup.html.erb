@@ -1,0 +1,12 @@
+<!--Page that loads before you can list -->
+
+<div id="container">
+	<h2>How it works:</h2> 
+	<p>We use a payment system called Stripe to handle payments between parking providers (you) and parking renters (your customers).  </p>
+
+	<p>All you need to do, is create an account with Stripe, or, if you already have an account, just add permissions for drivewaze to pay you by clicking “connect my stripe account”. You’ll only have to do this once.  When you’re done creating a Stripe account, you’ll be redirected to a listings page so you can create your listings and start earning cash!</p>
+	
+	<form action="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_7VdoBK2BeSz0fq4ekYV4Rp652oxxFCDK&scope=read_write">
+		<input type="image" src="light-on-dark.png" name="connect-with-stripe" class="btTxt submit" id="saveForm" />
+	</form>
+</div>
