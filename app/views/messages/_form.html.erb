@@ -1,0 +1,21 @@
+<div id='container_chat' class="row">
+  <div class="large-12 columns">
+    <div class="row">
+        <ul id="chat">
+          <%= render @messages %>
+        </ul>
+        <ul class="inline-list">
+          <%= form_for Message.new, remote: true do |f| %>
+          <%= f.hidden_field :receiver_id, value: @receiver.id %>
+          <%= f.hidden_field :sender_id, value: current_user.id %>
+          <%= f.text_field :body %>
+          <div id="activity_submit">
+            <%= f.submit "Send", :class => 'button' %>
+          </div>
+          <% end %>
+          <%= subscribe_to "/messages" %>
+        </ul>
+    </div>
+  </div>
+  <hr/>
+</div>

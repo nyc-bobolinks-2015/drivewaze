@@ -1,0 +1,2 @@
+<button class = "new-message"> Start a new conversation with: 
+<%= select_tag 'user_id', options_for_select(@users.collect{ |u| [u.first_name, u.id] }) %> </button>
