@@ -1,5 +1,5 @@
 class ListingsController < ApplicationController
-
+  include HTTParty
   def show
     @listing = Listing.find_by(id: params[:id])
     @map_image = "https://maps.googleapis.com/maps/api/staticmap?center=#{@listing.street},#{@listing.city},#{@listing.state},#{@listing.zipcode}&zoom=15&size=600x300&maptype=roadmap
@@ -26,6 +26,12 @@ class ListingsController < ApplicationController
     .where('longitude >= ?', westBound).where('longitude <= ?', eastBound)
 
     return render json: @listings
+  end
+
+  def search_map
+    search_term = URI.escape(params[:term])
+    @response = HTTParty.get("http://maps.googleapis.com/maps/api/geocode/json?address=#{search_term}")
+    render json: @response
   end
 
 end

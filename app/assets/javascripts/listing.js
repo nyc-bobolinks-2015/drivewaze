@@ -62,5 +62,20 @@ $(document).ready(function(){
     })
   })
 
+  $("#search-form").on('submit', function(event){
+    event.preventDefault();
+
+    $.ajax({
+      method: 'post',
+      url: $(event.target).attr('action'),
+      data: $(event.target).serialize(),
+      dataType: 'json'
+    }).done(function(response){
+      var newLatLong = new google.maps.LatLng(response.results[0]["geometry"]["location"]["lat"], response.results[0]["geometry"]["location"]["lng"])
+      window.map.setCenter(newLatLong)
+    }).fail(function(error){
+      console.log(error);
+    });
+  })
 
 });
