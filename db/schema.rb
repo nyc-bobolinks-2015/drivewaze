@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 20151212235145) do
 
   create_table "users", force: true do |t|
     t.string   "email",                               null: false
+    t.string   "password_digest",                     null: false
     t.string   "first_name",                          null: false
     t.string   "last_name",                           null: false
     t.string   "phone",                               null: false
@@ -105,6 +106,10 @@ ActiveRecord::Schema.define(version: 20151212235145) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
+    t.string   "publishable_key"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "access_code"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
