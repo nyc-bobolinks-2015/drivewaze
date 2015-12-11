@@ -9,7 +9,6 @@ function initMap() {
 
 $(document).ready(function(){
   initMap();
-
  (function(){
 
     $.ajax({
@@ -29,31 +28,39 @@ $(document).ready(function(){
   })();
 
   window.map.addListener('bounds_changed', function(event){
-
-    latLong = window.map.getBounds()
-    westBound = latLong.j.j
-    eastBound = latLong.j.O
-    northBound = latLong.O.j
-    southBound = latLong.O.O
+    var latLong = window.map.getBounds()
+    var westBound = latLong.j.j
+    var eastBound = latLong.j.O
+    var northBound = latLong.O.j
+    var southBound = latLong.O.O
 
     $.ajax({
       method: 'get',
       url: '/search' + "?westBound=" + westBound + "&eastBound=" + eastBound + "&northBound=" + northBound + "&southBound=" + southBound
     }).done(function(response){
-      var markers = []
       for(var i = 0; i < response.length; i++) {
         var marker = new google.maps.Marker({
             map: window.map,
             position: {lat: response[i].latitude, lng: response[i].longitude},
             title: ("$" + String(response[0].hourly_price) + '.00'),
-            label: "$"
+            label: "$",
+            id: response[i].id
         });
+          marker.addListener('click', function(event){
+            $.ajax({
+              method: 'get',
+              url: '/listings/' + this.id
+            }).done(function(response){
+              $(".single-listing").html(response);
+            })
 
+          });
 
       }
     }).fail(function(error){
       console.log(error)
     })
   })
+
 
 });
