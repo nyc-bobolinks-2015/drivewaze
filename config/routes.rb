@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     resources :reviews
   end
 
+  resources :messages, only: [:new,:create]
+
   resources :listings do
     resources :availability_slots, only:[:create, :update, :destroy]
     resources :bookings
