@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151210234010) do
+ActiveRecord::Schema.define(version: 20151211222515) do
 
   create_table "availability_slots", force: true do |t|
     t.integer  "booking_id",      null: false
@@ -55,11 +55,9 @@ ActiveRecord::Schema.define(version: 20151210234010) do
   end
 
   create_table "messages", force: true do |t|
-    t.string   "body",        null: false
-    t.integer  "sender_id",   null: false
-    t.integer  "receiver_id", null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "reviews", force: true do |t|

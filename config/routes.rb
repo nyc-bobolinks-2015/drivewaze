@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     resources :reviews
   end
 
+  resources :messages, only: [:index]
+
   post 'pusher/auth', to: 'pusher#auth'
 
   resources :bookings, only: [] do

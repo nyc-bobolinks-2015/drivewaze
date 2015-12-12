@@ -1,49 +1,28 @@
+<h3> Chat about your rental at <%= @booking.listing.street %>, <%= @booking.listing.city %> </h3>
 
-<% if current_user.id == @booking.user_id %>
-
-
-<h3> <%= @booking.user.first_name %>, chat with <%= @booking.listing.user.first_name %> about your rental at <%= @booking.listing.street %>, <%= @booking.listing.city %> </h3>
-
-<div id='messagesDiv'></div>
+<div id='messages'>
+</div>
 
 
-<%= form_for [@booking, @message] do |f| %>
-<%= f.label :sender %>
-<%= f.text_field :sender,:value => @booking.user.first_name, :id => "names" %>
-<%= f.label :body %>
-<%= f.text_field :body, :id => "messages" %>
-<% end %>
+<%= form_tag new_booking_message_path(@booking), :id => "form" do %>
+  <div id = "to>">
+    <%= label_tag :to %>
+    <%= text_field_tag :receiver,@booking.receipient(current_user), :id => "toUser", :disabled=>true %>
+  </div>
+  <div id = "from>">
+    <%= label_tag :from %>
+    <%= text_field_tag :sender, current_user.first_name, :id => "fromUser", :disabled=>true%>
+  </div>
+  <div id = "body">
+    <%= label_tag :body %>
+    <%= text_field_tag :body, nil, :id => "msgText" %>
+  </div>
+
+  <div class = "submit">
+    <%= submit_tag("Send Message") %>
+  </div>
+  <% end %>
 
 
-<ul id='example-messages' class="example-chat-messages"></ul>
 
-<% end %>
 
-<script type="text/javascript" charset="utf-8">
-var myDataref = new Firebase('https://drivewaze.firebaseio.com/');
-
-var messageField = $("#messages");
-var nameField = $('#names');
-var messageList = $("example-messages")
-
-messageField.keypress(function(e){
-  if (e.keyCode == 13){
-    var username = nameField.val();
-    var message = messageField.val();
-
-    myDataref.push({name:username, text:message});
-    messageField.val('');
-  }
-});
-  myDataref.on('child_added', function(snapshot) {
-    var message = snapshot.val();
-    displayChatMessage(message.name, message.text);
-  });
-
-  function displayChatMessage(name, text) {
-        $('<div/>').text(text).prepend($('<em/>').text(name+': ')).appendTo($('#messagesDiv'));
-        // $("#names").val("")
-        $('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
-      };
-
-</script>
