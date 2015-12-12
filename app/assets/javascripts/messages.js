@@ -3,7 +3,6 @@ var myDataref = new Firebase('https://drivewaze.firebaseio.com/');
 document.addEventListener('DOMContentLoaded', function(){
 
   $(".new-message-container").on("submit", "#form", function(event){
-  // document.getElementById('form').addEventListener('submit', function(event){
   event.preventDefault();
 
     var fromUser = document.getElementById('fromUser').value;
@@ -31,16 +30,13 @@ document.addEventListener('DOMContentLoaded', function(){
     myDataref.child(myNode).on("value", function(snapshot) {
 
       var element = document.getElementById('messages');
-      // debugger;
       var output = '';
       snapshot.forEach(function(child){
         var msg = child.val();
-        // debugger;
         output += ("From: " + msg.fromUser + " To: " + msg.toUser + "<br>" + msg.message + "<br>" + msg.sent_at +
           "<br>");
       });
       element.innerHTML = output;
-      // debugger;
     });
 
     // myDataref.child(myNode).on("value", function(snapshot) {
