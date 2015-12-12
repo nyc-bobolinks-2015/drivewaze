@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     resources :messages, only: [:new]
   end
 
+  root 'welcome#index'
+  
   resources :listings do
     resources :availability_slots, only:[:create, :update, :destroy]
     resources :bookings
