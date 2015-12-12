@@ -79,4 +79,8 @@ $(document).ready(function(){
         console.log(error);
     });
   })
+
+  $('.single-listing').on('click', '.listing-info', function(event) {
+    window.location.href = '/listings/' + this.id;
+  })
 });

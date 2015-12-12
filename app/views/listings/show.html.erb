@@ -1,5 +1,21 @@
-<%= render 'listing' %>
+<%= render 'listing_preview' %>
+
+<div id="spot-info">
+<p>Space Description: <%= @listing.space_description %></p>
+<p>Neighborhood Information: <%= @listing.neighborhood_info %></p>
+<p>Public Transit: <%= @listing.public_transit_info %></p>
+<p>Additional Information: <%= @listing.other_info %></p>
+</div>
+<div id="listing-rules">
+<p><%= @listing.rules %></p>
+</div>
+
+<div id="book-listing-btn">
+  <a href="#">Book Listing</a>
+</div>
 
 <div id="static-map">
   <%= image_tag @map_image, id: "listing-show-map" %>
 </div>
+
+
