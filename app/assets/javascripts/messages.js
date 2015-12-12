@@ -50,9 +50,6 @@ document.addEventListener('DOMContentLoaded', function(){
     //   messageList.innerHTML = list;
     // });
 
-
-
->>>>>>> 2872522d510b5898b00f8360b626ee975bda0b47
 });
 
 
