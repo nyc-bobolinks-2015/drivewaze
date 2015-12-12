@@ -1,1 +1,7 @@
 <h1> Welcome, <%= @user.first_name %> <h1>
+
+<h4> Member since: <%= @user.created_at.strftime("%B %d, %Y") %> </h4>
+
+<h4> Last seen: <%= @user.last_sign_in_at.strftime("%B %d, %Y") %> </h4>
+
+

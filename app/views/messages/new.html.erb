@@ -1,0 +1,32 @@
+
+<div class = "new-message-container">
+
+<h3> Chat about your rental at <%= @booking.listing.street %>, <%= @booking.listing.city %> </h3>
+
+<div id='messages'>
+</div>
+
+
+<%= form_tag new_booking_message_path(@booking), :id => "form" do %>
+  <div id = "to>">
+    <%= label_tag :to %>
+    <%= text_field_tag :receiver,@booking.receipient(current_user), :id => "toUser", :disabled=>true %>
+  </div>
+  <div id = "from>">
+    <%= label_tag :from %>
+    <%= text_field_tag :sender, current_user.first_name, :id => "fromUser", :disabled=>true%>
+  </div>
+  <div id = "body">
+    <%= label_tag :body %>
+    <%= text_field_tag :body, nil, :id => "msgText" %>
+  </div>
+
+  <div class = "submit">
+    <%= submit_tag("Send Message") %>
+  </div>
+  <% end %>
+</div>
+
+
+
+
