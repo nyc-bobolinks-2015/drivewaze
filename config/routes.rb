@@ -10,8 +10,6 @@ Rails.application.routes.draw do
 
   resources :messages, only: [:index]
 
-  post 'pusher/auth', to: 'pusher#auth'
-
   resources :bookings, only: [] do
     resources :messages, only: [:new]
   end
