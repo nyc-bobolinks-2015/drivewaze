@@ -1,0 +1,16 @@
+<div id="search-div">
+  <div id="search-message">
+    <p>Where would you like to search today?</p>
+  </div>
+  <%= form_tag '/search', id: 'search-form' do %>
+    <%= text_field_tag :term %>
+    <%= submit_tag "Search", id: "search-submit" %>
+  <% end %>
+</div>
+
+<div id="map-container">
+  <div id="map"></div>
+</div>
+
+<div class="single-listing">
+</div>

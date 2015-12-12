@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
+
   devise_for :users
+
+  root 'listings#index'
 
   resources :users, only:[:show] do
     resources :reviews
@@ -11,7 +14,8 @@ Rails.application.routes.draw do
     resources :reviews
   end
 
-
+  get "/search" => 'listings#search'
+  post '/search' => 'listings#search_map'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

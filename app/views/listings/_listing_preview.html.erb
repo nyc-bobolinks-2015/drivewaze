@@ -1,0 +1,21 @@
+<div class="listing-info" id="<%= @listing.id %>">
+  <h1><%= @listing.street %></h1>
+  <div id='listing-price-info'>
+    <ul>
+      <li>Hourly Price: <%= @listing.hourly_price %></li>
+      <li>Daily Price: <%= @listing.daily_price %></li>
+      <li>Weekly Price: <%= @listing.weekly_price %></li>
+      <li>Monthly Price: <%= @listing.monthly_price %></li>
+    </ul>
+  </div>
+  <div id="parking-spot-info">
+    <ul>
+      <li>Compact Accepted? <%= @listing.compact_accepted %></li>
+      <li>Full-Size Accepted? <%= @listing.fullsize_accepted %></li>
+      <li>Oversized Accepted? <%= @listing.oversized_accepted %></li>
+    </ul>
+    <ul>
+      <li>Instant Booking? <%= @listing.instant_booking %></li>
+    </ul>
+  </div>
+</div>
