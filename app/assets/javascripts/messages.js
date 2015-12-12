@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', function(){
     var provider = $('#toUser').val();
     var myNode = 'msgs/' + [currentUser.toLowerCase(), provider.toLowerCase()].sort().join('-');
     myDataref.child(myNode).on("value", function(snapshot) {
-
       var element = document.getElementById('messages');
       var output = '';
       snapshot.forEach(function(child){
@@ -38,8 +37,8 @@ document.addEventListener('DOMContentLoaded', function(){
       element.innerHTML = output;
     });
 
-
-    // myDataref.child(myNode).on("value", function(snapshot) {
+    // var specificNode = 'msgs/' + [currentUser.toLowerCase()]
+    // myDataref.child(specificNode).on("value", function(snapshot) {
     //   var list = '';
     //   var messageList = document.getElementById('all-messages')
     //   snapshot.forEach(function(child){

@@ -18,4 +18,12 @@
   <%= image_tag @map_image, id: "listing-show-map" %>
 </div>
 
-
+<h4> Reviews (<%= @listing.reviews.count %>) </h4>
+<ul>
+<% @listing.reviews.each do |review| %>
+<li>From <%= link_to review.user.first_name, user_path(review.user) %>
+    on <%= review.created_at.strftime("%B %d, %Y") %> <br>
+    <%= review.review_body %> <br>
+  Rating: <%= review.review_score %> </li>
+<% end %>
+</ul>
