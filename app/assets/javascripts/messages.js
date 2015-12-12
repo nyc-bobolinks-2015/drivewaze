@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', function(){
     clearField.val("");
 
   });
-
     var currentUser = $('a')[0].text;
     var provider = $('#toUser').val();
     var myNode = 'msgs/' + [currentUser.toLowerCase(), provider.toLowerCase()].sort().join('-');
@@ -39,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function(){
       element.innerHTML = output;
     });
 
+
     // myDataref.child(myNode).on("value", function(snapshot) {
     //   var list = '';
     //   var messageList = document.getElementById('all-messages')
@@ -49,6 +49,10 @@ document.addEventListener('DOMContentLoaded', function(){
     //   });
     //   messageList.innerHTML = list;
     // });
+
+
+
+>>>>>>> 2872522d510b5898b00f8360b626ee975bda0b47
 });
 
 
