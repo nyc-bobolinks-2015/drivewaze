@@ -1,0 +1,19 @@
+<h1> Write a review for <%= @reviewable.first_name || @reviewable.user.first_name %> </h1>
+
+<h3> Review guidelines: </h3>
+<p>How was your experience? Any additional comments? Please leave a score from 1-5, 1 being the worst - 5 being the best.  </p>
+
+
+<%= form_for [@reviewable, @review] do |f| %>
+  <div id = "review-body">
+    <%= f.label :review_body %>
+    <%= f.text_area :review_body %>
+  </div>
+  <div id = "review-score">
+    <%= f.label :review_score %>
+    <%= f.number_field :review_score, in: 1..5 %>
+  </div>
+  <div id = "submit-button">
+    <%= f.submit %>
+  </div>
+<% end %>
