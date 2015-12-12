@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', function(){
     var provider = $('#toUser').val();
     var myNode = 'msgs/' + [currentUser.toLowerCase(), provider.toLowerCase()].sort().join('-');
     myDataref.child(myNode).on("value", function(snapshot) {
-      debugger;
       var element = document.getElementById('messages');
       var output = '';
       snapshot.forEach(function(child){
