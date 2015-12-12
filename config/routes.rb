@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root 'listings#index'
 
   resources :users, only:[:show] do
-    resources :reviews
+    resources :reviews, only: [:new, :create, :destroy]
   end
 
   resources :messages, only: [:index]
@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   resources :listings do
     resources :availability_slots, only:[:create, :update, :destroy]
     resources :bookings
-    resources :reviews
+    resources :reviews, only: [:new, :create, :destroy]
   end
 
   get "/search" => 'listings#search'

@@ -12,4 +12,8 @@ class Listing < ActiveRecord::Base
     address += self.street + ", " + self.city + ", " + self.state
     return address
   end
+
+  def first_name
+    self.user.first_name
+  end
 end
