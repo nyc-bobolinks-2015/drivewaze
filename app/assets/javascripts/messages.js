@@ -2,8 +2,8 @@ var myDataref = new Firebase('https://drivewaze.firebaseio.com/');
 
 document.addEventListener('DOMContentLoaded', function(){
 
-
-  document.getElementById('form').addEventListener('submit', function(event){
+  $(".new-message-container").on("submit", "#form", function(event){
+  // document.getElementById('form').addEventListener('submit', function(event){
   event.preventDefault();
 
     var fromUser = document.getElementById('fromUser').value;
@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', function(){
     clearField.val("");
 
   });
+
     var currentUser = $('a')[0].text;
     var provider = $('#toUser').val();
     var myNode = 'msgs/' + [currentUser.toLowerCase(), provider.toLowerCase()].sort().join('-');
@@ -34,15 +35,24 @@ document.addEventListener('DOMContentLoaded', function(){
       var output = '';
       snapshot.forEach(function(child){
         var msg = child.val();
+        // debugger;
         output += ("From: " + msg.fromUser + " To: " + msg.toUser + "<br>" + msg.message + "<br>" + msg.sent_at +
           "<br>");
-        // debugger;
       });
       element.innerHTML = output;
+      // debugger;
     });
 
-
-
+    // myDataref.child(myNode).on("value", function(snapshot) {
+    //   var list = '';
+    //   var messageList = document.getElementById('all-messages')
+    //   snapshot.forEach(function(child){
+    //      var msg = child.val();
+    //     list += ("From: " + msg.fromUser + "<br>" + msg.sent_at +
+    //         "<br>");
+    //   });
+    //   messageList.innerHTML = list;
+    // });
 });
 
 

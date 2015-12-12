@@ -11,14 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< 4cc0160aa7efaee94983b38aba01fda33984c5c7
-
-
-ActiveRecord::Schema.define(version: 20151210234010) do
-=======
 ActiveRecord::Schema.define(version: 20151211222515) do
->>>>>>> messages done
-
 
   create_table "availability_slots", force: true do |t|
     t.integer  "booking_id",      null: false
