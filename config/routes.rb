@@ -14,8 +14,6 @@ Rails.application.routes.draw do
   resources :bookings, only: [] do
     resources :messages, only: [:new]
   end
-
-  root 'welcome#index'
   
   resources :listings do
     resources :availability_slots, only:[:create, :update, :destroy]
@@ -38,6 +36,7 @@ Rails.application.routes.draw do
   
   get "/search" => 'listings#search'
   post '/search' => 'listings#search_map'
+  get "/stripe-signup" => 'users#stripe_signup'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
