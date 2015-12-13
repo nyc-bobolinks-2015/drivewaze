@@ -1,26 +1,23 @@
 class ListingsController < ApplicationController
   include HTTParty
-  #=====zino===========
+
   def new
     @listing=Listing.new
   end
 
   def create
-      listing = Listing.new(listing_params)
+      listing = Listing.new(listing_params.merge(user: current_user))
       if listing.save
         redirect_to new_listing_parking_slot_path(listing.id)
       else
         redirect_to new_listing_path
       end
-
   end
-  #=====zino==========
+
   def show
     @listing = Listing.find_by(id: params[:id])
-    @map_image = "https://maps.googleapis.com/maps/api/staticmap?
-                  center=#{@listing.street},#{@listing.city},#{@listing.state},#{@listing.zipcode}&zoom=15&size=1000x1000&maptype=roadmap
-                  &markers=#{@listing.street},#{@listing.city},#{@listing.state},#{@listing.zipcode}&key=#{ENV['GMAP_STATIC_KEY']}"
-
+    @map_image = "https://maps.googleapis.com/maps/api/staticmap?center=#{@listing.address}&zoom=15&size=1000x1000&maptype=roadmap&markers=#{@listing.address}&key=#{ENV['GMAP_STATIC_KEY']}"
+            
     if request.xhr?
       return render partial: 'listing_preview', locals:{listing: @listing}
     end
@@ -55,6 +52,6 @@ class ListingsController < ApplicationController
 
   private#zino----
   def listing_params
-    params.require(:listing).permit(:info,:address)
+    params.require(:listing).permit(:other_info,:address,:space_description,:neighborhood_info,:public_transit_info,:rules)
   end
 end

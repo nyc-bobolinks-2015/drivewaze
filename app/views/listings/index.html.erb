@@ -1,11 +1,9 @@
-this is the index page for listing
-<%=link_to "New Listing",new_listing_path%>
-<ul>
-	<%@listings.each do |listing|%>
-		<li><%=listing.address%></li>
-	<%end%>
-</ul>
-<!--zino above-->
+<h2>WELCOME!</h2>
+<% if current_user && current_user.publishable_key %>
+  <%=link_to "New Listing",new_listing_path%>
+<% else %>
+  <%= link_to "New Listing", stripe_signup_path  %>
+<% end %>
 
 <div id="search-div">
   <div id="search-message">
