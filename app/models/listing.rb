@@ -3,6 +3,8 @@ class Listing < ActiveRecord::Base
   has_many :bookings
   has_many :availability_slots
   has_many :reviews, as: :reviewable
+  #---zino
+  has_many :parking_slots
 
   geocoded_by :full_address
   before_save :geocode

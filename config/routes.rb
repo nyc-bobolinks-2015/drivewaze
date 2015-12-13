@@ -20,8 +20,20 @@ Rails.application.routes.draw do
     resources :bookings
     resources :reviews, only: [:new, :create, :destroy]
     resources :favorite_listings, only: [:create, :destroy]
+    resources :parking_slots, only: [:new,:index,:create]
   end
 
+  resources :parking_slots, only:[:show,:edit,:update] do
+    resources :parking_slots_time_slots, only:[:new,:create] do
+    end
+  end
+
+  namespace :api, defaults: {format: :json} do
+    resources :parking_slots,only:[] do
+      resources :parking_slots_time_slots, only:[:index]
+    end
+  end
+  
   get "/search" => 'listings#search'
   post '/search' => 'listings#search_map'
 

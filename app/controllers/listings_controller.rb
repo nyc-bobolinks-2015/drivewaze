@@ -1,5 +1,20 @@
 class ListingsController < ApplicationController
   include HTTParty
+  #=====zino===========
+  def new
+    @listing=Listing.new
+  end
+
+  def create
+      listing = Listing.new(listing_params)
+      if listing.save
+        redirect_to new_listing_parking_slot_path(listing.id)
+      else
+        redirect_to new_listing_path
+      end
+
+  end
+  #=====zino==========
   def show
     @listing = Listing.find_by(id: params[:id])
     @map_image = "https://maps.googleapis.com/maps/api/staticmap?
@@ -36,5 +51,10 @@ class ListingsController < ApplicationController
     search_term = URI.escape(params[:term])
     @response = HTTParty.get("http://maps.googleapis.com/maps/api/geocode/json?address=#{search_term}")
     render json: @response
+  end
+
+  private#zino----
+  def listing_params
+    params.require(:listing).permit(:info,:address)
   end
 end

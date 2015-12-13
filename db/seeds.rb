@@ -9,3 +9,8 @@
 Listing.create!(street:"222 East 80th St", city: "New York", state: "New York", zipcode: "10075", parking_spot_type: 1, hourly_price: 5, daily_price: 30, weekly_price: 100, monthly_price: 300, compact_accepted: true, fullsize_accepted: true, oversized_accepted: true, space_description: "big space", neighborhood_info: "good", public_transit_info: "7 and 2 train close", other_info: "garage", rules: "close door when leaving", instant_booking: false, user_id: 2)
 Booking.create!(total:42,listing_id:1,user_id:1)
 
+startTime=DateTime.parse("12 Dec 2015 00:00:00")
+360.times do
+	TimeSlot.create(start_time:startTime)
+	startTime=startTime+2.hours
+end

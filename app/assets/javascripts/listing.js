@@ -84,3 +84,17 @@ $(document).ready(function(){
     window.location.href = '/listings/' + this.id;
   })
 });
+
+//----------------
+var ready=function(){
+  $("#newListingForm").on("submit",function(event){
+    event.preventDefault();
+    var listingAddress = $("#listingAddress").val();
+    $("#listing_address").val(listingAddress);
+    $("#listingPageAddress").hide();
+    $("#listingPageInfo").removeClass('hide');
+  });
+};
+
+$(document).ready(ready);
+$(document).on('page:load',ready);
