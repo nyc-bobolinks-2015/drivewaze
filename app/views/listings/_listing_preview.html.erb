@@ -1,5 +1,12 @@
 <div class="listing-info" id="<%= @listing.id %>">
   <h1><%= @listing.street %></h1>
+
+  <% unless current_user.favorite_listings.exists?(id: @listing.id) %>
+    <%= link_to 'Add to favorites', listing_favorite_listings_path(listing_id: @listing), method: :post %>
+  <% else %>
+    <%= link_to 'Remove from favorites', listing_favorite_listing_path(listing_id:@listing.id, favorite_listing_id: @listing.id), method: :delete %>
+  <% end %>
+
   <div id='listing-price-info'>
     <ul>
       <li>Hourly Price: <%= @listing.hourly_price %></li>

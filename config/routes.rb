@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   resources :users, only:[:show] do
     resources :reviews, only: [:new, :create, :destroy]
+    resources :favorite_users, only: [:create, :destroy]
   end
 
   resources :messages, only: [:index]
@@ -18,6 +19,7 @@ Rails.application.routes.draw do
     resources :availability_slots, only:[:create, :update, :destroy]
     resources :bookings
     resources :reviews, only: [:new, :create, :destroy]
+    resources :favorite_listings, only: [:create, :destroy]
   end
 
   get "/search" => 'listings#search'
