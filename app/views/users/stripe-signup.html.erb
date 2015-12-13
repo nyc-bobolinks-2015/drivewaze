@@ -6,5 +6,5 @@
 
 	<p>All you need to do, is create an account with Stripe, or, if you already have an account, just add permissions for drivewaze to pay you by clicking “connect my stripe account”. You’ll only have to do this once.  When you’re done creating a Stripe account, you’ll be redirected to a listings page so you can create your listings and start earning cash!</p>
 	
-	<%= link_to image_tag('/light-on-dark.png'), user_omniauth_authorize_path(:stripe_connect, stripe_user: {url: "http://localhost:3000/users/" + current_user.id.to_s}) %>
+	<%= link_to image_tag('/light-on-dark.png'), user_omniauth_authorize_path(:stripe_connect, stripe_user: {url: "http://localhost:3000/users/" + current_user.id.to_s}) %> <!--TODO: change url once deployed to heroku -->
 </div>
