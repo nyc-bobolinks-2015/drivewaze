@@ -1,0 +1,31 @@
+<div id="listingPageContainer">
+
+	<div id="listingPageAddress">
+		<h2>Your Address</h2>
+		<form id="newListingForm">
+			<div class="form-group">
+				<label for="address">Address</label>
+				<input type="text" name="address" id="listingAddress" class="form-control" placeHolder="Your City">
+			</div>
+			<div class="form-group">
+				<button type="submit" class="btn btn-md btn-default">Continue</button>
+			</div>
+		</form>
+		<div style="height:100px; width:100px; background-color:grey;"></div>
+	</div><!--listingPageAddress-->
+
+	<div id="listingPageInfo" class="hide">
+		<h3>Info</h3>
+		<div class="listingPhotoUpload"></div>
+		<div class="listingInfo">
+			<%=form_for @listing do |f|%>
+				<%=f.hidden_field :address%>
+				<%=f.label :info%>
+				<%=f.text_field :info, id:"listingInfo"%>
+
+				<%=f.submit "Continue"%>
+			<%end%>
+		</div>
+	</div><!--listingPageInfo-->
+
+</div>
