@@ -42,24 +42,12 @@ ActiveRecord::Schema.define(version: 20151212235145) do
   add_index "favorites", ["user_id"], name: "index_favorites_on_user_id"
 
   create_table "listings", force: true do |t|
-    t.string   "street",              null: false
-    t.string   "city",                null: false
-    t.string   "state",               null: false
-    t.string   "zipcode",             null: false
-    t.integer  "parking_spot_type",   null: false
-    t.integer  "hourly_price",        null: false
-    t.integer  "daily_price",         null: false
-    t.integer  "weekly_price",        null: false
-    t.integer  "monthly_price",       null: false
-    t.boolean  "compact_accepted",    null: false
-    t.boolean  "fullsize_accepted",   null: false
-    t.boolean  "oversized_accepted",  null: false
+    t.string   "address",             null: false
     t.string   "space_description"
     t.string   "neighborhood_info"
     t.string   "public_transit_info"
     t.string   "other_info"
     t.string   "rules"
-    t.boolean  "instant_booking",     null: false
     t.integer  "user_id",             null: false
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
@@ -67,10 +55,25 @@ ActiveRecord::Schema.define(version: 20151212235145) do
     t.float    "longitude"
   end
 
-  create_table "messages", force: true do |t|
-    t.string   "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "parking_slots", force: true do |t|
+    t.integer  "vehicle_class"
+    t.integer  "slot_type"
+    t.integer  "hourly_price"
+    t.integer  "daily_price"
+    t.integer  "weekly_price"
+    t.integer  "monthly_price"
+    t.integer  "listing_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "parking_slots_time_slots", force: true do |t|
+    t.boolean  "booked"
+    t.boolean  "unavailable"
+    t.integer  "parking_slot_id"
+    t.integer  "time_slot_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "reviews", force: true do |t|
@@ -81,6 +84,15 @@ ActiveRecord::Schema.define(version: 20151212235145) do
     t.integer  "review_score",    null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+  end
+
+  create_table "time_slots", force: true do |t|
+    t.datetime "start_time"
+    t.text     "year"
+    t.text     "month"
+    t.text     "day"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: true do |t|
