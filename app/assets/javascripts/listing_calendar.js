@@ -45,8 +45,6 @@ var ready=function(){
 			url:"/parking_slots/"+parkingSlotId+"/parking_slots_time_slots",
 			data:"start_time="+$('#hiddenStartTime').text()+"&end_time="+$('#hiddenEndTime').text()+"&parking_slot_id="+parkingSlotId
 		}).done(function(result){
-			console.log(result);
-			console.log("here");
 			$("#cal-div").fullCalendar('refetchEvents');
 		}).fail(function(error){
 			console.log(error);
