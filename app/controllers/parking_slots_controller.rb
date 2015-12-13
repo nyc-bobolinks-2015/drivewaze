@@ -26,16 +26,33 @@ class ParkingSlotsController < ApplicationController
 		@parking_slot=ParkingSlot.find(params[:id])
 	end
 
-	def edit
-		if params[:request]="property_type"
-			render partial: "property_type", layout:false
-		else
-			render "error",layout:false
+	def update
+		parking_slot=ParkingSlot.find(params[:id])
+		if params[:slot_type]
+			parking_slot.update_attributes(slot_type:params[:slot_type])
+		elsif params[:vehicle_class]
+			parking_slot.update_attributes(vehicle_class:params[:vehicle_class])
+		elsif params[:hourly_price]
+			parking_slot.update_attributes(p1:params[:hourly_price])
+		elsif params[:daily_price]
+			parking_slot.update_attributes(p2:params[:daily_price])
+		# elsif params[:daily_price]
+		# 	parking_slot.update_attributes(p2:params[:daily_price])
+		# elsif params[:daily_price]
+		# 	parking_slot.update_attributes(p2:params[:daily_price])
 		end
-	end	
+
+		if parking_slot.save
+			render json:{status:"success"}
+		else
+			render json:{error:parking_slot.errors.full_messages.join(',')},status:406
+		end
+
+
+	end
 
 	private
 	# def parking_slot_params
-	# 	params.require(:parking_slot).permit()
+	# 	params.require(:parking_slot).permit(:slot_type, :vehicle_class)
 	# end
 end
