@@ -1,6 +1,6 @@
 class ListingsController < ApplicationController
   include HTTParty
-  #=====zino===========
+
   def new
     @listing=Listing.new
   end
@@ -12,9 +12,8 @@ class ListingsController < ApplicationController
       else
         redirect_to new_listing_path
       end
-
   end
-  #=====zino==========
+
   def show
     @listing = Listing.find_by(id: params[:id])
     @map_image = "https://maps.googleapis.com/maps/api/staticmap?
