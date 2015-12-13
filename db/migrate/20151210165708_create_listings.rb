@@ -5,15 +5,6 @@ class CreateListings < ActiveRecord::Migration
       t.string :city, null:false
       t.string :state, null:false
       t.string :zipcode, null:false
-      t.integer :parking_spot_type,  null:false
-      t.integer :hourly_price, null:false
-      t.integer :daily_price, null:false
-      t.integer :weekly_price, null:false
-      t.integer :monthly_price, null:false
-
-      t.boolean :compact_accepted, null:false
-      t.boolean :fullsize_accepted, null:false
-      t.boolean :oversized_accepted, null:false
 
       t.string :space_description
       t.string :neighborhood_info

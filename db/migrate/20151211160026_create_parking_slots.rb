@@ -3,9 +3,11 @@ class CreateParkingSlots < ActiveRecord::Migration
     create_table :parking_slots do |t|
     	t.integer :vehicle_class
     	t.integer :slot_type
-    	
-    	t.integer :p1
-    	t.integer :p2
+    
+      t.integer :hourly_price
+      t.integer :daily_price
+      t.integer :weekly_price
+      t.integer :monthly_price
 
       t.references :listing
       t.timestamps null: false
