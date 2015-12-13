@@ -5,6 +5,7 @@ class BookingsController < ApplicationController
 	end
 
 	def create
+		#create_booking
 		charge_client
 		listing = Listing.find_by(id: params[:listing_id])
 		@provider = listing.user
