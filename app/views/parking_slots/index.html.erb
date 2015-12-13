@@ -1,8 +1,8 @@
-<h2>Your Parking Slots</h2>
+<h2>Your Parking Spots</h2>
 <%@parking_slots.each do |p|%>
 	<div class="panel panel-default">
 		<div class="panel-body">
-			<%=link_to p, parking_slot_path(p.id)%>
+			<%=link_to "Spot", parking_slot_path(p.id)%>
 		</div>
 	</div>
 <%end%>
