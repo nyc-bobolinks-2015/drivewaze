@@ -22,6 +22,7 @@
   <p> Description:</p> <p> <%= @user.description %> </p>
 </div>
 
+
 <div id="user-listings">
   <h3>Available Listings:</h3>
   <ol>
@@ -40,6 +41,20 @@
     </ol>
   </div>
 <% end %>
+
+<h4> Reviews (<%= @user.reviews.count %>) </h4>
+<ul>
+  <% @user.reviews.each do |review| %>
+  <% if review.user_id == current_user.id %>
+    <%= link_to "Delete Review", user_review_path(user_id: @user, id: review), method: :delete %>
+   <li>From <%=link_to review.user.first_name, user_path(review.user) %>
+    on <%= review.created_at.strftime("%B %d, %Y") %> <br>
+    <%= review.review_body %> <br>
+    Rating: <%= review.review_score %> </li>
+    <% end %>
+  <% end %>
+</ul>
+
 
 <div id="user-reviews">
   <h3> Reviews (<%= @user.reviews.count %>) </h3>
