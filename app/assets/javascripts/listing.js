@@ -3,11 +3,20 @@ function initMap() {
    {
     center: {lat: 40.7060137, lng: -74.0110914},
     scrollwheel: false,
-    zoom: 8
+    zoom: 14
     });
 }
 
-$(document).ready(function(){
+//----------------
+var ready=function(){
+    $("#newListingForm").on("submit",function(event){
+    event.preventDefault();
+    var listingAddress = $("#listingAddress").val();
+    $("#listing_address").val(listingAddress);
+    $("#listingPageAddress").hide();
+    $("#listingPageInfo").removeClass('hide');
+  });
+    
   initMap();
   (function(){
 
@@ -19,7 +28,7 @@ $(document).ready(function(){
           var marker = new google.maps.Marker({
             map: window.map,
             position: {lat: response[i].latitude, lng: response[i].longitude},
-            title: ("$" + String(response[0].hourly_price) + '.00')
+            title: String(response[0].address)
           });
         }
       }).fail(function(error){
@@ -46,7 +55,7 @@ $(document).ready(function(){
             var marker = new google.maps.Marker({
               map: window.map,
               position: {lat: response[i].latitude, lng: response[i].longitude},
-              title: ("$" + String(response[0].hourly_price) + '.00'),
+              title: String(response[0].address),
               label: "$",
               id: response[i].id
             });
@@ -78,21 +87,10 @@ $(document).ready(function(){
       }).fail(function(error){
         console.log(error);
     });
-  })
+  });
 
   $('.single-listing').on('click', '.listing-info', function(event) {
     window.location.href = '/listings/' + this.id;
-  })
-});
-
-//----------------
-var ready=function(){
-  $("#newListingForm").on("submit",function(event){
-    event.preventDefault();
-    var listingAddress = $("#listingAddress").val();
-    $("#listing_address").val(listingAddress);
-    $("#listingPageAddress").hide();
-    $("#listingPageInfo").removeClass('hide');
   });
 };
 

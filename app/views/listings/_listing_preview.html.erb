@@ -1,5 +1,5 @@
 <div class="listing-info" id="<%= @listing.id %>">
-  <h1><%= @listing.street %></h1>
+  <h1><%= @listing.address %></h1>
 
   <% unless current_user.favorite_listings.exists?(id: @listing.id) %>
     <%= link_to 'Add to favorites', listing_favorite_listings_path(listing_id: @listing), method: :post %>
@@ -7,22 +7,18 @@
     <%= link_to 'Remove from favorites', listing_favorite_listing_path(listing_id:@listing.id, favorite_listing_id: @listing.id), method: :delete %>
   <% end %>
 
-  <div id='listing-price-info'>
+<div id='listing-price-info'>
     <ul>
-      <li>Hourly Price: <%= @listing.hourly_price %></li>
-      <li>Daily Price: <%= @listing.daily_price %></li>
-      <li>Weekly Price: <%= @listing.weekly_price %></li>
-      <li>Monthly Price: <%= @listing.monthly_price %></li>
+      <li>Hourly Price: <%= @listing.parking_slots.first.hourly_price %></li>
+      <li>Daily Price: <%= @listing.parking_slots.first.daily_price %></li>
+      <li>Weekly Price: <%= @listing.parking_slots.first.weekly_price %></li>
+      <li>Monthly Price: <%= @listing.parking_slots.first.monthly_price %></li>
     </ul>
   </div>
   <div id="parking-spot-info">
     <ul>
-      <li>Compact Accepted? <%= @listing.compact_accepted %></li>
-      <li>Full-Size Accepted? <%= @listing.fullsize_accepted %></li>
-      <li>Oversized Accepted? <%= @listing.oversized_accepted %></li>
-    </ul>
-    <ul>
-      <li>Instant Booking? <%= @listing.instant_booking %></li>
+      <li>Vehicle Class: <%= @listing.parking_slots.first.vehicle_class %></li>
+      <li>Slot Type: <%= @listing.parking_slots.first.slot_type %></li>
     </ul>
   </div>
 </div>

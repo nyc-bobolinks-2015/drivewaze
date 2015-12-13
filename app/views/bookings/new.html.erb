@@ -1,0 +1,47 @@
+<h2>Book a Parking Spot</h2>
+<p>at <%= @listing.address %></p>
+<h3>Prices</h3>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Per Hour</th>
+			<th>Per Day</th>
+			<th>Per Week</th>
+			<th>Per Month</th>
+		</tr>
+	</thead>
+	<tbody>
+		<form>
+		<tr>
+			<td>$<%= @listing.parking_slots.first.hourly_price %></td>
+			<td>$<%= @listing.parking_slots.first.daily_price %></td>
+			<td>$<%= @listing.parking_slots.first.weekly_price %></td>
+			<td>$<%= @listing.parking_slots.first.monthly_price %></td>
+		</tr>
+		</form>
+	</tbody>
+</table>
+
+<div id="cal-div" data-id="<%= @listing.parking_slots.first.id %>"></div>
+
+<div class="modal fade" id="newEvent" tabindex="-1" role="dialog" aria-labelledby="newEventLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="newEventLabel">Confirm Booking Time</h4>
+      </div>
+
+      <div class="modal-body">
+        <div class="form-group">
+          <p>Start Time: <span id="startTime"></span></p>
+          <p>End Time: <span id="endTime"></span></p>
+          <span id="hiddenStartTime" class="hide"></span>
+          <span id="hiddenEndTime" class="hide"></span>
+          <button class="form-control" id="blackOutTimeSlotButton">Book!</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -45,17 +45,12 @@ var ready=function(){
 			url:"/parking_slots/"+parkingSlotId+"/parking_slots_time_slots",
 			data:"start_time="+$('#hiddenStartTime').text()+"&end_time="+$('#hiddenEndTime').text()+"&parking_slot_id="+parkingSlotId
 		}).done(function(result){
-			console.log(result);
-			console.log("here");
 			$("#cal-div").fullCalendar('refetchEvents');
 		}).fail(function(error){
 			console.log(error);
 		});
 	});
-
-
-
-
 };
-$(document).ready(ready);
+$(document).ready(ready); //TODO:Learn why line 59 works and not this
 $(document).on('page:load',ready);
+$(window).load(ready);
