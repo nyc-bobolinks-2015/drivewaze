@@ -1,7 +1,6 @@
 class BookingsController < ApplicationController
 	def new
 		@listing = Listing.find_by(id: params[:listing_id])
-		@user = User.first
 	end
 
 	def create
