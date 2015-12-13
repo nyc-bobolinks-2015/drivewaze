@@ -1,4 +1,10 @@
-<h1> Welcome, <%= @user.first_name %> <h1>
+<h1> Hey, I'm <%= @user.first_name %>! </h1>
+
+<% unless current_user.favorite_users.exists?(id: @user.id) %>
+    <%= link_to 'Add to favorites', user_favorite_users_path(user_id: @user), method: :post %>
+  <% else %>
+    <%= link_to 'Remove from favorites', user_favorite_user_path(user_id:@user.id, favorite_user_id: @user.id), method: :delete %>
+  <% end %>
 
 <h4> Member since: <%= @user.created_at.strftime("%B %d, %Y") %> </h4>
 
@@ -12,4 +18,22 @@
   <%= review.review_body %> <br>
   Rating: <%= review.review_score %> </li>
 <% end %>
+</ul>
+
+<h4> Favorited Listings </h4>
+<ul>
+  <% @user.favorites.each do |favorite| %>
+    <% if favorite.favorited_type == "Listing" %>
+      <%= link_to favorite.favorited.street, listing_path(favorite.favorited_id) %>
+    <% end %>
+  <% end %>
+</ul>
+
+<h4> Favorited Users </h4>
+<ul>
+  <% @user.favorites.each do |favorite| %>
+    <% if favorite.favorited_type == "User" %>
+      <%= link_to favorite.favorited.first_name, user_path(favorite.favorited_id) %>
+    <% end %>
+  <% end %>
 </ul>
