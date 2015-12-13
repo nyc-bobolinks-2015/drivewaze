@@ -52,10 +52,7 @@ var ready=function(){
 			console.log(error);
 		});
 	});
-
-
-
-
 };
-$(document).ready(ready);
+$(document).ready(ready); //TODO:Learn why line 59 works and not this
 $(document).on('page:load',ready);
+$(window).load(ready);
