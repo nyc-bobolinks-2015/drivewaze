@@ -1,3 +1,7 @@
+<h2>Select Blackout Times</h2>
+<p>Please indicate which times you do <strong>NOT</strong> wish to rent your parking space. We know you're a busy person ;)</p>
+<div><%= link_to "Submit Listing", user_path(current_user) %></div>
+
 <div id="cal-div" style="width:70%; margin:0 auto; margin-top:2em;" data-id="<%=@parking_slot.id%>"></div>
 
 <div class="modal fade" id="newEvent" tabindex="-1" role="dialog" aria-labelledby="newEventLabel">
@@ -5,7 +9,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="newEventLabel">Set Price</h4>
+        <h4 class="modal-title" id="newEventLabel">Confirm Unavailability</h4>
       </div>
 
       <div class="modal-body">
@@ -21,3 +25,5 @@
     </div>
   </div>
 </div>
+
+<div><%= link_to "Submit Listing", user_path(current_user) %></div>
