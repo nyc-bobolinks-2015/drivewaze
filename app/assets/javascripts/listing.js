@@ -3,7 +3,7 @@ function initMap() {
    {
     center: {lat: 40.7060137, lng: -74.0110914},
     scrollwheel: false,
-    zoom: 8
+    zoom: 14
     });
 }
 
@@ -28,7 +28,7 @@ var ready=function(){
           var marker = new google.maps.Marker({
             map: window.map,
             position: {lat: response[i].latitude, lng: response[i].longitude},
-            title: ("$" + String(response[0].hourly_price) + '.00')
+            title: String(response[0].address)
           });
         }
       }).fail(function(error){
@@ -55,7 +55,7 @@ var ready=function(){
             var marker = new google.maps.Marker({
               map: window.map,
               position: {lat: response[i].latitude, lng: response[i].longitude},
-              title: ("$" + String(response[0].hourly_price) + '.00'),
+              title: String(response[0].address),
               label: "$",
               id: response[i].id
             });
