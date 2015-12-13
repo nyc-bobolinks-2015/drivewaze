@@ -33,13 +33,13 @@ class ParkingSlotsController < ApplicationController
 		elsif params[:vehicle_class]
 			parking_slot.update_attributes(vehicle_class:params[:vehicle_class])
 		elsif params[:hourly_price]
-			parking_slot.update_attributes(p1:params[:hourly_price])
+			parking_slot.update_attributes(hourly_price:params[:hourly_price])
 		elsif params[:daily_price]
-			parking_slot.update_attributes(p2:params[:daily_price])
-		# elsif params[:daily_price]
-		# 	parking_slot.update_attributes(p2:params[:daily_price])
-		# elsif params[:daily_price]
-		# 	parking_slot.update_attributes(p2:params[:daily_price])
+			parking_slot.update_attributes(daily_price:params[:daily_price])
+		elsif params[:weekly_price]
+			parking_slot.update_attributes(weekly_price:params[:weekly_price])
+		elsif params[:monthly_price]
+			parking_slot.update_attributes(monthly_price:params[:monthly_price])
 		end
 
 		if parking_slot.save
