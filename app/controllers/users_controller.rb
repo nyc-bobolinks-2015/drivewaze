@@ -8,5 +8,12 @@ class UsersController < ApplicationController
   def stripe_signup
   	render :'users/stripe-signup'
   end
+
+  def destroy
+  	user = User.find_by(id: params[:id])
+  	user.destroy
+  	session.clear
+  	redirect_to root_path
+  end
 end
 

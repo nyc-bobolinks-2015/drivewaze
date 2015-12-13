@@ -73,3 +73,6 @@
     <% end %>
   </ul>
 </div>
+<% if @user == current_user %>
+  <%= link_to "Delete My Profile", user_delete_path(@user), method: :delete %>
+<% end %>
