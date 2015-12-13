@@ -1,11 +1,14 @@
 class BookingsController < ApplicationController
 	def new
+		@listing = Listing.find_by(id: params[:listing_id])
+		@user = User.first
 	end
 
 	def create
 		charge_client
 		listing = Listing.find_by(id: params[:listing_id])
 		@provider = listing.user
+		render :'create'
 	end
 
 	private
@@ -13,6 +16,7 @@ class BookingsController < ApplicationController
 	def charge_client
 		# Amount in cents
 		@amount = 500
+		listing = Listing.find_by(id: params[:listing_id])
 	  
 	  customer = Stripe::Customer.create(
 	    :email => params[:stripeEmail],
@@ -24,7 +28,8 @@ class BookingsController < ApplicationController
 	    :amount      => @amount,
 	    :description => 'Rails Stripe customer',
 	    :currency    => 'usd',
-	    # :destination => #some @provider.id not sure if 
+	 		:destination => listing.user.uid,
+	 		:application_fee => @amount/10
 	  )
 
 	rescue Stripe::CardError => e
