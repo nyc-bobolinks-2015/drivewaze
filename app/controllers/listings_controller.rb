@@ -6,7 +6,7 @@ class ListingsController < ApplicationController
   end
 
   def create
-      listing = Listing.new(listing_params)
+      listing = Listing.new(listing_params.merge(user: current_user))
       if listing.save
         redirect_to new_listing_parking_slot_path(listing.id)
       else
@@ -54,6 +54,6 @@ class ListingsController < ApplicationController
 
   private#zino----
   def listing_params
-    params.require(:listing).permit(:info,:address)
+    params.require(:listing).permit(:other_info,:address,:space_description,:neighborhood_info,:public_transit_info,:rules)
   end
 end

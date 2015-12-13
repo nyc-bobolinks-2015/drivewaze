@@ -6,14 +6,8 @@ class Listing < ActiveRecord::Base
   #---zino
   has_many :parking_slots
 
-  geocoded_by :full_address
+  geocoded_by :address
   before_save :geocode
-
-  def full_address
-    address = ""
-    address += self.street + ", " + self.city + ", " + self.state
-    return address
-  end
 
   def first_name
     self.user.first_name
