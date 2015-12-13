@@ -31,7 +31,7 @@
   <div id="user-bookings">
     <h3>Current Bookings: </h3>
     <ol>
-      <% @user.current_bookings.each do |listing| %>
+      <% @user.bookings.each do |listing| %>
         <li><%= link_to listing.address, listing_path(listing) %></li>
       <% end %>
     </ol>
