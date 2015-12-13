@@ -7,7 +7,16 @@ function initMap() {
     });
 }
 
-$(document).ready(function(){
+//----------------
+var ready=function(){
+    $("#newListingForm").on("submit",function(event){
+    event.preventDefault();
+    var listingAddress = $("#listingAddress").val();
+    $("#listing_address").val(listingAddress);
+    $("#listingPageAddress").hide();
+    $("#listingPageInfo").removeClass('hide');
+  });
+    
   initMap();
   (function(){
 
@@ -78,21 +87,10 @@ $(document).ready(function(){
       }).fail(function(error){
         console.log(error);
     });
-  })
+  });
 
   $('.single-listing').on('click', '.listing-info', function(event) {
     window.location.href = '/listings/' + this.id;
-  })
-});
-
-//----------------
-var ready=function(){
-  $("#newListingForm").on("submit",function(event){
-    event.preventDefault();
-    var listingAddress = $("#listingAddress").val();
-    $("#listing_address").val(listingAddress);
-    $("#listingPageAddress").hide();
-    $("#listingPageInfo").removeClass('hide');
   });
 };
 
