@@ -1,4 +1,5 @@
-var ready=function(){
+function ready1(){
+	console.log('hi');
 	// var startTime="default";
 	// var endTime="default";
 	var parkingSlotId=$("#cal-div").attr("data-id");
@@ -51,6 +52,7 @@ var ready=function(){
 		});
 	});
 };
-$(document).ready(ready); //TODO:Learn why line 59 works and not this
-$(document).on('page:load',ready);
-$(window).load(ready);
+$(document).ready(ready1); //TODO:Learn why line 59 works and not this
+$(document).on('page:load',ready1);
+$(window).load(ready1);
+

@@ -11,7 +11,6 @@
 				<button type="submit" class="btn btn-md btn-default">Continue</button>
 			</div>
 		</form>
-		<div style="height:100px; width:100px; background-color:grey;"></div>
 	</div><!--listingPageAddress-->
 
 	<div id="listingPageInfo" class="hide">
@@ -34,6 +33,12 @@
 				<%=f.submit "Continue"%>
 			<%end%>
 		</div>
+
+		<div id="static-map">
+		  <%= image_tag @map_image, id: "listing-show-map" %>
+		</div>
+
+
 	</div><!--listingPageInfo-->
 
 </div>
