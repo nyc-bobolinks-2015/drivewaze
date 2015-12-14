@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
   });
 
+if($('#toUser').length) {
     var currentUser = $("#fromUser").val();
     var provider = $('#toUser').val();
     var myNode = 'msgs/' + [currentUser.toLowerCase(), provider.toLowerCase()].sort().join('-');
@@ -36,18 +37,18 @@ document.addEventListener('DOMContentLoaded', function(){
       });
       element.innerHTML = output;
     });
+}
 
-      // var specificNode = 'msgs/' + [currentUser.toLowerCase()]
-    // myDataref.child(specificNode).on("value", function(snapshot) {
-    //   var list = '';
-    //   var messageList = document.getElementById('all-messages')
-    //   snapshot.forEach(function(child){
-    //      var msg = child.val();
-    //     list += ("From: " + msg.fromUser + "<br>" + msg.sent_at +
-    //         "<br>");
-    //   });
-    //   messageList.innerHTML = list;
-    // });
+if ($('#all-messages').length) {
+    var currentUser = $("#current_user_nav").text();
+    var specificNode = 'msgs/laura-sam' //currentUser.toLowerCase() +
+    // debugger;
+    myDataref.child(specificNode).on("child_added", function(snapshot) {
+      var allMessages = document.getElementById('all-messages');
+      var newPost = snapshot.val();
+      allMessages.innerHTML = "From: " +  newPost.fromUser + "<br>" + "Most recent message: " +newPost.message
+      });
+}
 });
 
 

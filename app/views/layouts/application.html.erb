@@ -35,16 +35,17 @@
   <div class="container">
     <h1 id="logo"><%= link_to "spcs", root_path %></h1>
 
-    <% if user_signed_in? %>
-    <%= link_to current_user.first_name, user_path(current_user.id) %>
-    <%= link_to 'Logout',  destroy_user_session_path, :method => :delete %>
-    <% else %>
-    <%= link_to 'Login', new_user_session_path %>
-    <%= link_to 'Sign up', new_user_registration_path %>
-    <% end %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+  <% if user_signed_in? %>
+  <%= link_to current_user.first_name, user_path(current_user.id), :id => "current_user_nav" %>
+  <%= link_to 'Logout',  destroy_user_session_path, :method => :delete %>
+  <% else %>
+  <%= link_to 'Login', new_user_session_path %>
+  <%= link_to 'Sign up', new_user_registration_path %>
+  <% end %>
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+<%= yield %>
+
   </div>
 </body>
 </html>
