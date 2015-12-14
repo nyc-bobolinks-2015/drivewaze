@@ -55,7 +55,7 @@
       <% if review.user_id == current_user.id %>
     <%= link_to "Delete Review", user_review_path(user_id: @user, id: review), method: :delete %>
     <% end %>
-       <li>From <%=link_to review.user.first_name, user_path(review.user) %>
+       <li>From <%=link_to review.reviewer.first_name, user_path(review.reviewer) %>
       on <%= review.created_at.strftime("%B %d, %Y") %> <br>
       <%= review.review_body %> <br>
       Rating: <%= review.review_score %> </li>
