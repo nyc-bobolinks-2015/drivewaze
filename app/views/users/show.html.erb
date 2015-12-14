@@ -1,4 +1,5 @@
 
+
 <div id="welcome-user"></div>
   <% if @user == current_user %>
     <h1>Welcome Back <%= @user.first_name %>!</h1>
@@ -15,13 +16,13 @@
     <% end %>
   <% end %>
 </div>
+
 <div id="user-info">
   <p> Member since: <%= @user.created_at.strftime("%B %d, %Y") %> </p>
   <p> Last seen: <%= @user.last_sign_in_at.strftime("%B %d, %Y") %> </p>
   <p> Zip Code: <%= @user.zipcode %></p>
   <p> Description:</p> <p> <%= @user.description %> </p>
 </div>
-
 
 <div id="user-listings">
   <h3>Available Listings:</h3>
