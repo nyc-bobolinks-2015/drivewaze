@@ -36,6 +36,18 @@ document.addEventListener('DOMContentLoaded', function(){
       });
       element.innerHTML = output;
     });
+
+      // var specificNode = 'msgs/' + [currentUser.toLowerCase()]
+    // myDataref.child(specificNode).on("value", function(snapshot) {
+    //   var list = '';
+    //   var messageList = document.getElementById('all-messages')
+    //   snapshot.forEach(function(child){
+    //      var msg = child.val();
+    //     list += ("From: " + msg.fromUser + "<br>" + msg.sent_at +
+    //         "<br>");
+    //   });
+    //   messageList.innerHTML = list;
+    // });
 });
 
 
