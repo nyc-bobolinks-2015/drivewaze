@@ -9,10 +9,7 @@
   <div id="search-message">
     <p>Where would you like to search today?</p>
   </div>
-  <%= form_tag '/search', id: 'search-form' do %>
     <input id="term" name="term" type="text" class="controls" placeholder="Enter a location" %>
-    <%= submit_tag "Search", id: "search-submit" %>
-  <% end %>
 </div>
 
 <div id="map-container">
