@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Drivewaze</title>
-  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= javascript_include_tag "https://cdn.firebase.com/js/client/2.2.1/firebase.js" %>
   <script src="https://maps.googleapis.com/maps/api/js?&libraries=places"></script>
   <%= javascript_include_tag 'application'%>
@@ -32,20 +32,31 @@
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1 id="logo"><%= link_to "spcs", root_path %></h1>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <h1 id="logo" class="navbar-brand"><%= link_to "spcs", root_path %></h1>
 
-  <% if user_signed_in? %>
-  <%= link_to current_user.first_name, user_path(current_user.id), :id => "current_user_nav" %>
-  <%= link_to 'Logout',  destroy_user_session_path, :method => :delete %>
-  <% else %>
-  <%= link_to 'Login', new_user_session_path %>
-  <%= link_to 'Sign up', new_user_registration_path %>
+
+        <ul class="nav navbar-nav navbar-right">
+          <% if user_signed_in? %>
+          <li id="username"><%= link_to current_user.first_name, user_path(current_user.id) %><li>
+          <li id="logout"><%= link_to 'Logout',  destroy_user_session_path, :method => :delete %></li>
+        <% else %>
+          <li id="login"><%= link_to 'Login', new_user_session_path %></li>
+          <li id="signup"><%= link_to 'Sign up', new_user_registration_path %></li>
+      <% end %>
+        </ul>
+    </div>
+  </nav>
+  <% if flash.any? %>
+    <div id="flash" class="container">
+       <% flash.each do |type, message| %>
+       <div class="<%= type %> ">
+            <%= message %>
+        </div>
+        <% end %>
+    </div>
   <% end %>
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-<%= yield %>
-
-  </div>
+    <%= yield %>
 </body>
 </html>

@@ -1,20 +1,23 @@
-<h2>WELCOME!</h2>
-<% if current_user && current_user.publishable_key %>
-  <%=link_to "New Listing",new_listing_path%>
-<% else %>
-  <%= link_to "New Listing", stripe_signup_path  %>
-<% end %>
+<div class="container">
+  <h2>WELCOME!</h2>
+  <% if current_user && current_user.publishable_key %>
+    <%=link_to "New Listing",new_listing_path%>
+  <% else %>
+    <%= link_to "New Listing", stripe_signup_path  %>
+  <% end %>
 
-<div id="search-div">
-  <div id="search-message">
-    <p>Where would you like to search today?</p>
-  </div>
+  <div id="search-div">
+    <div id="search-message">
+      <p>Where would you like to search today?</p>
+    </div>
     <input id="term" name="term" type="text" class="controls" placeholder="Enter a location" %>
-</div>
+  </div>
 
-<div id="map-container">
-  <div id="map"></div>
-</div>
 
-<div class="single-listing">
+  <div id="map-container">
+    <div id="map"></div>
+  </div>
+
+  <div class="single-listing">
+  </div>
 </div>

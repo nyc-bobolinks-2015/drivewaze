@@ -1,18 +1,19 @@
-<%= render 'listing_preview' %>
+<div class="container">
+  <%= render 'listing_preview' %>
 
-<div id="spot-info">
-<p>Space Description: <%= @listing.space_description %></p>
-<p>Neighborhood Information: <%= @listing.neighborhood_info %></p>
-<p>Public Transit: <%= @listing.public_transit_info %></p>
-<p>Additional Information: <%= @listing.other_info %></p>
-</div>
-<div id="listing-rules">
-<p>Rules: <%= @listing.rules %></p>
-</div>
+  <div id="spot-info">
+  <p>Space Description: <%= @listing.space_description %></p>
+  <p>Neighborhood Information: <%= @listing.neighborhood_info %></p>
+  <p>Public Transit: <%= @listing.public_transit_info %></p>
+  <p>Additional Information: <%= @listing.other_info %></p>
+  </div>
+  <div id="listing-rules">
+  <p>Rules: <%= @listing.rules %></p>
+  </div>
 
 <% if owns?(@listing) %>
 	<div id="edit-delete-listing-btn">
-		<%= link_to "Edit", edit_listing_path(@listing) %> | 
+		<%= link_to "Edit", edit_listing_path(@listing) %> |
 		<%= link_to "Delete", listing_path(@listing), {method: :delete, data: {confirm: "Are you sure you want to delete this listing?"}}  %>
 	</div>
 <% else %>
@@ -21,9 +22,10 @@
 	</div>
 <% end %>
 
-<div id="static-map">
-  <%= image_tag @map_image, id: "listing-show-map" %>
-</div>
+  <div id="static-map">
+    <%= image_tag @map_image, id: "listing-show-map" %>
+  </div>
+
 
 <h4> Reviews (<%= @listing.reviews.count %>) </h4>
 <% if current_user && current_user != @listing.user %>
@@ -37,3 +39,5 @@
   Rating: <%= review.review_score %> </li>
 <% end %>
 </ul>
+</div>
+
