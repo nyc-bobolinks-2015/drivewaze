@@ -20,8 +20,8 @@ sam = User.create!(email: "sam@example.com",
                 phone: "818-307-6583",
                 zipcode: '10005')
 
-michael = User.create!(email: "michael@example.com",
-	password: '12345678', first_name: "Micahel", last_name: "Landon", phone: "1234567890", zipcode: "10005")
+michael = User.create!(email: "michael.r.landon@gmail.com",
+	password: '12345678', first_name: "Michael", last_name: "Landon", phone: "1234567890", zipcode: "10005")
 
 
 listing = Listing.create!(address:"48 wall street, New York, NY 10005", space_description: "Driveway on a very busy street in a very busy neighborhood.", neighborhood_info: "The heart of the financial district! Right next to the NYSE.", public_transit_info: "Great public transit. Many different trains you can catch.", rules: "Be respectful of neighbors and quiet late at night.", user_id: sam.id)
