@@ -45,7 +45,7 @@ var ready=function(){
   });
 
 
-
+  if ($('#map').length) {
   initMap();
   (function(){
 
@@ -104,24 +104,13 @@ var ready=function(){
 
   $("#search_term").on('submit', function(event){
     event.preventDefault();
-
-    // $.ajax({
-    //     method: 'post',
-    //     url: $(event.target).attr('action'),
-    //     data: $(event.target).serialize(),
-    //     dataType: 'json'
-    //   }).done(function(response){
-    //     var newLatLong = new google.maps.LatLng(response.results[0]["geometry"]["location"]["lat"], response.results[0]["geometry"]["location"]["lng"])
-    //     window.map.setCenter(newLatLong)
-    //     window.map.setZoom(14);
-    //   }).fail(function(error){
-    //     console.log(error);
-    // });
   });
 
   $('.single-listing').on('click', '.listing-info', function(event) {
     window.location.href = '/listings/' + this.id;
   });
+
+}
 };
 
 $(document).ready(ready);

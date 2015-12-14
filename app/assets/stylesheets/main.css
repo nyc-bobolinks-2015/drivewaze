@@ -56,3 +56,11 @@ input#search-submit {
 .single-listing{
   cursor: pointer;
 }
+input#term {
+  width: 300px;
+  border-radius: 10px;
+}
+
+input#term:focus {
+  border-radius: 10px;
+}
