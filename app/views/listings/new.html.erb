@@ -19,16 +19,27 @@
 		<div class="listingInfo">
 			<%=form_for @listing do |f|%>
 				<%=f.hidden_field :address%>
-				<%=f.label :space_description%>
-				<%=f.text_area :space_description%>
-				<%=f.label :neighborhood_info %>
-				<%=f.text_area :neighborhood_info %>
-				<%=f.label :public_transit_info %>
-				<%=f.text_area :public_transit_info %>
-				<%=f.label :other_info %>
-				<%=f.text_area :other_info %>
-				<%=f.label :rules %>
-				<%=f.text_area :rules %>
+
+				<div id="listing-form-space">
+					<%=f.label :space_description%>
+					<%=f.text_area :space_description%>
+				</div>
+				<div id="listing-form-neighborhood">
+					<%=f.label :neighborhood_info %>
+					<%=f.text_area :neighborhood_info %>
+				</div>
+				<div id="listing-form-transit">
+					<%=f.label :public_transit_info %>
+					<%=f.text_area :public_transit_info %>
+				</div>
+				<div id="listing-form-other-info">
+					<%=f.label :other_info %>
+					<%=f.text_area :other_info %>
+				</div>
+				<div id="listing-form-rules">
+					<%=f.label :rules %>
+					<%=f.text_area :rules %>
+				</div>
 
 				<%=f.submit "Continue"%>
 			<%end%>

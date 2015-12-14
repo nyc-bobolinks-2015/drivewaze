@@ -14,12 +14,12 @@ class ReviewsController < ApplicationController
       @review = @listing.reviews.build(review_params)
     end
     if @review.save
-      if @user 
-        redirect_to user_path(@user) 
-      else 
+      flash[:notice] = "Your review has been saved!"
+      if @user
+        redirect_to user_path(@user)
+      else
         redirect_to listing_path(@listing)
       end
-      flash[:notice] = "Your review has been saved!"
     else
       render :"reviews/new"
     end
