@@ -1,5 +1,6 @@
 <div class="listing-info" id="<%= @listing.id %>">
   <h1><%= @listing.address %></h1>
+  <p>Owned by: <%= link_to @listing.user.first_name, user_path(@listing.user) %></p>
 
   <% unless current_user.favorite_listings.exists?(id: @listing.id) %>
     <%= link_to 'Add to favorites', listing_favorite_listings_path(listing_id: @listing), method: :post %>

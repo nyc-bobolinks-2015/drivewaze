@@ -1,13 +1,16 @@
 Rails.application.routes.draw do
 
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
-
+  match 'users/:id' => 'users#destroy', via: :delete, as: :user_delete
+  match 'users/:id/edit' => 'users#edit', via: :get, as: :user_edit
+  match 'users/:id' => 'users#update', via: :patch, as: :user_update
   root 'listings#index'
 
   resources :users, only:[:show] do
     resources :reviews, only: [:new, :create, :destroy]
     resources :favorite_users, only: [:create, :destroy]
   end
+  get "/stripe-signup" => 'users#stripe_signup'
 
   resources :messages, only: [:index]
 
@@ -36,7 +39,6 @@ Rails.application.routes.draw do
   
   get "/search" => 'listings#search'
   post '/search' => 'listings#search_map'
-  get "/stripe-signup" => 'users#stripe_signup'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
