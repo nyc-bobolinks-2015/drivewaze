@@ -33,7 +33,7 @@ class ListingsController < ApplicationController
   end
 
   def destroy
-    listing = Listings.find_by(id: params[:id])
+    listing = Listing.find_by(id: params[:id])
     redirect_to root_path unless current_user == listing.user
     listing.destroy
     redirect_to root_path

@@ -6,5 +6,5 @@ class User < ActiveRecord::Base
   has_many :reviews, as: :reviewable, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :favorite_listings, through: :favorites, source: :favorited, source_type: "Listing", dependent: :destroy
-  has_many :favorite_users, through: :favorites, source: :favorited, source_type: "User", depenent: :destroy
+  has_many :favorite_users, through: :favorites, source: :favorited, source_type: "User", dependent: :destroy
 end
