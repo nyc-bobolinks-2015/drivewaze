@@ -9,6 +9,7 @@ class BookingsController < ApplicationController
 	end
 
 	def complete
+		# Remove these from master
 		# binding.pry
 		charge_client
 		listing = Listing.find_by(id: params[:id])

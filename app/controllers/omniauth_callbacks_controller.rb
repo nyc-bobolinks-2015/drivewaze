@@ -10,6 +10,7 @@ class OmniauthCallbacksController < ApplicationController
     })
       redirect_to new_listing_path
     else
+      # ??
       session["devise.stripe_connect_data"] = request.env["omniauth.auth"]
       redirect_to new_user_registration_url
     end

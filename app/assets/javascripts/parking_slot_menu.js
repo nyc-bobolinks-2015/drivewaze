@@ -43,7 +43,7 @@ function selectProperty(propertyType){
 	$.ajax({
 		method:"put",
 		url:"/parking_slots/"+id,
-		data:"slot_type="+propertyType+"&id="+id
+		data:"slot[slot_type]="+propertyType+"&id="+id
 	}).done(function(result){
 		if(result.status==="success"){
 			$("#propertyTypeMenu button").removeClass("selected");

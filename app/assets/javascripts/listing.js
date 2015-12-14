@@ -97,5 +97,9 @@ var ready=function(){
   });
 };
 
-$(document).ready(ready);
+$(document).ready(function(){
+  if (($'#map').length) {
+    ready();
+  }
+});
 $(document).on('page:load',ready);

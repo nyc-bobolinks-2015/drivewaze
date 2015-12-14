@@ -1,6 +1,6 @@
 class ParkingSlotsController < ApplicationController
 	def index
-		listing=Listing.find(params[:listing_id])
+		listing = Listing.find(params[:listing_id])
 		@parking_slots=listing.parking_slots
 	end
 
@@ -22,14 +22,20 @@ class ParkingSlotsController < ApplicationController
 	end
 
 	def show
+    #don't leave inaccurate outdated comments
+
 		#Check if the belonging listing belongs to the current user, otherwise, redirect
 		@parking_slot=ParkingSlot.find(params[:id])
 	end
 
 	def update
 		parking_slot=ParkingSlot.find(params[:id])
+		
+		# If you follow rails convention for param naming you could do
+	  # parking_slot.update_attributes(slot_type:params[:slot])
+
 		if params[:slot_type]
-			parking_slot.update_attributes(slot_type:params[:slot_type])
+			parking_slot.update_attributes(slot_type:params[:slot][:slot_type])
 		elsif params[:vehicle_class]
 			parking_slot.update_attributes(vehicle_class:params[:vehicle_class])
 		elsif params[:hourly_price]

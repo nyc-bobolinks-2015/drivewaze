@@ -11,6 +11,7 @@ class ParkingSlotsTimeSlotsController < ApplicationController
 		while @startTime != @endTime
 			time_slot=TimeSlot.where("start_time = ?",@startTime)[0]
 			parking_slot.parking_slots_time_slots.create(time_slot_id:time_slot.id,unavailable:true)
+			# Remember DURATION
 			@startTime=@startTime+2.hour
 		end
 		render "create",layout:false

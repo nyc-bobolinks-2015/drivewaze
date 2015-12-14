@@ -1,5 +1,5 @@
 <h2>Number of Parking Space</h2>
-
+<!-- Use the rails url generators -->
 <%=form_tag("/listings/#{@listing_id}/parking_slots",method:"post") do%>
 	<div class="form-group">
 		<%= label_tag "quantity", "Number of Parking Spots"%>

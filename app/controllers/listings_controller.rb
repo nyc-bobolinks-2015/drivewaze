@@ -3,6 +3,7 @@ class ListingsController < ApplicationController
 
   def new
     @listing=Listing.new
+    #The next line feels helper-y
     @map_image = "https://maps.googleapis.com/maps/api/staticmap?center=#{@listing.address}&zoom=15&size=1000x1000&maptype=roadmap&markers=#{@listing.address}&key=#{ENV['GMAP_STATIC_KEY']}"
   end
 
@@ -34,6 +35,7 @@ class ListingsController < ApplicationController
 
   def destroy
     listing = Listing.find_by(id: params[:id])
+    # Think about having def owns?(user) or can_edit?(user) on listing and calling it here
     redirect_to root_path unless current_user == listing.user
     listing.destroy
     redirect_to root_path
