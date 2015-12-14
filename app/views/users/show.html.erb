@@ -54,6 +54,7 @@
       <% @user.reviews.each do |review| %>
       <% if review.user_id == current_user.id %>
     <%= link_to "Delete Review", user_review_path(user_id: @user, id: review), method: :delete %>
+    <% end %>
        <li>From <%=link_to review.user.first_name, user_path(review.user) %>
       on <%= review.created_at.strftime("%B %d, %Y") %> <br>
       <%= review.review_body %> <br>
@@ -82,6 +83,7 @@
     <% end %>
   </ul>
 </div>
+
 <% if @user == current_user %>
   <p><%= link_to "Edit", user_edit_path %> | <%= link_to "Delete", user_delete_path(@user), method: :delete %> My Profile</p>
 <% end %>
