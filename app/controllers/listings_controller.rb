@@ -32,6 +32,13 @@ class ListingsController < ApplicationController
     end
   end
 
+  def destroy
+    listing = Listings.find_by(id: params[:id])
+    redirect_to root_path unless current_user == listing.user
+    listing.destroy
+    redirect_to root_path
+  end
+
   def search
     westBound = params[:westBound]
     eastBound = params[:eastBound]
