@@ -16,7 +16,9 @@
 </div>
 <div id="user-info">
   <p> Member since: <%= @user.created_at.strftime("%B %d, %Y") %> </p>
-  <p> Last seen: <%= @user.last_sign_in_at.strftime("%B %d, %Y") %> </p>
+  <% unless @user.last_sign_in_at == nil %>
+    <p> Last seen: <%= @user.last_sign_in_at.strftime("%B %d, %Y") %> </p>
+  <% end %>
   <p> Zip Code: <%= @user.zipcode %></p>
   <p> Description:</p> <p> <%= @user.description %> </p>
 </div>

@@ -30,3 +30,5 @@ listing2 = Listing.create!(address:"222 East 80th S, New York, NY 10005", space_
 
 parking_slot1 = ParkingSlot.create!(vehicle_class: 1, slot_type: 1, hourly_price: 5, daily_price: 20, weekly_price: 100, monthly_price: 300, listing_id: listing.id)
 parking_slot2 = ParkingSlot.create!(vehicle_class: 1, slot_type: 1, hourly_price: 5, daily_price: 20, weekly_price: 100, monthly_price: 300, listing_id: listing2.id)
+
+booking = Booking.create!(total: 320, listing_id: listing.id, user_id: michael.id)

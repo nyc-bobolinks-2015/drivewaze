@@ -1,13 +1,13 @@
 <h2>Order Confirmation</h2>
 
-<h3>Total</h3>
+<h3>Total: <%= @booking.total %></h3>
 
 <h3>Schedule</h3>
 
-<h3>Details</h3>
+<h3>Details: <%= @listing.address %></h3>
 
 
-<form action="/listings/<%= @listing.id %>/bookings/confirmation" method="GET">
+<form action="/listings/<%= @listing.id %>/complete" method="GET">
   <script
     src="https://checkout.stripe.com/checkout.js"
     class="stripe-button"
@@ -15,6 +15,6 @@
     data-image="/doge.jpeg"
     data-name="drivewaze"
     data-description="Charge for driveway rental"
-    data-amount="500">
+    data-amount="<%= @booking.total %>00">
   </script>
 </form>

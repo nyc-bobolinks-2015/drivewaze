@@ -8,24 +8,29 @@ class BookingsController < ApplicationController
 		
 	end
 
-	def show_confirmation
+	def complete
+		# binding.pry
+		charge_client
+		listing = Listing.find_by(id: params[:id])
+		@provider = listing.user
+		@booking = Booking.first
+		render :'bookings/order-complete'
+	end
+
+	def show
+		# binding.pry
+		@listing = Listing.find_by(id: params[:listing_id])
+		@booking = Booking.first
 		render :'confirmation'
 	end
 
-	def confirmation
-		charge_client
-		listing = Listing.find_by(id: params[:listing_id])
-		@provider = listing.user
-		@booking = @provider.bookings.first
-		render :'order-complete'
-	end
 
 	private
 
 	def charge_client
 		# Amount in cents
 		@amount = 500
-		listing = Listing.find_by(id: params[:listing_id])
+		listing = Listing.find_by(id: params[:id])
 	  
 	  customer = Stripe::Customer.create(
 	    :email => params[:stripeEmail],
@@ -38,7 +43,7 @@ class BookingsController < ApplicationController
 	    :description => 'Rails Stripe customer',
 	    :currency    => 'usd',
 	 		:destination => listing.user.uid,
-	 		:application_fee => @amount/10
+	 		# :application_fee => @amount/10
 	  )
 
 	rescue Stripe::CardError => e
