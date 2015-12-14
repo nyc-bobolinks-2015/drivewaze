@@ -53,6 +53,38 @@ class ListingsController < ApplicationController
     return render json: @listings
   end
 
+  def availability
+    listing=Listing.find(params[:id])
+    start_date=DateTime.parse(params[:start_date])
+    depart_date=DateTime.parse(params[:depart_date])
+    numOfDayLapsed=(depart_date-start_date).day
+    numTimeSlots=numOfDayLapsed/2.hours
+
+    parkingSlots=listing.parking_slots.where('vehicle_class >= ?', params[:vehicle_class].to_i)
+    availability=false
+    # available_parking_slot_id
+    available_parking_slot_id=0
+
+    parkingSlots.each do |ps|
+      blackoutTimeSlots = ps.time_slots.where('start_time > ? AND start_time < ?',start_date,depart_date).count
+      if blackoutTimeSlots<numTimeSlots
+        availability=true
+        available_parking_slot_id=ps.id
+        break
+      end
+    end
+
+    if availability
+      output={
+        status:"success",
+        redirect: available_parking_slot_id
+      }
+      render json:output
+    else
+      render json:{status:"unavailable"}
+    end
+  end
+
   def search_map
     search_term = URI.escape(params[:term])
     @response = HTTParty.get("http://maps.googleapis.com/maps/api/geocode/json?address=#{search_term}")

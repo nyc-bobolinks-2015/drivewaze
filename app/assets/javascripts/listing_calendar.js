@@ -50,8 +50,13 @@ function ready1(){
 			console.log(error);
 		});
 	});
+<<<<<<< HEAD
 };
 $(document).ready(ready1); //TODO:Learn why line 59 works and not this
 $(document).on('page:load',ready1);
 $(window).load(ready1);
 
+=======
+});
+// console.log("here");
+>>>>>>> commit before redo

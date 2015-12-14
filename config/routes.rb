@@ -19,12 +19,14 @@ Rails.application.routes.draw do
   end
   
   resources :listings do
-    resources :availability_slots, only:[:create, :update, :destroy]
     resources :bookings
     resources :reviews, only: [:new, :create, :destroy]
     resources :favorite_listings, only: [:create, :destroy]
     resources :parking_slots, only: [:new,:index,:create]
+
   end
+  
+  get '/listings/:id/availability', to: "listings#availability"
 
   get "listings/:id/bookings/show-confirmation" => 'bookings#show_confirmation'
   get "listings/:id/complete" => 'bookings#complete'
