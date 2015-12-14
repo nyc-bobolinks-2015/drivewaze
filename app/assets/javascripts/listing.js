@@ -9,14 +9,16 @@ function initMap() {
 
 //----------------
 var ready=function(){
+
     $("#newListingForm").on("submit",function(event){
     event.preventDefault();
     var listingAddress = $("#listingAddress").val();
     $("#listing_address").val(listingAddress);
     $("#listingPageAddress").hide();
     $("#listingPageInfo").removeClass('hide');
+    $('#static-map').children()[0].src = "https://maps.googleapis.com/maps/api/staticmap?center=" + listingAddress + "&zoom=15&size=1000x1000&maptype=roadmap&markers=" + listingAddress + "&key=#{ENV['GMAP_STATIC_KEY']}"
   });
-    
+
   initMap();
   (function(){
 
@@ -56,7 +58,6 @@ var ready=function(){
               map: window.map,
               position: {lat: response[i].latitude, lng: response[i].longitude},
               title: String(response[0].address),
-              label: "$",
               id: response[i].id
             });
             marker.addListener('click', function(event){
@@ -64,6 +65,7 @@ var ready=function(){
                 method: 'get',
                 url: '/listings/' + this.id
               }).done(function(response){
+                window.map.setCenter(marker.position)
                 $(".single-listing").html(response);
                })
             });
@@ -84,6 +86,7 @@ var ready=function(){
       }).done(function(response){
         var newLatLong = new google.maps.LatLng(response.results[0]["geometry"]["location"]["lat"], response.results[0]["geometry"]["location"]["lng"])
         window.map.setCenter(newLatLong)
+        window.map.setZoom(14);
       }).fail(function(error){
         console.log(error);
     });
