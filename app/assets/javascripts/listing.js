@@ -5,6 +5,15 @@ function initMap() {
     scrollwheel: false,
     zoom: 14
     });
+
+  var input = (document.getElementById('term'));
+
+  new google.maps.places.Autocomplete(input);
+
+  // autocomplete.addListener('place_changed', function() {
+  //   var place = autocomplete.getPlace();
+  //   window.map.setCenter(place)
+  // })
 }
 
 //----------------
@@ -18,6 +27,8 @@ var ready=function(){
     $("#listingPageInfo").removeClass('hide');
     $('#static-map').children()[0].src = "https://maps.googleapis.com/maps/api/staticmap?center=" + listingAddress + "&zoom=15&size=1000x1000&maptype=roadmap&markers=" + listingAddress + "&key=#{ENV['GMAP_STATIC_KEY']}"
   });
+
+
 
   initMap();
   (function(){
