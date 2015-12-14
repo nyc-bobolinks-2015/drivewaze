@@ -15,8 +15,10 @@
   <% end %>
 </div>
 <div id="user-info">
-  <h4> Member since: <%= @user.created_at.strftime("%B %d, %Y") %> </h4>
-  <h4> Last seen: <%= @user.last_sign_in_at.strftime("%B %d, %Y") %> </h4>
+  <p> Member since: <%= @user.created_at.strftime("%B %d, %Y") %> </p>
+  <p> Last seen: <%= @user.last_sign_in_at.strftime("%B %d, %Y") %> </p>
+  <p> Zip Code: <%= @user.zipcode %></p>
+  <p> Description:</p> <p> <%= @user.description %> </p>
 </div>
 
 <div id="user-listings">
@@ -74,5 +76,5 @@
   </ul>
 </div>
 <% if @user == current_user %>
-  <%= link_to "Delete My Profile", user_delete_path(@user), method: :delete %>
+  <p><%= link_to "Edit", user_edit_path %> | <%= link_to "Delete", user_delete_path(@user), method: :delete %> My Profile</p>
 <% end %>

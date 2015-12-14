@@ -2,11 +2,26 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find_by(id: params[:id])
   end
 
   def stripe_signup
   	render :'users/stripe-signup'
+  end
+
+  def edit
+  	@user = User.find_by(id: params[:id])
+  end
+
+  def update
+  	@user = User.find_by(id: params[:id])
+  	if @user.update_attributes(strong_params)
+
+  		redirect_to user_path(@user)
+  	else
+  		alert = @user.errors.full_messages
+  		render :'edit'
+  	end
   end
 
   def destroy
@@ -14,6 +29,12 @@ class UsersController < ApplicationController
   	user.destroy
   	session.clear
   	redirect_to root_path
+  end
+
+  private
+
+  def strong_params
+  	params.require(:user).permit(:email,:first_name,:last_name,:phone,:zipcode,:description)
   end
 end
 

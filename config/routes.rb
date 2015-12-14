@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
   match 'users/:id' => 'users#destroy', via: :delete, as: :user_delete
+  match 'users/:id/edit' => 'users#edit', via: :get, as: :user_edit
+  match 'users/:id' => 'users#update', via: :patch, as: :user_update
   root 'listings#index'
 
   resources :users, only:[:show] do
