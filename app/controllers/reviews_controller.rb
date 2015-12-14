@@ -26,12 +26,18 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
+    params[:user_id] ? @reviewable = User.find(params[:user_id]) : @reviewable = Listing.find(params[:listing_id])
+    @review = Review.find_by(id: params[:id])
+    @review.destroy
+    redirect_to user_path(@reviewable)
+    flash[:notice] = "Your review has been deleted"
   end
 
   private
 
   def review_params
     params.require(:review).permit(:review_body,:review_score).merge(user_id: current_user.id)
+
   end
 
 end

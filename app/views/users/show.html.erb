@@ -1,3 +1,5 @@
+
+
 <div id="welcome-user"></div>
   <% if @user == current_user %>
     <h1>Welcome Back <%= @user.first_name %>!</h1>
@@ -14,6 +16,7 @@
     <% end %>
   <% end %>
 </div>
+
 <div id="user-info">
   <p> Member since: <%= @user.created_at.strftime("%B %d, %Y") %> </p>
   <% unless @user.last_sign_in_at == nil %>
@@ -49,6 +52,8 @@
   <% end %>
     <ul>
       <% @user.reviews.each do |review| %>
+      <% if review.user_id == current_user.id %>
+    <%= link_to "Delete Review", user_review_path(user_id: @user, id: review), method: :delete %>
        <li>From <%=link_to review.user.first_name, user_path(review.user) %>
       on <%= review.created_at.strftime("%B %d, %Y") %> <br>
       <%= review.review_body %> <br>
