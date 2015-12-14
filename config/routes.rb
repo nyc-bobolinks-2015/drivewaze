@@ -26,6 +26,9 @@ Rails.application.routes.draw do
     resources :parking_slots, only: [:new,:index,:create]
   end
 
+  get "listings/:id/bookings/show-confirmation" => 'bookings#show_confirmation'
+  get "listings/:id/bookings/confirmation" => 'bookings#confirmation'
+
   resources :parking_slots, only:[:show,:edit,:update] do
     resources :parking_slots_time_slots, only:[:new,:create] do
     end

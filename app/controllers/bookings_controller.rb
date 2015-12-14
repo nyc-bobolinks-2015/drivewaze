@@ -5,10 +5,19 @@ class BookingsController < ApplicationController
 
 	def create
 		#create_booking
+		
+	end
+
+	def show_confirmation
+		render :'confirmation'
+	end
+
+	def confirmation
 		charge_client
 		listing = Listing.find_by(id: params[:listing_id])
 		@provider = listing.user
-		render :'create'
+		@booking = @provider.bookings.first
+		render :'order-complete'
 	end
 
 	private
