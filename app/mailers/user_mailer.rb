@@ -1,8 +1,11 @@
 class UserMailer < ActionMailer::Base
   default from: "teamdrivewaze@gmail.com"
 
-  def booked
-
+  def booked(booking)
+    @renter = booking.user
+    @listing = booking.listing
+    @booking = booking
+    mail(to: @listing.user.email, subject: "Your space has been booked!").deliver
   end
 
   def self.send_request(listing)
