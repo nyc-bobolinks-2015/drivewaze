@@ -40,7 +40,7 @@
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
           <li id="username"><%= link_to current_user.first_name, user_path(current_user.id) %><li>
-          <li id = "messages"> <%= link_to 'Messages', messages_path %> </li>
+          <li id = "message-nav"> <%= link_to 'Messages', messages_path %> </li>
           <li id="logout"><%= link_to 'Logout',  destroy_user_session_path, :method => :delete %></li>
         <% else %>
           <li id="login"><%= link_to 'Login', new_user_session_path %></li>
