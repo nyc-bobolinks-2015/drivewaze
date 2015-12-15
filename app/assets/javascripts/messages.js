@@ -2,8 +2,6 @@ var myDataref = new Firebase('https://drivewaze.firebaseio.com/');
 
 document.addEventListener('DOMContentLoaded', function(){
 
-document.addEventListener('DOMContentLoaded', function(){
-
   if($('#toUser').length) {
 
     var msgData = document.getElementById('msg-data-carrier').dataset;
@@ -55,7 +53,6 @@ function Conversation(args) {
   this.messages = [];
 }
 function Message(args) {
-  console.log('msg args', args);
   this.fromUserName = args.fromUser;
   this.toUserName = args.toUser;
   this.message = args.message;
@@ -87,22 +84,16 @@ if ($('#all-messages').length) {
         }
       });
 
-      // Now we have an array of our own conversation objects
-      console.log('convs', convs);
-
       convs.forEach(function(conv){
-        console.log('dsp conv', conv);
         var theLink = '<div><a class="btn btn-default" href="/bookings/' +
           conv.bookingId + '/messages/new">' + conv.users +
           ' booking ' + conv.bookingId +
           ' (' + conv.messages.length +
           (conv.messages.length == 1 ? 'message' : ' messages' ) +
-            ')</a> ' + conv.address + '</div>';
-        console.log(theLink);
+            ')</a> ' + "<br>" +  conv.address + '</div>';
         $('#all-messages').append(theLink);
       });
     });
 }
 });
 
-});
