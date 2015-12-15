@@ -11,6 +11,7 @@
   <div id = "to>">
     <%= label_tag :to %>
     <%= text_field_tag :receiver,@booking.receipient(current_user), :id => "toUser", :disabled=>true %>
+    <%= hidden_field_tag "booking_id", @booking.id%>
   </div>
   <div id = "from>">
     <%= label_tag :from %>
