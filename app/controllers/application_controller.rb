@@ -17,4 +17,12 @@ class ApplicationController < ActionController::Base
   def owns?(listing)
     current_user == listing.user
   end
+
+  def total(time_slots)
+    time_slots.inject(0){|total, time_slot| total + time_slot.parking_slot.daily_price}
+  end
+
+  def confirm_times(time_slots)
+    time_slots.map{|slot| slot.start_time.strftime("%m/%d/%Y")}
+  end
 end

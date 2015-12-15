@@ -19,13 +19,10 @@ class BookingsController < ApplicationController
 			end
 			return
 		else
-				timeSlots=booking.time_slots
-				@total=0
-				@confirmed_times=[]
-				timeSlots.each do |timeSlot|
-					@total+=timeSlot.parking_slot.daily_price
-					@confirmed_times.push(timeSlot.start_time.strftime("%m/%d/%Y"))
-				end
+			time_slots=booking.time_slots
+			@listing = Listing.find_by(id: params[:id])
+			@total= total(time_slots)
+			@confirmed_times = confirm_times(time_slots)
 			render "confirmation"
 			return
 		end
@@ -56,29 +53,20 @@ class BookingsController < ApplicationController
 		end
 	end
 
-	def complete
-		# binding.pry
-		charge_client
-		listing = Listing.find_by(id: params[:id])
-		@provider = listing.user
-		@booking = Booking.first
-		render :'bookings/order-complete'
-	end
-
 	def show
-		# binding.pry
-		@listing = Listing.find_by(id: params[:listing_id])
-		@booking = Booking.first
-		render :'confirmation'
+		charge_client
+		listing = Listing.find_by(id: params[:listing_id])
+		@booking = listing.bookings.last
+		render :'bookings/order-complete'
 	end
 
 
 	private
 
 	def charge_client
-		# Amount in cents
-		@amount = 500
-		listing = Listing.find_by(id: params[:id])
+		listing = Listing.find_by(id: params[:listing_id])
+		time_slots=listing.bookings.last.time_slots
+		@amount= total(time_slots) * 100 #turns to pennies
 	  
 	  customer = Stripe::Customer.create(
 	    :email => params[:stripeEmail],
@@ -90,8 +78,8 @@ class BookingsController < ApplicationController
 	    :amount      => @amount,
 	    :description => 'Rails Stripe customer',
 	    :currency    => 'usd',
-	 		:destination => listing.user.uid,
-	 		# :application_fee => @amount/10
+	 		:destination => listing.user.uid
+	 		#TODO: set application_fee
 	  )
 
 	rescue Stripe::CardError => e
