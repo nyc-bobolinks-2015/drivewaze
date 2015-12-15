@@ -15,6 +15,11 @@
   height: 70vh;
 }
 
+li{
+  list-style-type: none;
+}
+
+
 /*#static-map {
   width: 100%;
   margin: 0 auto;

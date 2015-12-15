@@ -35,8 +35,11 @@
 <% @listing.reviews.each do |review| %>
 <li>From <%= link_to review.reviewer.first_name, user_path(review.reviewer) %>
     on <%= review.created_at.strftime("%B %d, %Y") %> <br>
-    <%= review.review_body %> <br>
-  Rating: <%= review.review_score %> </li>
+    <%= review.review_body %> <br></li>
+  <li> Rating:
+    <% review.review_score.times do %>
+      <%= image_tag("star.png", size: "20x20") %>
+    <% end %></li>
 <% end %>
 </ul>
 </div>
