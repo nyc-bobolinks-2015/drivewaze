@@ -36,10 +36,14 @@
     <div class="container-fluid">
       <h1 id="logo" class="navbar-brand"><%= link_to "spcs", root_path %></h1>
 
-
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
           <li id="username"><%= link_to current_user.first_name, user_path(current_user.id) %><li>
+          <% if current_user.publishable_key %>
+            <li><%=link_to "List Your Space",new_listing_path%></li>
+          <% else %>
+            <li><%= link_to "List Your Space", stripe_signup_path %></li>
+          <% end %>
           <li id = "message-nav"> <%= link_to 'Messages', messages_path %> </li>
           <li id="logout"><%= link_to 'Logout',  destroy_user_session_path, :method => :delete %></li>
         <% else %>
