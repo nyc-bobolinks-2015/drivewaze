@@ -38,8 +38,7 @@ document.addEventListener('DOMContentLoaded', function(){
         if (child.val().fromUser) {
           console.log(child.val().fromUser)
           var msg = child.val();
-          output += ("<div class='bubble'>" + "From: " + msg.fromUser + " To: " + msg.toUser + "<br>" + msg.message + "<br>" + msg.sent_at +
-            "<br></div>");
+          output += ("<div class='bubble'>" + msg.sent_at + "<br>" +"From: " + msg.fromUser + " To: " + msg.toUser + "<br>" + msg.message + "<br></div>");
         }
       });
     });
