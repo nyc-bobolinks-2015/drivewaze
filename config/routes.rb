@@ -30,8 +30,7 @@ Rails.application.routes.draw do
   end
   get '/listings/:id/availability', to: "listings#availability"
 
-  get "listings/:id/bookings/show-confirmation" => 'bookings#show_confirmation'
-  get "listings/:id/complete" => 'bookings#complete'
+  get "listings/:id/bookings/complete" => 'bookings#show'
 
   resources :parking_slots, only:[:show,:edit,:update] do
     resources :time_slots

@@ -2,7 +2,8 @@
 <%@parking_slots.each do |p|%>
 	<div class="panel panel-default">
 		<div class="panel-body">
-			<%=link_to "Spot", parking_slot_path(p.id)%>
+			<%=link_to "Edit Your Parking Space Details", parking_slot_path(p.id)%>
 		</div>
 	</div>
 <%end%>
+<%= link_to "Submit Listing", root_path, class: "btn btn-primary btn-block btn-lg" %>

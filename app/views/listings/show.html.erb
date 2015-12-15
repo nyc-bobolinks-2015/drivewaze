@@ -12,8 +12,7 @@
   </div>
 
 <% if owns?(@listing) %>
-	<div id="edit-delete-listing-btn">
-		<%= link_to "Edit", edit_listing_path(@listing) %> |
+	<div id="delete-listing-btn">
 		<%= link_to "Delete", listing_path(@listing), {method: :delete, data: {confirm: "Are you sure you want to delete this listing?"}}  %>
 	</div>
 <% else %>
@@ -34,18 +33,21 @@
 <% end %>
 <ul>
 <% @listing.reviews.each do |review| %>
-<li>From <%= link_to review.reviewer.first_name, user_path(review.reviewer) %>
-    on <%= review.created_at.strftime("%B %d, %Y") %> <br>
-    <%= review.review_body %> <br></li>
   <li> Rating:
     <% review.review_score.times do %>
       <%= image_tag("star.png", size: "20x20") %>
-    <% end %></li>
+    <% end %>
+  </li>
+	<li>From <%= link_to review.reviewer.first_name, user_path(review.reviewer) %>
+    on <%= review.created_at.strftime("%B %d, %Y") %> <br>
+    <%= review.review_body %> <br>
+  </li>
 <% end %>
 </ul>
 </div>
 
 <div id="availabilityFilter" class="hide">
+	<p id="total-container">Total: $<div id="totalDisplay">0</div></p>
 	<select class="form-control" id="vehicleClassSelect">
 		<option value="0">Compact Vehicle</option>
 		<option value="1">Full Size Vehicle</option>
@@ -61,7 +63,6 @@
 
 		</table>
 	</div>
-	<div id="totalDisplay"></div>
 	<button id="saveFilterButton" class="btn btn-primary btn-lg btn-block" onclick="confirmBooking()">Continue to Payment</button>
 </div>
 
