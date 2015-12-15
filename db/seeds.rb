@@ -29,11 +29,11 @@ listing4 = Listing.create!(address:"1 World Trade Center, New York, NY 10023", s
 
 listing5 = Listing.create!(address:"34 Middagh St, Brooklyn, NY 11201", space_description: "big space", neighborhood_info: "good", public_transit_info: "7 and 2 train close", other_info: "garage", rules: "close door when leaving", user_id: sam.id)
 
-listing5 = Listing.create!(address:"110 William St, New York, NY 10038", space_description: "big space", neighborhood_info: "good", public_transit_info: "7 and 2 train close", other_info: "garage", rules: "close door when leaving", user_id: sam.id)
+listing6 = Listing.create!(address:"110 William St, New York, NY 10038", space_description: "big space", neighborhood_info: "good", public_transit_info: "7 and 2 train close", other_info: "garage", rules: "close door when leaving", user_id: sam.id)
 
-listing6 = Listing.create!(address:"101 Warren Street, New York, NY 10038", space_description: "big space", neighborhood_info: "good", public_transit_info: "7 and 2 train close", other_info: "garage", rules: "close door when leaving", user_id: michael.id)
+listing7 = Listing.create!(address:"101 Warren Street, New York, NY 10038", space_description: "big space", neighborhood_info: "good", public_transit_info: "7 and 2 train close", other_info: "garage", rules: "close door when leaving", user_id: michael.id)
 
-listing7 = Listing.create!(address:"194 Washington St, Jersey City, NJ 07302", space_description: "big space", neighborhood_info: "good", public_transit_info: "7 and 2 train close", other_info: "garage", rules: "close door when leaving", user_id: michael.id)
+listing8 = Listing.create!(address:"194 Washington St, Jersey City, NJ 07302", space_description: "big space", neighborhood_info: "good", public_transit_info: "7 and 2 train close", other_info: "garage", rules: "close door when leaving", user_id: michael.id)
 
 parking_slot1 = ParkingSlot.create!(vehicle_class: 1, slot_type: 1, daily_price: 20, weekly_price: 100, monthly_price: 300, listing_id: listing.id)
 parking_slot2 = ParkingSlot.create!(vehicle_class: 1, slot_type: 1, daily_price: 20, weekly_price: 100, monthly_price: 300, listing_id: listing2.id)
@@ -42,5 +42,6 @@ parking_slot4 = ParkingSlot.create!(vehicle_class: 1, slot_type: 1, daily_price:
 parking_slot5 = ParkingSlot.create!(vehicle_class: 1, slot_type: 1, daily_price: 20, weekly_price: 100, monthly_price: 300, listing_id: listing5.id)
 parking_slot6 = ParkingSlot.create!(vehicle_class: 1, slot_type: 1, daily_price: 20, weekly_price: 100, monthly_price: 300, listing_id: listing6.id)
 parking_slot7 = ParkingSlot.create!(vehicle_class: 1, slot_type: 1, daily_price: 20, weekly_price: 100, monthly_price: 300, listing_id: listing7.id)
+parking_slot8 = ParkingSlot.create!(vehicle_class: 1, slot_type: 1, daily_price: 20, weekly_price: 100, monthly_price: 300, listing_id: listing8.id)
 
 booking = Booking.create!(total: 320, listing_id: listing.id, user_id: michael.id)
