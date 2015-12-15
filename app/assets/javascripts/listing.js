@@ -25,6 +25,13 @@ function initMap() {
       }).fail(function(error){
         console.log(error);
     });
+
+
+   google.maps.event.addDomListener(window, "resize", function() {
+   var center = window.map.getCenter();
+   google.maps.event.trigger(map, "resize");
+   window.map.setCenter(center);
+});
   })
   // autocomplete.addListener('place_changed', function() {
   //   var place = autocomplete.getPlace();
