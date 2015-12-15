@@ -36,13 +36,14 @@ document.addEventListener('DOMContentLoaded', function(){
       var conv = child;
       conv.forEach(function(child){
         if (child.val().fromUser) {
+          console.log(child.val().fromUser)
           var msg = child.val();
-          output += ("From: " + msg.fromUser + " To: " + msg.toUser + "<br>" + msg.message + "<br>" + msg.sent_at +
-            "<br>");
+          output += ("<div class='bubble'>" + "From: " + msg.fromUser + " To: " + msg.toUser + "<br>" + msg.message + "<br>" + msg.sent_at +
+            "<br></div>");
         }
       });
     });
-    element.innerHTML = output;
+    $(element).append(output);
   });
 }
 
