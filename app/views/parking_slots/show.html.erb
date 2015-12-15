@@ -99,23 +99,6 @@
 						<p>Monthly</p>
 						<p>set monthly price for this parking spot</p>
 					</button>
-	    			<!-- <div class="collapse" id="setMonthlyPriceDiv">
-						<div class="well">
-							<div class="row">
-							<div class="col-xs-4 col-xs-offset-3">
-								<input type="text" class="form-control" id="priceField">
-							</div>
-							<div class="col-xs-2">
-								<button class="btn btn-md btn-primary btn-block">Set</button>
-							</div>
-							</div>
-							<div class="row" style="margin-top:1em;">
-								<div class="col-xs-offset-3 col-xs-6">
-									<button class="btn btn-md btn-danger btn-block">No Monthly Rental</button>
-								</div>
-							</div>
-						</div>
-					</div> -->
 				</div>
 	      </div>
 	    </div>
@@ -124,4 +107,6 @@
 
 	<button class="btn btn-primary btn-block btn-lg" onclick="showBlackoutCal()">Blackout Dates</button>
 	<div id="blackout-cal"></div>
+
+	<%= link_to "Save Parking Space", listing_parking_slots_path(@parking_slot.listing), class: "btn btn-primary btn-block btn-lg" %>
 </div>

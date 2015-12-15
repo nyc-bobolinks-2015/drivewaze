@@ -2,6 +2,7 @@ function displayCalendar(psindex){
 	var vehicleClass=$("#vehicleClassSelect").val();
 	var listingId=$('#listingShow').attr('data-id');
 	var offset=$("#bookingCalendarTable").attr("data-offset");
+	// console.log(offset);
 	$.ajax({
 		method:"get",
 		url:"/listings/"+listingId+"/availability",
@@ -17,19 +18,11 @@ function displayCalendar(psindex){
 		    type: "info"
 		  });
 		}else{
+			// console.log(result);
 			$('#bookingCalendarTable').html(result);
-			var parking_slot_id=$("#pstotal").attr("data-psid");
-			$.ajax({
-				method:"get",
-				url:"/listings/"+listingId+"/total"
-			}).done(function(result){
-				$("#totalDisplay").text(result.total);
-			}).done(function(error){
-				console.log(error);
-			});
 		}
 
-		$(".future, .selectedDate").on("click",function(event){
+		$(".future").on("click",function(event){
 			var dateSelected=$(event.target).attr("data-day");
 			var parking_slot_id=$("#pstotal").attr("data-psid");
 			$.ajax({
@@ -41,21 +34,12 @@ function displayCalendar(psindex){
 					$(event.target).css("background-color","yellow");
 					$("#totalDisplay").text(result.total);
 				}else{
-					// $(event.target).removeClass().addClass(result.status);
-					if(result.status=="present"){
-						$(event.target).css("background-color","#5FDC9E");
-					}else if(result.status=="this-month future"){
-						$(event.target).css("background-color","white");
-					}else{
-						$(event.target).css("background-color","#80FB6C")
-					}
-					$("#totalDisplay").text(result.total);
+					console.log(result.status);
 				}
 			}).fail(function(error){
 				console.log(error);
 			});
 		});
-
 	}).fail(function(error){
 		console.log(error);
 	});
@@ -128,4 +112,4 @@ function confirmBooking(){
 	}).fail(function(error){
 		console.log(error);
 	});
-}
+};
