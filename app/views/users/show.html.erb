@@ -7,6 +7,7 @@
     <h1> Hey, I'm <%= @user.first_name %>! </h1>
   <% end %>
 </div>
+
 <div id="favorites-button">
   <% unless current_user == @user %>
     <% unless current_user.favorite_users.exists?(id: @user.id) %>
@@ -34,6 +35,7 @@
   <% end %>
   </ol>
 </div>
+
 <% unless current_user == @user %>
   <div id="user-bookings">
     <h3>Current Bookings: </h3>
@@ -57,9 +59,12 @@
     <% end %>
        <li>From <%=link_to review.reviewer.first_name, user_path(review.reviewer) %>
       on <%= review.created_at.strftime("%B %d, %Y") %> <br>
-      <%= review.review_body %> <br>
-      Rating: <%= review.review_score %> </li>
-    <% end %>
+      <%= review.review_body %> </li>
+      <li>Rating:
+      <% review.review_score.times do %>
+      <%= image_tag("star.png", size: "20x20") %>
+      <% end %>
+    <% end %></li>
     </ul>
 </div>
 
