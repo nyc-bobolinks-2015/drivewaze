@@ -2,73 +2,99 @@ var myDataref = new Firebase('https://drivewaze.firebaseio.com/');
 
 document.addEventListener('DOMContentLoaded', function(){
 
-  $(".new-message-container").on("submit", "#form", function(event){
-  event.preventDefault();
+  if($('#toUser').length) {
+
+    var msgData = document.getElementById('msg-data-carrier').dataset;
     var fromUser = document.getElementById('fromUser').value;
     var toUser = document.getElementById('toUser').value;
+    var convUsers = [fromUser.toLowerCase(), toUser.toLowerCase()].sort().join('-');
+    var ids = [msgData.fromUserId, msgData.toUserId].sort().join('-') + '-' + msgData.bookingId;
+    var targetNode = 'msgs/' + ids;
+
+  $(".new-message-container").on("submit", "#form", function(event){
+  event.preventDefault();
     var messageObj = {
           sent_at: String(new Date()),
           fromUser: fromUser,
           toUser:  toUser,
-          message: document.getElementById('msgText').value,
-          bookingID: document.getElementById("booking_id").value
+          message: document.getElementById('msgText').value
         };
+    var node  = myDataref.child(targetNode);
+    node.child('info').set({users: convUsers,
+      address: msgData.address,
+      booking: msgData.bookingId});
 
-    var dest = 'msgs/' + [fromUser.toLowerCase(), toUser.toLowerCase()].sort().join('-');
-
-    var node  = myDataref.child(dest);
-    node.push(messageObj);
-
-    var clearField = $("#msgText")
-    clearField.val("");
+    node.child('messages').push(messageObj);
+    $("#msgText").val("");
 
   });
 
-if($('#toUser').length) {
-    var currentUser = $("#fromUser").val();
-    var provider = $('#toUser').val();
-    var myNode = 'msgs/' + [currentUser.toLowerCase(), provider.toLowerCase()].sort().join('-');
-    myDataref.child(myNode).on("value", function(snapshot) {
-      var element = document.getElementById('messages');
-      var output = '';
-      snapshot.forEach(function(child){
-        var msg = child.val();
-        output += ("From: " + msg.fromUser + " To: " + msg.toUser + "<br>" + msg.message + "<br>" + msg.sent_at +
-          "<br>");
+  myDataref.child(targetNode).on("value", function(snapshot) {
+    var element = document.getElementById('messages');
+    var output = '';
+    snapshot.forEach(function(child){
+      var conv = child;
+      conv.forEach(function(child){
+        if (child.val().fromUser) {
+          console.log(child.val().fromUser)
+          var msg = child.val();
+          output += ("<div class='bubble'>" + "From: " + msg.fromUser + " To: " + msg.toUser + "<br>" + msg.message + "<br>" + msg.sent_at +
+            "<br></div>");
+        }
       });
-      element.innerHTML = output;
     });
+    $(element).append(output);
+  });
+}
+
+function Conversation(args) {
+  this.users = args.info.users;
+  this.bookingId = args.info.booking;
+  this.address = args.info.address;
+  this.messages = [];
+}
+function Message(args) {
+  this.fromUserName = args.fromUser;
+  this.toUserName = args.toUser;
+  this.message = args.message;
+  this.sentAt = new Date(args.sent_at);
 }
 
 if ($('#all-messages').length) {
     var currentUser = $("#current_user_nav").text();
-    var specificNode = 'msgs' //currentUser.toLowerCase() +
-    // debugger;
+    var specificNode = 'msgs';
     myDataref.child(specificNode).on("value", function(snapshot) {
       var convs = [];
+      var conv;
       snapshot.forEach(function(child){
-        var key = child.key();
-        var conv = { people: key };
-        conv.messages = [];
-        if(key.indexOf(currentUser.toLowerCase() + '-') >= 0 || key.indexOf('-' + currentUser.toLowerCase()) >= 0) {
-          child.forEach(function(node){
-            var msg = node.val();
-            conv.messages.push(msg);
-          });
-        convs.push(conv);
-        console.log(conv);
+        if (child.val().info) {
+          conv = new Conversation(child.val());
         }
-        var a = document.createElement('a');
-        a.className = "btn btn-default";
-        var linkText = document.createTextNode(conv.people);
-        a.appendChild(linkText);
-        a.href = "/bookings/" + conv.messages[conv.messages.length -1].bookingID + "/messages/new"
-        $('#all-messages').append(a);
-        console.log(conv.messages[conv.messages.length -1].bookingID);
+        if (child.val().messages) {
+          child.forEach(function(child){
+            var msgColl = child.val();
+            for (var msg in msgColl) {
+              if (msgColl[msg].fromUser) {
+                conv.messages.push(new Message(msgColl[msg]));
+              }
+            }
+          });
+        }
+        if (conv) {
+          convs.push(conv);
+        }
+      });
+
+      convs.forEach(function(conv){
+        var theLink = '<div><a class="btn btn-default" href="/bookings/' +
+          conv.bookingId + '/messages/new">' + conv.users +
+          ' booking ' + conv.bookingId +
+          ' (' + conv.messages.length +
+          (conv.messages.length == 1 ? 'message' : ' messages' ) +
+            ')</a> ' + "<br>" +  conv.address + '</div>';
+        $('#all-messages').append(theLink);
       });
     });
 }
 });
-
-
 

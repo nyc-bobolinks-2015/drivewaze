@@ -84,6 +84,7 @@
       <% end %>
     </ul>
   </div>
+
   <div id="favorite-users">
     <h3> Favorited Users </h3>
     <ul>
@@ -95,7 +96,9 @@
     </ul>
   </div>
 
+
   <% if @user == current_user %>
     <p><%= link_to "Edit", user_edit_path %> | <%= link_to "Delete", user_delete_path(@user), method: :delete %> My Profile</p>
   <% end %>
 </div>
+

@@ -11,6 +11,14 @@ class Booking < ActiveRecord::Base
     end
   end
 
+   def other_party(this_user)
+    if this_user.id == self.listing.user.id
+      self.user
+    else
+      self.listing.user
+    end
+  end
+
   def calculate_total
     timeSlots=self.time_slots
     total=0

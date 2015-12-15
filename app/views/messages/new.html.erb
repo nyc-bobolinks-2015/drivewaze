@@ -8,6 +8,12 @@
 
 
 <%= form_tag new_booking_message_path(@booking), :id => "form" do %>
+  <div id="msg-data-carrier"
+  data-from-user-id="<%= current_user.id %>"
+  data-address="<%=@booking.listing.address %>"
+  data-to-user-id="<%= @booking.other_party(current_user).id %>"
+  data-booking-id="<%= @booking.id %>"
+   ></div>
   <div id = "to>">
     <%= label_tag :to %>
     <%= text_field_tag :receiver,@booking.receipient(current_user), :id => "toUser", :disabled=>true %>
