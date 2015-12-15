@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function(){
         }
       });
     });
-    $(element).append(output);
+    element.innerHTML = output;
   });
 }
 
