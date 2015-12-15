@@ -1,5 +1,4 @@
 function ready1(){
-	console.log('hi');
 	// var startTime="default";
 	// var endTime="default";
 	var parkingSlotId=$("#cal-div").attr("data-id");
