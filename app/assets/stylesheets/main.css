@@ -18,6 +18,12 @@
 li{
   list-style-type: none;
 }
+#total-container{
+  display:inline;
+}
+#totalDisplay{
+  display:inline;
+}
 
 
 /*#static-map {
