@@ -54,7 +54,16 @@ class ListingsController < ApplicationController
     return render json: @listings
   end
 
-
+  def total
+    listing=Listing.find(params[:id])
+    booking=Booking.find_by(listing_id:params[:id],user_id:current_user.id)
+    if booking
+      total=booking.calculate_total
+    else
+      total=0
+    end
+    render json:{total:total}
+  end
 
 
   def availability
