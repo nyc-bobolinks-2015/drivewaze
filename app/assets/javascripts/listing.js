@@ -33,9 +33,9 @@ function initMap() {
 }
 
 //----------------
-var ready=function(){
+$(document).ready(function(){
 
-    $("#newListingForm").on("submit",function(event){
+  $("#newListingForm").on("submit",function(event){
     event.preventDefault();
     var listingAddress = $("#listingAddress").val();
     $("#listing_address").val(listingAddress);
@@ -62,8 +62,8 @@ var ready=function(){
           });
         }
       }).fail(function(error){
-      console.log(error)
-        })
+      console.log(error);
+      });
   })();
 
   window.map.addListener('bounds_changed', function(event){
@@ -81,27 +81,27 @@ var ready=function(){
            "&northBound=" + northBound +
            "&southBound=" + southBound
       }).done(function(response){
-          for(var i = 0; i < response.length; i++) {
-            var marker = new google.maps.Marker({
-              map: window.map,
-              position: {lat: response[i].latitude, lng: response[i].longitude},
-              title: String(response[0].address),
-              id: response[i].id
-            });
-            marker.addListener('click', function(event){
-              $.ajax({
-                method: 'get',
-                url: '/listings/' + this.id
-              }).done(function(response){
-                window.map.setCenter(marker.position)
-                $(".single-listing").html(response);
-               })
-            });
-           }
-        }).fail(function(error){
-          console.log(error)
-          })
-  })
+        for(var i = 0; i < response.length; i++) {
+          var marker = new google.maps.Marker({
+            map: window.map,
+            position: {lat: response[i].latitude, lng: response[i].longitude},
+            title: String(response[0].address),
+            id: response[i].id
+          });
+          marker.addListener('click', function(event){
+            $.ajax({
+              method: 'get',
+              url: '/listings/' + this.id
+            }).done(function(response){
+              window.map.setCenter(marker.position);
+              $(".single-listing").html(response);
+             })
+          });
+         }
+      }).fail(function(error){
+        console.log(error);
+      });
+  });
 
   $("#search_term").on('submit', function(event){
     event.preventDefault();
@@ -110,13 +110,5 @@ var ready=function(){
   $('.single-listing').on('click', '.listing-info', function(event) {
     window.location.href = '/listings/' + this.id;
   });
-<<<<<<< HEAD
-
-}
-};
-
-$(document).ready(ready);
-$(document).on('page:load',ready);
-=======
+  };
 });
->>>>>>> commit before redo

@@ -18,7 +18,6 @@ function displayCalendar(psindex){
 		    type: "info"
 		  });
 		}else{
-			// console.log(result);
 			$('#bookingCalendarTable').html(result);
 		}
 
@@ -39,6 +38,7 @@ function displayCalendar(psindex){
 			}).fail(function(error){
 				console.log(error);
 			});
+		});
 
 	}).fail(function(error){
 		console.log(error);
