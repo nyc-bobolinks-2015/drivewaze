@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   match 'users/:id' => 'users#update', via: :patch, as: :user_update
   root 'listings#index'
 
+
   resources :users, only:[:show] do
     resources :reviews, only: [:new, :create, :destroy]
     resources :favorite_users, only: [:create, :destroy]
@@ -17,6 +18,7 @@ Rails.application.routes.draw do
   resources :bookings, only: [] do
     resources :messages, only: [:new]
   end
+  get '/listings/:id/total', to: "listings#total"
   get '/listings/:id/bookings/confirmation', to: "bookings#confirmation"
   
   resources :listings do
