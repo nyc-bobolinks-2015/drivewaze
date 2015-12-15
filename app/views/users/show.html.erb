@@ -31,14 +31,6 @@
     <p> Description: <%= @user.description %> </p>
   </div>
 
-  <div id = "tabs">
-    <ul>
-      <li><a href="#user-listings">Available Listings</a></li>
-      <li><a href="#user-reviews">Reviews</a></li>
-      <li><a href="#favorite-listings">Favorited Listings</a></li>
-      <li><a href="#favorite-users">Favorited Users</a></li>
-    </ul>
-
   <div id="user-listings">
     <h3>Available Listings:</h3>
     <ol>
@@ -104,7 +96,6 @@
     </ul>
   </div>
 
-  </div>
 
   <% if @user == current_user %>
     <p><%= link_to "Edit", user_edit_path %> | <%= link_to "Delete", user_delete_path(@user), method: :delete %> My Profile</p>
