@@ -1,4 +1,4 @@
-<div class="container">
+<div id="listingShow">
   <%= render 'listing_preview' %>
 
   <div id="spot-info">
@@ -18,7 +18,7 @@
 	</div>
 <% else %>
 	<div id="book-listing-btn">
-	  <%= link_to "Book Listing", new_listing_booking_path(@listing), class: "btn btn-default" %>
+	  <button onClick="showCalendar()" class="btn btn-default">Check Availability</button>
 	</div>
 <% end %>
 
@@ -43,7 +43,7 @@
     <% end %></li>
 <% end %>
 </ul>
-
+</div>
 
 <div id="availabilityFilter" class="hide">
 	<select class="form-control" id="vehicleClassSelect">
@@ -65,4 +65,4 @@
 	<button id="saveFilterButton" class="btn btn-primary btn-lg btn-block" onclick="confirmBooking()">Continue to Payment</button>
 </div> 
 
-</div>
+
