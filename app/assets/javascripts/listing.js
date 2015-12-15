@@ -46,6 +46,7 @@ var ready=function(){
 
 
   if ($('#map').length) {
+
   initMap();
   (function(){
 
@@ -109,9 +110,13 @@ var ready=function(){
   $('.single-listing').on('click', '.listing-info', function(event) {
     window.location.href = '/listings/' + this.id;
   });
+<<<<<<< HEAD
 
 }
 };
 
 $(document).ready(ready);
 $(document).on('page:load',ready);
+=======
+});
+>>>>>>> commit before redo

@@ -1,0 +1,20 @@
+<h2>Order Confirmation</h2>
+
+<h3>Total</h3>
+
+<h3>Schedule</h3>
+
+<h3>Details</h3>
+
+
+<form action="/listings/<%= @listing.id %>/bookings" method="POST">
+  <script
+    src="https://checkout.stripe.com/checkout.js"
+    class="stripe-button"
+    data-key="pk_test_GNkZKnVDlMTTXnR2mFFpBWQp"
+    data-image="/doge.jpeg"
+    data-name="drivewaze"
+    data-description="Charge for driveway rental"
+    data-amount="500">
+  </script>
+</form>

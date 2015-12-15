@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+
   <title>spcs: Rent Parking Socially</title>
   <%= stylesheet_link_tag 'application', media: 'all' %>
+
   <%= javascript_include_tag "https://cdn.firebase.com/js/client/2.2.1/firebase.js" %>
   <script src="https://maps.googleapis.com/maps/api/js?&libraries=places"></script>
   <%= javascript_include_tag 'application'%>
@@ -19,6 +21,33 @@
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
   <style>
+  .selectedDate{
+    background-color: yellow;
+  }
+  td{
+    border: 1px solid #ECECEC;
+  }
+  .blackout{
+    background-color: #DDE8E8;
+  }
+  .past-month{
+    background-color: #8E8C8C;
+  }
+  .this-month-past{
+    background-color: #CCC9C9;
+  }
+
+  .present{
+    background-color: #5FDC9E;
+  }
+
+  .this-month .future{
+    background-color: #DCE8DA;
+  }
+
+  .future-month{
+    background-color: #80FB6C;
+  }
   tr{
     height:3em;
   }

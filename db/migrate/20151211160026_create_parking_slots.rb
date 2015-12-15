@@ -4,7 +4,7 @@ class CreateParkingSlots < ActiveRecord::Migration
     	t.integer :vehicle_class
     	t.integer :slot_type
     
-      t.integer :hourly_price
+
       t.integer :daily_price
       t.integer :weekly_price
       t.integer :monthly_price

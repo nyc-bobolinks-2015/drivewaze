@@ -13,21 +13,13 @@
 
 ActiveRecord::Schema.define(version: 20151212235145) do
 
-  create_table "availability_slots", force: true do |t|
-    t.integer  "booking_id",      null: false
-    t.integer  "listing_id",      null: false
-    t.datetime "start_date_time", null: false
-    t.datetime "end_date_time",   null: false
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
-
   create_table "bookings", force: true do |t|
-    t.integer  "total",      null: false
-    t.integer  "listing_id", null: false
-    t.integer  "user_id",    null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "total",                      null: false
+    t.boolean  "paid",       default: false
+    t.integer  "listing_id",                 null: false
+    t.integer  "user_id",                    null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "favorites", force: true do |t|
@@ -58,22 +50,12 @@ ActiveRecord::Schema.define(version: 20151212235145) do
   create_table "parking_slots", force: true do |t|
     t.integer  "vehicle_class"
     t.integer  "slot_type"
-    t.integer  "hourly_price"
     t.integer  "daily_price"
     t.integer  "weekly_price"
     t.integer  "monthly_price"
     t.integer  "listing_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-  end
-
-  create_table "parking_slots_time_slots", force: true do |t|
-    t.boolean  "booked"
-    t.boolean  "unavailable"
-    t.integer  "parking_slot_id"
-    t.integer  "time_slot_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
   end
 
   create_table "reviews", force: true do |t|
@@ -87,12 +69,14 @@ ActiveRecord::Schema.define(version: 20151212235145) do
   end
 
   create_table "time_slots", force: true do |t|
+    t.boolean  "booked",          default: false
+    t.boolean  "unavailable",     default: false
     t.datetime "start_time"
-    t.text     "year"
-    t.text     "month"
-    t.text     "day"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "end_time"
+    t.integer  "parking_slot_id",                 null: false
+    t.integer  "booking_id"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   create_table "users", force: true do |t|

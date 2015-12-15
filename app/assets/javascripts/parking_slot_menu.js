@@ -1,5 +1,4 @@
-var ready=function(){
-
+$(document).ready(function(){
 	var id = $('#parkingSpotMenuContainer').attr('data-id');
 	var currentSlotType=$('#propertyTypeMenu').attr('data-type');
 	var currentVehicleClass=$('#vehicleClassMenu').attr('data-type');
@@ -11,7 +10,7 @@ var ready=function(){
 	if(currentVehicleClass>-1){
 	$('#vehicleClassMenu button:nth-child('+currentVehicleClass+')').addClass('selected');
 	}
-};
+});
 
 function capitalize(string){
 	return string.charAt(0).toUpperCase() + string.slice(1);
@@ -136,5 +135,3 @@ function setPrice(priceType){
 		});
 	});
 }
-$(document).ready(ready);
-$(document).on('page:load',ready);

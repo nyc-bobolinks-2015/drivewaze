@@ -7,11 +7,6 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-startTime=DateTime.parse("12 Dec 2015 00:00:00")
-360.times do
-	TimeSlot.create(start_time:startTime)
-	startTime=startTime+2.hours
-end
 
 sam = User.create!(email: "sam@example.com",
                 password: "12345678",

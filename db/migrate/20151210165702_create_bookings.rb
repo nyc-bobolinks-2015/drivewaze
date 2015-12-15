@@ -2,6 +2,7 @@ class CreateBookings < ActiveRecord::Migration
   def change
     create_table :bookings do |t|
       t.integer :total, null:false
+      t.boolean :paid, default:false
 
       t.references :listing, null:false
       t.references :user, null:false

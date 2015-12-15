@@ -27,6 +27,7 @@
   </div>
 
 
+
 <h4> Reviews (<%= @listing.reviews.count %>) </h4>
 <% if current_user && current_user != @listing.user %>
   <%= link_to "Review this listing", new_listing_review_path(@listing), class: "btn btn-default" %>
@@ -42,5 +43,26 @@
     <% end %></li>
 <% end %>
 </ul>
-</div>
 
+
+<div id="availabilityFilter" class="hide">
+	<select class="form-control" id="vehicleClassSelect">
+		<option value="0">Compact Vehicle</option>
+		<option value="1">Full Size Vehicle</option>
+		<option value="2">SUV</option>
+	</select>
+	<button id="submitVehicleClass" class="btn btn-primary btn-lg btn-block" onclick="displayCalendar(0)">Check </button>
+	<div id="date-cal-div">
+		<button class="btn btn-md btn-primary" onclick="moveBookingCalendar('backward')">Last Month</button>
+		<button class="btn btn-md btn-primary" onclick="moveBookingCalendar('forward')">Next Month</button>
+		<button class="btn btn-md btn-default" onclick="changePsindex('backward')">Last Parking Slot</button>
+		<button class="btn btn-md btn-default" onclick="changePsindex('forward')">Next Parking Slot</button>
+		<table class="table" id="bookingCalendarTable" data-offset="0" data-psindex="0">
+
+		</table>
+	</div>
+	<div id="totalDisplay"></div>
+	<button id="saveFilterButton" class="btn btn-primary btn-lg btn-block" onclick="confirmBooking()">Continue to Payment</button>
+</div> 
+
+</div>
