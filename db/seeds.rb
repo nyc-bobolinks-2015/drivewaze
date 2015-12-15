@@ -23,7 +23,7 @@ listing = Listing.create!(address:"48 wall street, New York, NY 10005", space_de
 
 listing2 = Listing.create!(address:"222 East 80th S, New York, NY 10005", space_description: "big space", neighborhood_info: "good", public_transit_info: "7 and 2 train close", other_info: "garage", rules: "close door when leaving", user_id: sam.id)
 
-parking_slot1 = ParkingSlot.create!(vehicle_class: 1, slot_type: 1, hourly_price: 5, daily_price: 20, weekly_price: 100, monthly_price: 300, listing_id: listing.id)
-parking_slot2 = ParkingSlot.create!(vehicle_class: 1, slot_type: 1, hourly_price: 5, daily_price: 20, weekly_price: 100, monthly_price: 300, listing_id: listing2.id)
+parking_slot1 = ParkingSlot.create!(vehicle_class: 1, slot_type: 1, daily_price: 20, weekly_price: 100, monthly_price: 300, listing_id: listing.id)
+parking_slot2 = ParkingSlot.create!(vehicle_class: 1, slot_type: 1, daily_price: 20, weekly_price: 100, monthly_price: 300, listing_id: listing2.id)
 
 booking = Booking.create!(total: 320, listing_id: listing.id, user_id: michael.id)
