@@ -3,9 +3,9 @@
   <p>Owned by: <%= link_to @listing.user.first_name, user_path(@listing.user) %></p>
 
   <% unless current_user.favorite_listings.exists?(id: @listing.id) %>
-    <%= link_to 'Add to favorites', listing_favorite_listings_path(listing_id: @listing), method: :post %>
+    <%= link_to 'Add to favorites', listing_favorite_listings_path(listing_id: @listing), method: :post, class: "btn btn-default" %>
   <% else %>
-    <%= link_to 'Remove from favorites', listing_favorite_listing_path(listing_id:@listing.id, favorite_listing_id: @listing.id), method: :delete %>
+    <%= link_to 'Remove from favorites', listing_favorite_listing_path(listing_id:@listing.id, favorite_listing_id: @listing.id), method: :delete, class: "btn btn-default" %>
   <% end %>
 
 <div id='listing-price-info'>

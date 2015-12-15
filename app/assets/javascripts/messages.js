@@ -41,7 +41,6 @@ if($('#toUser').length) {
 }
 
 if ($('#all-messages').length) {
-  console.log('hello')
     var currentUser = $("#current_user_nav").text();
     var specificNode = 'msgs' //currentUser.toLowerCase() +
     // debugger;
@@ -60,6 +59,7 @@ if ($('#all-messages').length) {
         console.log(conv);
         }
         var a = document.createElement('a');
+        a.className = "btn btn-default";
         var linkText = document.createTextNode(conv.people);
         a.appendChild(linkText);
         a.href = "/bookings/" + conv.messages[conv.messages.length -1].bookingID + "/messages/new"

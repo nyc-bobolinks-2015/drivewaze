@@ -18,7 +18,7 @@
 	</div>
 <% else %>
 	<div id="book-listing-btn">
-	  <%= link_to "Book Listing", new_listing_booking_path(@listing)  %>
+	  <%= link_to "Book Listing", new_listing_booking_path(@listing), class: "btn btn-default" %>
 	</div>
 <% end %>
 
@@ -29,7 +29,7 @@
 
 <h4> Reviews (<%= @listing.reviews.count %>) </h4>
 <% if current_user && current_user != @listing.user %>
-  <%= link_to "Review this listing", new_listing_review_path(@listing) %>
+  <%= link_to "Review this listing", new_listing_review_path(@listing), class: "btn btn-default" %>
 <% end %>
 <ul>
 <% @listing.reviews.each do |review| %>

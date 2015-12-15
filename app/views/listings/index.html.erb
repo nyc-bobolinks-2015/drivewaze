@@ -1,11 +1,6 @@
-
+<div class="container">
   <h2>WELCOME!</h2>
-  <% if current_user && current_user.publishable_key %>
-    <%=link_to "New Listing",new_listing_path%>
-  <% else %>
-    <%= link_to "New Listing", stripe_signup_path  %>
-  <% end %>
-
+ 
   <div id="search-div">
     <div id="search-message">
       <p>Where would you like to search today?</p>
@@ -21,3 +16,4 @@
   <div class="single-listing">
   </div>
 
+</div>
