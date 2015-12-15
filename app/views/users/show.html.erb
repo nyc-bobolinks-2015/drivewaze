@@ -8,6 +8,10 @@
     <% end %>
   </div>
 
+  <div id="user-profile-photo">
+    <%= image_tag @user.avatar.url(:medium), class: "img-rounded" %>
+  </div>
+
   <div id="favorites-button">
     <% unless current_user == @user %>
       <% unless current_user.favorite_users.exists?(id: @user.id) %>
@@ -61,7 +65,7 @@
         </li>
         <li>From <%=link_to review.reviewer.first_name, user_path(review.reviewer) %>
         on <%= review.created_at.strftime("%B %d, %Y") %> <br>
-        <%= review.review_body %> 
+        <%= review.review_body %>
         <% if review.user_id == current_user.id %>
           <%= link_to "Delete Review", user_review_path(user_id: @user, id: review), method: :delete %>
         <% end %>
