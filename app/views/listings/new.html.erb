@@ -17,8 +17,13 @@
 		<h3>Info</h3>
 		<div class="listingPhotoUpload"></div>
 		<div class="listingInfo">
-			<%=form_for @listing, class: "form-control" do |f|%>
+			<%=form_for @listing, html: { multipart: true }, class: "form-control" do |f|%>
 				<%=f.hidden_field :address%>
+				<div class="row">
+				<div class="form-group">
+					<%= f.file_field :photo %>
+				</div>
+				</div>
 				<div class="row">
 				<div class="form-group">
 				<%=f.label :space_description, class: "col-xs-2"%>
@@ -43,7 +48,7 @@
 					<%=f.text_area :other_info, class: "col-xs-10" %>
 				</div>
 			</div>
-				<div class="row">
+			<div class="row">
 				<div class="form-group">
 					<%=f.label :rules, class: "col-xs-2" %>
 					<%=f.text_area :rules, class: "col-xs-10" %>

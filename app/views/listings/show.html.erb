@@ -1,4 +1,5 @@
 <div id="listingShow" data-id="<%=@listing.id%>">
+  <%= image_tag @listing.photo.url, class: "img-responsive"%>
   <%= render 'listing_preview' %>
 
   <div id="spot-info">
