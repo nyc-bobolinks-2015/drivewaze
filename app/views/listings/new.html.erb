@@ -17,31 +17,39 @@
 		<h3>Info</h3>
 		<div class="listingPhotoUpload"></div>
 		<div class="listingInfo">
-			<%=form_for @listing do |f|%>
+			<%=form_for @listing, class: "form-control" do |f|%>
 				<%=f.hidden_field :address%>
-
-				<div id="listing-form-space">
-					<%=f.label :space_description%>
-					<%=f.text_area :space_description%>
+				<div class="row">
+				<div class="form-group">
+				<%=f.label :space_description, class: "col-xs-2"%>
+				<%=f.text_area :space_description, class: "col-xs-10"%>
 				</div>
-				<div id="listing-form-neighborhood">
-					<%=f.label :neighborhood_info %>
-					<%=f.text_area :neighborhood_info %>
+			</div>
+				<div class="row">
+				<div class="form-group">
+				<%=f.label :neighborhood_info, class: "col-xs-2" %>
+				<%=f.text_area :neighborhood_info, class: "col-xs-10" %>
 				</div>
-				<div id="listing-form-transit">
-					<%=f.label :public_transit_info %>
-					<%=f.text_area :public_transit_info %>
+			</div>
+				<div class="row">
+				<div class="form-group">
+					<%=f.label :public_transit_info, class: "col-xs-2" %>
+					<%=f.text_area :public_transit_info, class: "col-xs-10" %>
 				</div>
-				<div id="listing-form-other-info">
-					<%=f.label :other_info %>
-					<%=f.text_area :other_info %>
+			</div>
+				<div class="row">
+				<div class="form-group">
+					<%=f.label :other_info, class: "col-xs-2" %>
+					<%=f.text_area :other_info, class: "col-xs-10" %>
 				</div>
-				<div id="listing-form-rules">
-					<%=f.label :rules %>
-					<%=f.text_area :rules %>
+			</div>
+				<div class="row">
+				<div class="form-group">
+					<%=f.label :rules, class: "col-xs-2" %>
+					<%=f.text_area :rules, class: "col-xs-10" %>
 				</div>
-
-				<%=f.submit "Continue"%>
+			</div>
+				<%=f.submit "Continue", class: "col-xs-10 col-xs-offset-2"%>
 			<%end%>
 		</div>
 
