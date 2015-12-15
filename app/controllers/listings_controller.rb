@@ -95,7 +95,7 @@ class ListingsController < ApplicationController
         tmpWeekEnd=firstDayOfMonth
       else
         firstDayInView=firstDayOfMonth.beginning_of_week.yesterday #this is always be a sunday
-      
+
         firstRow=[]
         firstRow.push(firstDayInView)
 
@@ -175,6 +175,6 @@ class ListingsController < ApplicationController
 
   private#zino----
   def listing_params
-    params.require(:listing).permit(:other_info,:address,:space_description,:neighborhood_info,:public_transit_info,:rules)
+    params.require(:listing).permit(:other_info,:address,:space_description,:neighborhood_info,:public_transit_info,:rules, :photo)
   end
 end
