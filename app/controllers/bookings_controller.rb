@@ -29,7 +29,7 @@ class BookingsController < ApplicationController
 	end
 
 	def create
-		booking=Booking.find_or_initialize_by(user_id:current_user.id,listing:params[:listing_id])
+		booking=Booking.find_or_initialize_by(user_id:current_user.id,listing_id:params[:listing_id])
 		start_time=DateTime.parse(params[:time]).beginning_of_day
 		end_time=start_time
 		if booking.time_slots.where(start_time:start_time,end_time:end_time).exists?
@@ -44,8 +44,8 @@ class BookingsController < ApplicationController
 			end
 		else
 			booking.time_slots.build(start_time:start_time,end_time:end_time,booked:true,parking_slot_id:params[:psid])
+			booking.total= booking.calculate_total
 			if booking.save
-				booking.total= booking.calculate_total
 				render json:{status:"success", total: booking.total}
 			else
 				render json:{status:booking.errors.full_message}
@@ -57,6 +57,7 @@ class BookingsController < ApplicationController
 		charge_client
 		listing = Listing.find_by(id: params[:listing_id])
 		@booking = listing.bookings.last
+		UserMailer.booked(@booking)
 		render :'bookings/order-complete'
 	end
 
