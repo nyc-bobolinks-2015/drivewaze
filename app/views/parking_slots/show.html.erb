@@ -1,4 +1,9 @@
 <div id="ajaxParkingSpotMenuContainer">
+	<button class="btn btn-md btn-primary" onclick="moveCalendar('backward')">Last Month</button>
+	<button class="btn btn-md btn-primary" onclick="moveCalendar('forward')">Next Month</button>
+	<table class="table" id="calendarTable" data-offset="0">
+
+	</table>
 </div>
 <div id="parkingSpotMenuContainer" data-id="<%=@parking_slot.id%>">
 	
@@ -79,75 +84,16 @@
 	    <div id="price" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
 	      <div class="panel-body">
 		    	<div id="priceMenu">
-		    		<button class="btn btn-default btn-block btn-md" id="hourlyButton" onclick="setPrice(0)">
-						<p>Hourly</p>
-						<p>set hourly price for this parking spot</p>
-					</button>
-<!-- 					<button class="btn btn-default btn-block btn-md" id="hourlyButton" data-toggle="collapse" href="#setHourlyPriceDiv" aria-expanded="false" aria-control="setHourlyPriceDiv">
-						<p>Hourly</p>
-						<p>set hourly price for this parking spot</p>
-					</button> -->
-<!-- 	    			<div class="collapse" id="setHourlyPriceDiv">
-						<div class="well">
-							<div class="row">
-							<div class="col-xs-4 col-xs-offset-3">
-								<input type="text" class="form-control" id="priceField">
-							</div>
-							<div class="col-xs-2">
-								<button class="btn btn-md btn-primary btn-block">Set</button>
-							</div>
-							</div>
-							<div class="row" style="margin-top:1em;">
-								<div class="col-xs-offset-3 col-xs-6">
-									<button class="btn btn-md btn-danger btn-block">No Hourly Rental</button>
-								</div>
-							</div>
-						</div>
-					</div> -->
 
 					<button class="btn btn-default btn-block btn-md" id="dailyButton" onclick="setPrice(1)">
 						<p>Daily</p>
 						<p>set daily price for this parking spot</p>
 					</button>
-<!-- 	    			<div class="collapse" id="setDailyPriceDiv">
-						<div class="well">
-							<div class="row">
-							<div class="col-xs-4 col-xs-offset-3">
-								<input type="text" class="form-control" id="priceField">
-							</div>
-							<div class="col-xs-2">
-								<button class="btn btn-md btn-primary btn-block">Set</button>
-							</div>
-							</div>
-							<div class="row" style="margin-top:1em;">
-								<div class="col-xs-offset-3 col-xs-6">
-									<button class="btn btn-md btn-danger btn-block">No Daily Rental</button>
-								</div>
-							</div>
-						</div>
-					</div> -->
 
 					<button class="btn btn-default btn-block btn-md" id="weeklyButton" onclick="setPrice(2)">
 						<p>Weekly</p>
 						<p>set weekly price for this parking spot</p>
 					</button>
-	    		<!-- 	<div class="collapse" id="setWeeklyPriceDiv">
-						<div class="well">
-							<div class="row">
-							<div class="col-xs-4 col-xs-offset-3">
-								<input type="text" class="form-control" id="priceField">
-							</div>
-							<div class="col-xs-2">
-								<button class="btn btn-md btn-primary btn-block">Set</button>
-							</div>
-							</div>
-							<div class="row" style="margin-top:1em;">
-								<div class="col-xs-offset-3 col-xs-6">
-									<button class="btn btn-md btn-danger btn-block">No Weekly Rental</button>
-								</div>
-							</div>
-						</div>
-					</div> -->
 
 					<button class="btn btn-default btn-block btn-md" id="monthlyButton" onclick="setPrice(3)">
 						<p>Monthly</p>
@@ -176,5 +122,6 @@
 	  </div>
 	</div>
 
-	<%=link_to "Blackout Time", new_parking_slot_parking_slots_time_slot_path(@parking_slot), class:"btn btn-primary btn-block btn-lg"%>
+	<button class="btn btn-primary btn-block btn-lg" onclick="showBlackoutCal()">Blackout Dates</button>
+	<div id="blackout-cal"></div>
 </div>

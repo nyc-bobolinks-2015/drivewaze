@@ -1,20 +1,6 @@
-<h2>Order Confirmation</h2>
-
-<h3>Total: <%= @booking.total %></h3>
-
-<h3>Schedule</h3>
-
-<h3>Details: <%= @listing.address %></h3>
-
-
-<form action="/listings/<%= @listing.id %>/complete" method="GET">
-  <script
-    src="https://checkout.stripe.com/checkout.js"
-    class="stripe-button"
-    data-key="pk_test_GNkZKnVDlMTTXnR2mFFpBWQp"
-    data-image="/doge.jpeg"
-    data-name="drivewaze"
-    data-description="Charge for driveway rental"
-    data-amount="<%= @booking.total %>00">
-  </script>
-</form>
+<h1>Booking Confirmation</h1>
+<p>Your total is <%=@total%></p>
+<p>Your selected times</p>
+<%@confirmed_times.each do |time|%>
+	<p><%=time%></p>
+<%end%>

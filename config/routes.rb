@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   resources :bookings, only: [] do
     resources :messages, only: [:new]
   end
+  get '/listings/:id/bookings/confirmation', to: "bookings#confirmation"
   
   resources :listings do
     resources :bookings
@@ -25,22 +26,22 @@ Rails.application.routes.draw do
     resources :parking_slots, only: [:new,:index,:create]
 
   end
-  
   get '/listings/:id/availability', to: "listings#availability"
 
   get "listings/:id/bookings/show-confirmation" => 'bookings#show_confirmation'
   get "listings/:id/complete" => 'bookings#complete'
 
   resources :parking_slots, only:[:show,:edit,:update] do
-    resources :parking_slots_time_slots, only:[:new,:create] do
-    end
+    resources :time_slots
   end
 
-  namespace :api, defaults: {format: :json} do
-    resources :parking_slots,only:[] do
-      resources :parking_slots_time_slots, only:[:index]
-    end
-  end
+  get '/parking_slots/:id/calendar', to: 'parking_slots#calendar'
+
+  # namespace :api, defaults: {format: :json} do
+  #   resources :parking_slots,only:[] do
+  #     resources :parking_slots_time_slots, only:[:index]
+  #   end
+  # end
   
   get "/search" => 'listings#search'
   post '/search' => 'listings#search_map'

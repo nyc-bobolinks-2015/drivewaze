@@ -1,72 +1,115 @@
-$(document).ready(function(){
-	console.log("hello hhh");	
-});
-
-
-function showCalendar(source){
-	$("#listingShow").hide();
-	$("#availabilityFilter").removeClass("hide");
-	$('#date-cal-div').fullCalendar({
-		header:{
-			left:'prev,next today',
-			center:'title',
-			right:'month'
-		},
-		selectable:true,
-		selectHelper:true,
-		select:function(start,end,jsEvent,view){
-			// $('#startTime').text(moment(start).format('MMMM D, YYYY'));
-			// $('#endTime').text(moment(end).format('MMMM D, YYYY'));
-			if($('#date-cal-div').attr('data-type')=="arrival"){
-				$('#arrivalDate').text(moment(start).format('MMMM D YYYY'));
-				// console.log($(jsEvent.target).index());
-				var index=$(jsEvent.target).index()+1;
-				// console.log($(jsEvent.target).closest("div").siblings(".fc-bg:first").find("td:nth-child("+index+")").css("background-color","black"));
-			}else{
-				$('#departureDate').text(moment(start).format('MMMM D YYYY'));
-			}
-		}
-	});
-}
-
-function selectDepartureDate(){
-	// $('#date-cal-div').toggle(".hide")
-	$('#date-cal-div').attr('data-type',"departure");
-}
-
-function submitFilter(){
-	var listingId=$("#listingShow").attr("data-id");
+function displayCalendar(psindex){
 	var vehicleClass=$("#vehicleClassSelect").val();
-	var startDate=$('#arrivalDate').text();
-	var departDate=$('#departureDate').text();
+	var listingId=$('#listingShow').attr('data-id');
+	var offset=$("#bookingCalendarTable").attr("data-offset");
+	// console.log(offset);
 	$.ajax({
 		method:"get",
 		url:"/listings/"+listingId+"/availability",
-		data:"vehicle_class="+vehicleClass+"&start_date="+startDate+"&depart_date="+departDate
+		data:"vehicle_class="+vehicleClass+"&offset="+offset+"&psindex="+psindex
 	}).done(function(result){
-		if(result.status=="success"){
-			window.location.href="/parking_slots/"+result.redirect+"/parking_slots_time_slots/new?new_booking=true";
-			// console.log(result.redirect);
-			// console.log(result);
-		}else{
+		if(result.status=="Unavailable"){
 			swal({
 		    title: "Unavailable!",
-		    text: "Our apologies, there is no availabitlity for this listing during the time you have selected.",
+		    text: "This listing is unavailable",
 		    showConfirmButton: false,
 		    allowOutsideClick: true,
-		    timer: 2600,
-		    type: "error",
+		    timer: 2500,
+		    type: "info"
 		  });
+		}else{
+			// console.log(result);
+			$('#bookingCalendarTable').html(result);
 		}
+
+		$(".future").on("click",function(event){
+			var dateSelected=$(event.target).attr("data-day");
+			var parking_slot_id=$("#pstotal").attr("data-psid");
+			$.ajax({
+				method:"post",
+				url:"/listings/"+listingId+"/bookings",
+				data:"time="+dateSelected+"&psid="+parking_slot_id
+			}).done(function(result){
+				if(result.status=="success"){
+					$(event.target).css("background-color","yellow");
+					$("#totalDisplay").text(result.total);
+				}else{
+					console.log(result.status);
+				}
+			}).fail(function(error){
+				console.log(error);
+			});
+
 	}).fail(function(error){
+		console.log(error);
+	});
+}
+
+function changePsindex(direction){
+	var psindex=parseInt($("#bookingCalendarTable").attr("data-psindex"));
+	var totalps=parseInt($("#pstotal").attr("data-pstotal"));
+	// console.log("psindex");
+	if(direction=="forward"){
+		if(psindex<(totalps-1)){
+			psindex=psindex+1;
+			$("#bookingCalendarTable").attr("data-offset",0);
+			$("#bookingCalendarTable").attr("data-psindex",psindex);
+			displayCalendar(psindex);
+		}			
+	}else{
+		if(psindex>0){
+			psindex=psindex-1;
+			$("#bookingCalendarTable").attr("data-offset",0);
+			$("#bookingCalendarTable").attr("data-psindex",psindex);
+			displayCalendar(psindex);
+		}
+	}
+}
+
+function moveBookingCalendar(direction){
+	var calendarOffset=parseInt($("#bookingCalendarTable").attr("data-offset"));
+	var psindex=parseInt($("#bookingCalendarTable").attr("data-psindex"));
+	if(direction=="forward"){
+		if(parseInt(calendarOffset)<3){
+			calendarOffset=calendarOffset+1;
+			$("#bookingCalendarTable").attr("data-offset",calendarOffset);
+			// showBlackoutCal(calendarOffset);
+			displayCalendar(psindex);
+		}
+	}else{
+		if(parseInt(calendarOffset)>0){
+			calendarOffset=calendarOffset-1;
+			$("#bookingCalendarTable").attr("data-offset",calendarOffset);
+			// showBlackoutCal(calendarOffset);
+			displayCalendar(psindex);
+		}
+	}
+}
+
+function showCalendar(){
+	$("#listingShow").hide();
+	$("#availabilityFilter").removeClass("hide");
+}
+
+function confirmBooking(){
+	listingId=$('#listingShow').attr('data-id');
+	$.ajax({
+		method:"get",
+		url:"/listings/"+listingId+"/bookings/confirmation?check=true"
+	}).done(function(result){
+		if(result.status="success"){
+			window.location.href="/listings/"+listingId+"/bookings/confirmation";
+		}else{
 			swal({
-		    title: "Server Error!",
-		    text: "Our apologies! Our service is currently Unavailable.",
+		    title: "No Selected Time!",
+		    text: "Our apologies, we are unable to find the time you have selected. Please use the calendar to select desirable rental periods.",
 		    showConfirmButton: false,
 		    allowOutsideClick: true,
 		    timer: 2000,
-		    type: "error",
+		    type: "info"
 		  });
-		  console.log(error);
+		}
+	}).fail(function(error){
+		console.log(error);
 	});
 }
