@@ -1,9 +1,10 @@
 <h2>Edit Profile</h2>
-<%= form_for(@user) do |f| %>
+<%= form_for @user, html: { multipart: true } do |f| %>
 <%= f.text_field :first_name %>
 <%= f.text_field :last_name %>
 <%= f.text_field :email %>
 <%= f.text_field :phone %>
 <%= f.text_area :description %>
+<%= f.file_field :avatar %>
 <%= f.submit %>
 <% end %>
