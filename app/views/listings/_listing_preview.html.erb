@@ -2,6 +2,13 @@
   <h1><%= @listing.address %></h1>
   <p>Owned by: <%= link_to @listing.user.first_name, user_path(@listing.user) %></p>
 
+  <div class = "listing-overall-rating">
+    <p> Overall rating:
+      <% @listing.average_rating.times do %>
+        <%= image_tag("star.png", size: "20x20") %>
+      <% end %></p>
+  </div>
+
   <% unless current_user.favorite_listings.exists?(id: @listing.id) %>
     <%= link_to 'Add to favorites', listing_favorite_listings_path(listing_id: @listing), method: :post, class: "btn btn-default" %>
   <% else %>

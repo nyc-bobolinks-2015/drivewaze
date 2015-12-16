@@ -75,6 +75,10 @@
 
         <div class="tab-pane" id="user-reviews">
           <h4> Reviews (<%= @user.reviews.count %>) </h4>
+          <p>Overall rating:
+            <% @user.average_rating.times do %>
+              <%= image_tag("star.png", size: "20x20") %>
+            <% end %></p>
             <ul>
               <% @user.reviews.each do |review| %>
               <li>Rating:
