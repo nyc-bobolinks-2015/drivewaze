@@ -1,9 +1,6 @@
-<h2>Your Parking Spots</h2>
-<%@parking_slots.each do |p|%>
-	<div class="panel panel-default">
-		<div class="panel-body">
-			<%=link_to "Edit Your Parking Space Details", parking_slot_path(p.id)%>
-		</div>
-	</div>
+<h2 id="p-spot-header">Your Parking Spots</h2>
+<%@parking_slots.each_with_index do |p, i|%>
+	<%=link_to "Edit Parking Spot #{i+1}", parking_slot_path(p.id), class: "btn btn-primary btn-block btn-lg"%>
 <%end%>
-<%= link_to "Submit Listing", root_path, class: "btn btn-primary btn-block btn-lg" %>
+
+<%= link_to "Submit Listing", root_path, class: "btn btn-primary btn-block btn-lg", id:'submit-listing-btn' %>

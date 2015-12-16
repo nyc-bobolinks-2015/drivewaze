@@ -9,9 +9,9 @@
       <div id="profile-summary" class="col-xs-6 pull-right">
         <div id="welcome-user">
           <% if @user == current_user %>
-            <h1>Welcome Back <%= @user.first_name %>!</h1>
+            <h2>Welcome Back <%= @user.first_name %>!</h2>
           <% else %>
-            <h1> Hey, I'm <%= @user.first_name %>! </h1>
+            <h2> Hey, I'm <%= @user.first_name %>! </h2>
           <% end %>
         </div>
       </div>
