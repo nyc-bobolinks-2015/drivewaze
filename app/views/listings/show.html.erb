@@ -24,7 +24,7 @@
         </div>
       <% end %>
       </div>
-      <div class="col-xs-6 btn-lg">
+      <div class="col-xs-6 btn-lg" id="favorites">
       <% unless current_user.favorite_listings.exists?(id: @listing.id) %>
         <%= link_to 'Add to favorites', listing_favorite_listings_path(listing_id: @listing), method: :post, class: "btn btn-default" %>
       <% else %>
@@ -83,12 +83,12 @@
       </div>
     </div>
     </div>
-  </div>
-
-
     <div id="static-map">
       <%= image_tag @map_image, id: "listing-show-map", class: "img-responsive" %>
     </div>
+  </div>
+
+
 </div>
 
 <div id="availabilityFilter" class="hide">
