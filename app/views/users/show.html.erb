@@ -1,22 +1,26 @@
 <div class="container">
 
   <div id="profile-pic" class="row">
-    <div class = "col-xs-6 pull-left" id="user-profile-photo">
-      <%= image_tag @user.avatar.url(:medium), class: "img-rounded" %>
-    </div>
-
-    <div id="profile-summary" class="col-xs-6 pull-right">
-      <div id="welcome-user">
-        <% if @user == current_user %>
-          <h1>Welcome Back <%= @user.first_name %>!</h1>
-        <% else %>
-          <h1> Hey, I'm <%= @user.first_name %>! </h1>
-        <% end %>
+    <div class = "inline">
+      <div class = "col-xs-6 pull-left" id="user-profile-photo">
+        <%= image_tag @user.avatar.url(:medium), class: "img-rounded img-responsive" %>
       </div>
 
-      <% if @user == current_user %>
-        <p><%= link_to "Edit", user_edit_path %> | <%= link_to "Delete", user_delete_path(@user), method: :delete %> My Profile</p>
-      <% end %>
+      <div id="profile-summary" class="col-xs-6 pull-right">
+        <div id="welcome-user">
+          <% if @user == current_user %>
+            <h1>Welcome Back <%= @user.first_name %>!</h1>
+          <% else %>
+            <h1> Hey, I'm <%= @user.first_name %>! </h1>
+          <% end %>
+        </div>
+      </div>
+
+      <div class = "col-xs-6 pull-right">
+        <% if @user == current_user %>
+          <p><%= link_to "Edit", user_edit_path %> | <%= link_to "Delete", user_delete_path(@user), method: :delete %> My Profile</p>
+        <% end %>
+      </div>
 
       <div id="favorites-button">
         <% unless current_user == @user %>
@@ -27,56 +31,50 @@
           <% end %>
         <% end %>
       </div>
-
-      <div id="user-info">
-        <p> Member since: <%= @user.created_at.strftime("%B %d, %Y") %> </p
-        <% unless @user.last_sign_in_at == nil %>
-          <p> Last seen: <%= @user.last_sign_in_at.strftime("%B %d, %Y") %> </p>
-        <% end %>
-        <p> Zip Code: <%= @user.zipcode %></p>
-        <p> Description: <%= @user.description %> </p>
-      </div>
     </div>
   </div>
 
-    <div id="profile-content" class="row">
-      <div class = "tabbable">
-        <ul class = "nav nav-tabs" id = "proftabs">
-          <li class="active"><a href = "#user-listings" data-toggle = "tab"> Available listings</a></li>
-          <% if current_user == @user %>
-          <li><a href = "#user-bookings" data-toggle = "tab"> Current Bookings</a></li>
+      <div class = "inline">
+        <div id="user-info">
+          <p> Member since: <%= @user.created_at.strftime("%B %d, %Y") %> </p
+          <% unless @user.last_sign_in_at == nil %>
+            <p> Last seen: <%= @user.last_sign_in_at.strftime("%B %d, %Y") %> </p>
           <% end %>
-          <li><a href = "#user-reviews" data-toggle = "tab"> Reviews</a></li>
-          <li><a href = "#favorites" data-toggle = "tab"> Favorites</a></li>
-        </ul>
+          <p> Zip Code: <%= @user.zipcode %></p>
+          <p> Description: <%= @user.description %> </p>
+        </div>
+      </div>
 
+
+    <div id="profile-content" class="row centered">
+          <div class = "tabbable">
+            <ul class = "nav nav-tabs" id = "proftabs">
+              <li class="active"><a href = "#user-data" data-toggle = "tab">Your Spaces</a></li>
+              <li><a href = "#user-reviews" data-toggle = "tab">Reviews (<%= @user.reviews.count %>)</a></li>
+              <li><a href = "#favorites" data-toggle = "tab"> Favorites</a></li>
+            </ul>
 
       <div class = "tab-content">
-        <div class="tab-pane active" id="user-listings">
+        <div class="tab-pane active" id="user-data">
           <h3>Available Listings:</h3>
           <ol>
           <% @user.listings.each do |listing| %>
             <li><%= link_to listing.address, listing_path(listing) %></li>
           <% end %>
           </ol>
-        </div>
 
-        <% if current_user == @user %>
-          <div class = "tab-pane" id="user-bookings">
+          <% if current_user == @user %>
             <h3>Current Bookings: </h3>
             <ol>
               <% @user.bookings.each do |booking| %>
                 <li><%= link_to booking.listing.address, listing_path(booking.listing) %></li>
               <% end %>
             </ol>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
 
         <div class="tab-pane" id="user-reviews">
           <h3> Reviews (<%= @user.reviews.count %>) </h3>
-          <% unless current_user == @user %>
-          <p><%= link_to "Add a Review", new_user_review_path(@user), class: "btn btn-default" %></p>
-          <% end %>
             <ul>
               <% @user.reviews.each do |review| %>
               <li>Rating:
@@ -84,13 +82,17 @@
                   <%= image_tag("star.png", size: "20x20") %>
                 <% end %>
               </li>
+
               <li>From <%=link_to review.reviewer.first_name, user_path(review.reviewer) %>
               on <%= review.created_at.strftime("%B %d, %Y") %> <br>
               <%= review.review_body %>
-              <% if review.user_id == current_user.id %>
-                <%= link_to "Delete Review", user_review_path(user_id: @user, id: review), method: :delete %>
+              <p><% if review.user_id == current_user.id %>
+                <%= link_to "Delete Review", user_review_path(user_id: @user, id: review), method: :delete %></p>
               <% end %>
               </li>
+              <% end %>
+              <% unless current_user == @user %>
+                <p><%= link_to "Add a Review", new_user_review_path(@user), class: "btn btn-default" %></p>
               <% end %>
             </ul>
           </div>
