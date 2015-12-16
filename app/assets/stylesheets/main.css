@@ -24,6 +24,9 @@ li{
 #totalDisplay{
   display:inline;
 }
+#message-title{
+  text-align: center;
+}
 
 .bubble {
   background-image: linear-gradient(bottom, rgb(210,244,254) 25%, rgb(149,194,253) 100%);
