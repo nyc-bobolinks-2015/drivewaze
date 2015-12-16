@@ -73,7 +73,7 @@ $(document).ready(function(){
               method: 'get',
               url: '/listings/' + this.id
             }).done(function(response){
-              window.map.setCenter(marker.position);
+              // window.map.setCenter(marker.position);
               $(".single-listing").html(response);
              });
           });
@@ -111,7 +111,7 @@ $(document).ready(function(){
               method: 'get',
               url: '/listings/' + this.id
             }).done(function(response){
-              window.map.setCenter(marker.position);
+              // window.map.setCenter(marker.position);
               $(".single-listing").html(response);
              });
           });
