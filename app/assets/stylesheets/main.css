@@ -101,6 +101,13 @@ background-image: -webkit-gradient(
   right: -7px;
 }
 
+.bubble--alt:after {
+  border-bottom-color: #ace44b;
+  border-radius: 20px / 10px;
+  left: auto;
+  right: -5px;
+}
+
 /*#static-map {
   width: 100%;
   margin: 0 auto;
