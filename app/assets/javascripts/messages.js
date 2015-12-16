@@ -93,10 +93,9 @@ if ($('#all-messages').length) {
       convs.forEach(function(conv){
         var theLink = '<div><a class="btn btn-default" href="/bookings/' +
           conv.bookingId + '/messages/new">' + conv.users +
-          ' booking ' + conv.bookingId +
           ' (' + conv.messages.length +
           (conv.messages.length == 1 ? 'message' : ' messages' ) +
-            ')</a> ' + "<br>" +  conv.address + '</div>';
+            ')</a> ' + "<br>" + "Regarding your booking at: " + conv.address + '</div>';
         $('#all-messages').append(theLink);
       });
     });
