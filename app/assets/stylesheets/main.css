@@ -192,3 +192,7 @@ input#term:focus {
 #p-spot-header {
   margin-bottom: 1em;
 }
+
+#proftabs a {
+  padding: .8em;
+}
