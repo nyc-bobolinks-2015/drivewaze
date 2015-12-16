@@ -60,7 +60,9 @@ class ListingsController < ApplicationController
                 .where('latitude <= ?', northBound)
                 .where('longitude >= ?', westBound)
                 .where('longitude <= ?', eastBound)
-
+    if params[:startTime] != "now"
+      @listings = filter_time(@listings, params[:startTime], params[:endTime])
+    end
     return render json: @listings
   end
 

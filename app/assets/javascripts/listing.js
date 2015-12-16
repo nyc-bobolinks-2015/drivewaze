@@ -3,7 +3,8 @@ function initMap() {
    {
     center: {lat: 40.7060137, lng: -74.0110914},
     scrollwheel: false,
-    zoom: 14
+    zoom: 14,
+    mapTypeControl: false
     });
 
   var input = (document.getElementById('term'));
@@ -33,10 +34,7 @@ function initMap() {
       window.map.setCenter(center);
     });
   })
-  // autocomplete.addListener('place_changed', function() {
-  //   var place = autocomplete.getPlace();
-  //   window.map.setCenter(place)
-  // })
+
 }
 
 //----------------
@@ -90,14 +88,17 @@ $(document).ready(function(){
     var eastBound = latLong.j.O
     var northBound = latLong.O.j
     var southBound = latLong.O.O
-
+    var startTime = $('#searchArrivalDate').val() || "now"
+    var endTime = $('#searchDepartureDate').val() || "now"
     $.ajax({
       method: 'get',
       url: '/search' +
            "?westBound=" + westBound +
            "&eastBound=" + eastBound +
            "&northBound=" + northBound +
-           "&southBound=" + southBound
+           "&southBound=" + southBound +
+           "&startTime=" + startTime +
+           "&endTime=" + endTime
       }).done(function(response){
         for(var i = 0; i < response.length; i++) {
           var marker = new google.maps.Marker({
