@@ -70,6 +70,9 @@ li{
 #static-map{
   margin-top: 2em;
 }
+.tab-content{
+  margin-top: 1em;
+}
 
 .bubble {
   background-image: linear-gradient(bottom, rgb(210,244,254) 25%, rgb(149,194,253) 100%);
