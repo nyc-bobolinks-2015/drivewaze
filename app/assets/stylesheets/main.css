@@ -16,57 +16,47 @@ li{
 #totalDisplay{
   display:inline;
 }
-
-/*@media (max-device-width: 480px){
-  #message-title{
-    text-align: center;
-    padding-bottom: 1.5em;
-  }
-  #messages{
-    height: 60em;
-    overflow-y: auto;
-    margin-bottom: 1.5em;
-  }
-  #messages > div {
-    height: 160px;
-    font-size: 2.4em;
-  }
-  #to-user-tag{
-    display: inline-block;
-    width: 80px;
-    font-size: 2.2em;
-  }
-  #from-user-tag{
-    display: inline-block;
-    width: 80px;
-    font-size: 2.2em;
-  }
-  #toUser {
-    font-size: 2.2em;
-    color: black;
-  }
-  #fromUser {
-    font-size: 2.2em;
-    color: black;
-    margin-bottom: 1.5em;
-  }
-  #msgText{
-    font-size: 2.2em;
-  }
-  #submit-message{
-    height: 180px;
-    font-size: 1.7em;
-  }
-
-  body {
-    width: 100%;
-  }
-
-
+#messages{
+  height: 20em;
+  overflow-y: auto;
+  margin-bottom: 1.5em;
+  width: 75%;
+  margin: auto;
 }
 
+@media (max-device-width: 480px){
+  .nav {
+    display: inline;
+    text-align: center;
+  }
+  #logo {
+    width: 100%;
+    font-size: 2em;
+    text-align: center;
+  }
+  .container {
+    width: 100%;
+    margin: auto;
+  }
+}
+#message-title{
+  text-align: center;
+  padding-bottom: 1.5em;
+}
+#to-user-tag{
+  display: inline-block;
+  width: 40px;
+}
+#from-user-tag{
+  display: inline-block;
+  width: 40px;
+}
+
+#submit-message{
+  height: 86px;
+}
 #profile-pic{
-    margin-left: -4em;
+  margin-left: -4em;
 }
 #profile-summary{
   margin-right: -3em;
@@ -84,7 +74,7 @@ li{
 }
 #proftabs{
   font-size: 1.3em;
-}*/
+}
 
 .bubble {
   background-image: linear-gradient(bottom, rgb(210,244,254) 25%, rgb(149,194,253) 100%);
