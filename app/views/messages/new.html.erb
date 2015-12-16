@@ -1,7 +1,7 @@
 
 <div class = "new-message-container">
 
-<h3> Chat about your rental at <%= @booking.listing.address %></h3>
+<h2 class="row" id="message-title"> Chat about your rental at <%= link_to @booking.listing.address, listing_path(@booking.listing) %></h2>
 
 <div id='messages' class="row">
 </div>
@@ -13,22 +13,24 @@
   data-to-user-id="<%= @booking.other_party(current_user).id %>"
   data-booking-id="<%= @booking.id %>"
    ></div>
-  <div id = "to>">
-    <%= label_tag :to %>
+  <div id="to>">
+    <%= label_tag :to, nil, id: "to-user-tag" %>
     <%= text_field_tag :receiver,@booking.receipient(current_user), :id => "toUser", :disabled=>true %>
     <%= hidden_field_tag "booking_id", @booking.id%>
   </div>
   <div id = "from>">
-    <%= label_tag :from %>
+    <%= label_tag :from, nil, id: "from-user-tag" %>
     <%= text_field_tag :sender, current_user.first_name, :id => "fromUser", :disabled=>true%>
   </div>
-  <div id = "body">
-    <%= label_tag :body %>
-    <%= text_area_tag :body, nil, :id => "msgText" %>
-  </div>
 
-  <div class = "submit">
-    <%= submit_tag("Send Message") %>
+  <div class="row">
+    <div id="body messaging-body col-sm-9">
+      <%= text_area_tag :body, nil, :id => "msgText", class: "col-sm-9", rows: 4%>
+    </div>
+
+    <div class="submit">
+      <%= submit_tag("Send Message", class: "col-sm-3 btn btn-default", id: "submit-message") %>
+    </div>
   </div>
   <% end %>
 </div>

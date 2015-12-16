@@ -24,6 +24,27 @@ li{
 #totalDisplay{
   display:inline;
 }
+#message-title{
+  text-align: center;
+}
+#messages{
+  height: 80em;
+  overflow-y: auto;
+}
+#to-user-tag{
+  display: inline-block;
+  width: 40px;
+}
+#from-user-tag{
+  display: inline-block;
+  width: 40px;
+}
+#msgText{
+
+}
+#submit-message{
+  height: 80px;
+}
 
 .bubble {
   background-image: linear-gradient(bottom, rgb(210,244,254) 25%, rgb(149,194,253) 100%);
