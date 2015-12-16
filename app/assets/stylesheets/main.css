@@ -16,6 +16,7 @@ li{
 #totalDisplay{
   display:inline;
 }
+
 @media (max-device-width: 480px){
   #message-title{
     text-align: center;
@@ -67,8 +68,30 @@ li{
   body {
     width: 100%;
   }
+
+
 }
 
+#profile-pic{
+    margin-left: -4em;
+}
+#profile-summary{
+  margin-right: -3em;
+}
+#favorites-button{
+  margin-top: 1.7em;
+  margin-bottom: 1.7em;
+}
+#user-info{
+  font-size: 1.5em;
+}
+#profile-content{
+  margin-top: 4em;
+  font-size: 1.2em;
+}
+#proftabs{
+  font-size: 1.3em;
+}
 
 .bubble {
   background-image: linear-gradient(bottom, rgb(210,244,254) 25%, rgb(149,194,253) 100%);
