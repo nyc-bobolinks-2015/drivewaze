@@ -1,7 +1,7 @@
 
 <div class = "new-message-container">
 
-<h3> Chat about your rental at <%= @booking.listing.address %></h3>
+<h3 class="row"> Chat about your rental at <%= link_to @booking.listing.address, listing_path(@booking.listing) %></h3>
 
 <div id='messages' class="row">
 </div>
@@ -22,7 +22,7 @@
     <%= label_tag :from %>
     <%= text_field_tag :sender, current_user.first_name, :id => "fromUser", :disabled=>true%>
   </div>
-  <div id = "body">
+  <div id = "body messaging-body">
     <%= label_tag :body %>
     <%= text_area_tag :body, nil, :id => "msgText" %>
   </div>
