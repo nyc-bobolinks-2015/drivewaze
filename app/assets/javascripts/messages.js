@@ -66,31 +66,42 @@ function Message(args) {
   this.sentAt = new Date(args.sent_at);
 }
 
+function convOfInterest(fbNode) {
+  var matchData = /(\d+)-(\d+)-(\d+)/.exec(fbNode);
+
+  return matchData[1] == appCurrentUserId || matchData[2] == appCurrentUserId;
+}
+
 if ($('#all-messages').length) {
     var specificNode = 'msgs';
     myDataref.child(specificNode).on("value", function(snapshot) {
       var convs = [];
       var conv;
+
       snapshot.forEach(function(child){
-        if (child.val().info) {
-          conv = new Conversation(child.val());
-        }
-        if (child.val().messages) {
-          child.forEach(function(child){
-            var msgColl = child.val();
-            for (var msg in msgColl) {
-              if (msgColl[msg].fromUser) {
-                conv.messages.push(new Message(msgColl[msg]));
+        if (convOfInterest(child.key())) {
+          if (child.val().info) {
+
+            conv = new Conversation(child.val());
+          }
+          if (child.val().messages) {
+            child.forEach(function(child){
+              var msgColl = child.val();
+              for (var msg in msgColl) {
+                if (msgColl[msg].fromUser) {
+                  conv.messages.push(new Message(msgColl[msg]));
+                }
               }
-            }
-          });
-        }
-        if (conv) {
-          convs.push(conv);
+            });
+          }
+          if (conv) {
+            convs.push(conv);
+          }
         }
       });
 
       convs.forEach(function(conv){
+        console.log(conv)
         var theLink = '<div class = "user-messages-button"><a class="btn btn-default" href="/bookings/' +
           conv.bookingId + '/messages/new">' + conv.users +
           ' (' + conv.messages.length +
