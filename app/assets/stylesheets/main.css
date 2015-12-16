@@ -78,6 +78,28 @@ background-image: -webkit-gradient(
   left: -5px;
 }
 
+.bubble--alt {
+  background-image: linear-gradient(bottom, rgb(172,228,75) 25%, rgb(122,205,71) 100%);
+background-image: -o-linear-gradient(bottom, rgb(172,228,75) 25%, rgb(122,205,71) 100%);
+background-image: -moz-linear-gradient(bottom, rgb(172,228,75) 25%, rgb(122,205,71) 100%);
+background-image: -webkit-linear-gradient(bottom, rgb(172,228,75) 25%, rgb(122,205,71) 100%);
+background-image: -ms-linear-gradient(bottom, rgb(172,228,75) 25%, rgb(122,205,71) 100%);
+background-image: -webkit-gradient(
+  linear,
+  left bottom,
+  left top,
+  color-stop(0.25, rgb(172,228,75)),
+  color-stop(1, rgb(122,205,71))
+);
+  float: right;
+}
+
+.bubble--alt:before {
+  border-bottom-color: rgba(0, 0, 0, 0.5);
+  border-radius: 20px / 10px;
+  left: auto;
+  right: -7px;
+}
 
 /*#static-map {
   width: 100%;
