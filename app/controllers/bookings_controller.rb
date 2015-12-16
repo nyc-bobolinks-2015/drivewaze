@@ -58,6 +58,7 @@ class BookingsController < ApplicationController
 		listing = Listing.find_by(id: params[:listing_id])
 		@booking = listing.bookings.last
 		UserMailer.booked(@booking)
+		UserMailer.booker(@booking)
 		render :'bookings/order-complete'
 	end
 

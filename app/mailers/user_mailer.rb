@@ -8,6 +8,13 @@ class UserMailer < ActionMailer::Base
     mail(to: @listing.user.email, subject: "Your space has been booked!").deliver
   end
 
+  def booker(booking)
+    @renter = booking.user
+    @listing = booking.listing
+    @booking = booking
+    mail(to: @listing.user.email, subject: "Your space has been booked!").deliver
+  end
+
   def self.send_request(listing)
     bookers = listing.bookings.map(&:user)
     

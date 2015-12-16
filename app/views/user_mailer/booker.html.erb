@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>spcs</h1>
+
+	<p>Dear <%= @renter.first_name %>,</p>
+	<p></p>
+	<p>Mazel Tov! Your rental at <%= @listing.address %> between <%= @booking.time_slots.first.start_time.to_s %> and <%= @booking.time_slots.last.end_time.to_s %> is confirmed.</p>
+
+	<p>Sincerely,</p>
+	<p>Team spcs</p>
+</body>
+</html>
