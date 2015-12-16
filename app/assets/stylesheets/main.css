@@ -196,3 +196,7 @@ input#term:focus {
 #proftabs a {
   padding: .8em;
 }
+
+ol {
+  padding-left: 0;
+}
