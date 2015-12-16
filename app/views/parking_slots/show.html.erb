@@ -110,5 +110,5 @@
 	<button class="btn btn-primary btn-block btn-lg" onclick="showBlackoutCal()">Blackout Dates</button>
 	<div id="blackout-cal"></div>
 
-	<%= link_to "Save Parking Space", listing_parking_slots_path(@parking_slot.listing), class: "btn btn-primary btn-block btn-lg" %>
 </div>
+	<%= link_to "Save Parking Space", listing_parking_slots_path(@parking_slot.listing), class: "btn btn-success btn-block btn-lg", id: "save-parking-spot" %>
