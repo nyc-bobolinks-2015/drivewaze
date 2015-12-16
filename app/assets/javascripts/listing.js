@@ -132,6 +132,22 @@ $(document).ready(function(){
     window.location.href = '/listings/' + this.id;
   });
   };
+
+  $('#toggle-view-btn').on("click", toggleMapListing)
+
+  function toggleMapListing() {
+    if ($('#listView').hasClass('hide')) {
+      $('#listView').removeClass("hide")
+      $('#listView').addClass("show")
+      $('#mapView').removeClass("show")
+      $('#listView').addClass("hide")
+    } else {
+      $('#mapView').removeClass("hide")
+      $('#mapView').addClass("show")
+      $('#listView').removeClass("show")
+      $('#listView').addClass("hide")
+    }
+  }
 });
 
 function getCalendar(offset,type){
