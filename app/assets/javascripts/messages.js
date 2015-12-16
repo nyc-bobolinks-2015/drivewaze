@@ -40,9 +40,9 @@ document.addEventListener('DOMContentLoaded', function(){
           var msg = child.val();
         if (msg instanceof Object){
           if (child.val().fromUser == currentUser) {
-            output += ("<div class='bubble'>" + msg.sent_at + "<br>" +"From: " + msg.fromUser + " To: " + msg.toUser + "<br>" + msg.message + "<br></div>");
-          }else {
             output += ("<div class='bubble bubble--alt'>" + msg.sent_at + "<br>" +"From: " + msg.fromUser + " To: " + msg.toUser + "<br>" + msg.message + "<br></div>");
+          }else {
+            output += ("<div class='bubble'>" + msg.sent_at + "<br>" +"From: " + msg.fromUser + " To: " + msg.toUser + "<br>" + msg.message + "<br></div>");
           };
         };
       });

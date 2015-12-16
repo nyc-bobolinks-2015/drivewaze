@@ -28,22 +28,42 @@ li{
   text-align: center;
 }
 #messages{
-  height: 80em;
+  height: 63em;
   overflow-y: auto;
+}
+#messages > div {
+  height: 160px;
+  font-size: 2.4em;
 }
 #to-user-tag{
   display: inline-block;
-  width: 40px;
+  width: 80px;
+  font-size: 2.2em;
 }
 #from-user-tag{
   display: inline-block;
-  width: 40px;
+  width: 80px;
+  font-size: 2.2em;
+}
+#toUser {
+  font-size: 2.2em;
+}
+#fromUser {
+  font-size: 2.2em;
 }
 #msgText{
-
+  font-size: 2.2em;
 }
 #submit-message{
-  height: 80px;
+  height: 180px;
+}
+.navbar{
+  height: 2.2em;
+  padding-top: 15px;
+  font-size: 2.5em
+}
+#logo{
+  font-size: 1.5em
 }
 
 .bubble {
