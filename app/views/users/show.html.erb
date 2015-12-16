@@ -49,14 +49,14 @@
     <div id="profile-content" class="row centered">
           <div class = "tabbable">
             <ul class = "nav nav-tabs" id = "proftabs">
-              <li class="active"><a href = "#user-data" data-toggle = "tab">Your Spaces</a></li>
+              <li class="active"><a href = "#user-data" data-toggle = "tab"> Your Spaces</a></li>
               <li><a href = "#user-reviews" data-toggle = "tab">Reviews (<%= @user.reviews.count %>)</a></li>
               <li><a href = "#favorites" data-toggle = "tab"> Favorites</a></li>
             </ul>
 
       <div class = "tab-content">
         <div class="tab-pane active" id="user-data">
-          <h3>Available Listings:</h3>
+          <h4> Available Listings:</h4>
           <ol>
           <% @user.listings.each do |listing| %>
             <li><%= link_to listing.address, listing_path(listing) %></li>
@@ -64,7 +64,7 @@
           </ol>
 
           <% if current_user == @user %>
-            <h3>Current Bookings: </h3>
+            <h4>Current Bookings: </h4>
             <ol>
               <% @user.bookings.each do |booking| %>
                 <li><%= link_to booking.listing.address, listing_path(booking.listing) %></li>
@@ -74,7 +74,7 @@
         </div>
 
         <div class="tab-pane" id="user-reviews">
-          <h3> Reviews (<%= @user.reviews.count %>) </h3>
+          <h4> Reviews (<%= @user.reviews.count %>) </h4>
             <ul>
               <% @user.reviews.each do |review| %>
               <li>Rating:
@@ -98,7 +98,7 @@
           </div>
 
           <div class="tab-pane" id="favorites">
-            <h3> Favorited Listings </h3>
+            <h4> Favorited Listings: </h4>
             <ul>
               <% @user.favorites.each do |favorite| %>
                 <% if favorite.favorited_type == "Listing" %>
@@ -107,7 +107,7 @@
               <% end %>
             </ul>
 
-            <h3> Favorited Users </h3>
+            <h4> Favorited Users: </h4>
               <ul>
                 <% @user.favorites.each do |favorite| %>
                   <% if favorite.favorited_type == "User" %>
