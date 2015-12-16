@@ -3,11 +3,10 @@
 
 <h3> Chat about your rental at <%= @booking.listing.address %></h3>
 
-<div id='messages'>
+<div id='messages' class="row">
 </div>
 
-
-<%= form_tag new_booking_message_path(@booking), :id => "form" do %>
+<div class="row"><%= form_tag new_booking_message_path(@booking), :id => "form" do %>
   <div id="msg-data-carrier"
   data-from-user-id="<%= current_user.id %>"
   data-address="<%=@booking.listing.address %>"
@@ -32,6 +31,8 @@
     <%= submit_tag("Send Message") %>
   </div>
   <% end %>
+</div>
+
 </div>
 
 
