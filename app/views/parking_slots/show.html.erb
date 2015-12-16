@@ -6,7 +6,7 @@
 	</table>
 </div>
 <div id="parkingSpotMenuContainer" data-id="<%=@parking_slot.id%>">
-	
+
 	<div class="panel-group" id="parkingSpotMenuAccordion" role="tablist" aria-multiselectable="true">
 	  <div class="panel panel-default">
 	    <div role="tab" id="headingOne">
@@ -23,15 +23,17 @@
 						<p>Driveway</p>
 						<p>allow renters to use excessive capacity on your driveway</p>
 					</button>
-					
+
 					<button class="btn btn-default btn-block btn-md" id="lawn" onclick="selectProperty(1)">
 						<p>Lawn</p>
 						<p>allow renters to park on your lawn</p>
 					</button>
 
 					<button class="btn btn-default btn-block btn-md" id="street" onclick="selectProperty(2)">
+						<div class="row">
 						<p>Street Side</p>
 						<p>allow renters to park on the street side parking spot that you own</p>
+						</div>
 					</button>
 
 					<button class="btn btn-default btn-block btn-md" id="permit" onclick="selectProperty(3)">
@@ -58,7 +60,7 @@
 							<p>Compact</p>
 							<p>ex. Chevy Spark, Toyota Yaris, Honda Civic, etc.</p>
 						</button>
-						
+
 						<button class="btn btn-default btn-block btn-md" id="fullSizeButton" onclick="selectVehicleClass(1)">
 							<p>Full Size</p>
 							<p>ex. Chevy Malibu, Toyota Camery, Honda Accord, etc.</p>

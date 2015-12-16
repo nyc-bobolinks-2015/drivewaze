@@ -1,9 +1,9 @@
-<h2>Number of Parking Space</h2>
+<h2>Parking Spaces</h2>
 
 <%=form_tag("/listings/#{@listing_id}/parking_slots",method:"post") do%>
 	<div class="form-group">
 		<%= label_tag "quantity", "Number of Parking Spots"%>
-		<%= text_field_tag "quantity",nil, class:"form-control", placeholder:"Number of Parking Spots that You Would Like to Offer"%>
+		<%= text_field_tag "quantity",nil, class:"form-control", placeholder:"# of Parking Spots that You Would Like to Offer"%>
 	</div>
 	<div class="form-group">
 		<%= submit_tag "Continue", class:"btn btn-md btn-default"%>
