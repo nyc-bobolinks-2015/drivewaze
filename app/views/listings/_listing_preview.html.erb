@@ -15,17 +15,19 @@
     <%= link_to 'Remove from favorites', listing_favorite_listing_path(listing_id:@listing.id, favorite_listing_id: @listing.id), method: :delete, class: "btn btn-default" %>
   <% end %>
 
-<div id='listing-price-info'>
-    <ul>
-      <li>Daily Price: $<%= @listing.parking_slots.first.daily_price %></li>
-      <li>Weekly Price: $<%= @listing.parking_slots.first.weekly_price %></li>
-      <li>Monthly Price: $<%= @listing.parking_slots.first.monthly_price %></li>
-    </ul>
-  </div>
-  <div id="parking-spot-info">
-    <ul>
-      <li>Vehicle Class: <%= ParkingSlot::VEHICLE_CLASSES[@listing.parking_slots.first.vehicle_class] %></li>
-      <li>Slot Type: <%= ParkingSlot::SLOT_TYPES[@listing.parking_slots.first.slot_type] %></li>
-    </ul>
+  <div id = "list-tab-info tab-pane active">
+    <div id='listing-price-info'>
+        <ul>
+          <li>Daily Price: $<%= @listing.parking_slots.first.daily_price %></li>
+          <li>Weekly Price: $<%= @listing.parking_slots.first.weekly_price %></li>
+          <li>Monthly Price: $<%= @listing.parking_slots.first.monthly_price %></li>
+        </ul>
+    </div>
+    <div id="parking-spot-info">
+      <ul>
+        <li>Vehicle Class: <%= ParkingSlot::VEHICLE_CLASSES[@listing.parking_slots.first.vehicle_class] %></li>
+        <li>Slot Type: <%= ParkingSlot::SLOT_TYPES[@listing.parking_slots.first.slot_type] %></li>
+      </ul>
+    </div>
   </div>
 </div>
