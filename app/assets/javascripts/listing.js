@@ -27,11 +27,11 @@ function initMap() {
     });
 
 
-   google.maps.event.addDomListener(window, "resize", function() {
-   var center = window.map.getCenter();
-   google.maps.event.trigger(map, "resize");
-   window.map.setCenter(center);
-});
+    google.maps.event.addDomListener(window, "resize", function() {
+      var center = window.map.getCenter();
+      google.maps.event.trigger(map, "resize");
+      window.map.setCenter(center);
+    });
   })
   // autocomplete.addListener('place_changed', function() {
   //   var place = autocomplete.getPlace();
@@ -65,8 +65,19 @@ $(document).ready(function(){
           var marker = new google.maps.Marker({
             map: window.map,
             position: {lat: response[i].latitude, lng: response[i].longitude},
-            title: String(response[0].address)
+            title: String(response[i].address),
+            id: response[i].id
           });
+          marker.addListener('click', function(event){
+            $.ajax({
+              method: 'get',
+              url: '/listings/' + this.id
+            }).done(function(response){
+              // window.map.setCenter(marker.position);
+              $(".single-listing").html(response);
+             });
+          });
+
         }
       }).fail(function(error){
       console.log(error);
@@ -92,7 +103,7 @@ $(document).ready(function(){
           var marker = new google.maps.Marker({
             map: window.map,
             position: {lat: response[i].latitude, lng: response[i].longitude},
-            title: String(response[0].address),
+            title: String(response[i].address),
             id: response[i].id
           });
           marker.addListener('click', function(event){
@@ -100,9 +111,9 @@ $(document).ready(function(){
               method: 'get',
               url: '/listings/' + this.id
             }).done(function(response){
-              window.map.setCenter(marker.position);
+              // window.map.setCenter(marker.position);
               $(".single-listing").html(response);
-             })
+             });
           });
          }
       }).fail(function(error){
