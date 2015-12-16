@@ -17,8 +17,8 @@
   </div>
   <div id="parking-spot-info">
     <ul>
-      <li>Vehicle Class: <%= @listing.parking_slots.first.vehicle_class %></li>
-      <li>Slot Type: <%= @listing.parking_slots.first.slot_type %></li>
+      <li>Vehicle Class: <%= ParkingSlot::VEHICLE_CLASSES[@listing.parking_slots.first.vehicle_class] %></li>
+      <li>Slot Type: <%= ParkingSlot::SLOT_TYPES[@listing.parking_slots.first.slot_type] %></li>
     </ul>
   </div>
 </div>
