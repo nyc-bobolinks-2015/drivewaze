@@ -184,3 +184,19 @@ input#term:focus {
 #vehicleClass p {
   white-space: normal;
 }
+
+#submit-listing-btn {
+  margin-top: 1em;
+}
+
+#p-spot-header {
+  margin-bottom: 1em;
+}
+
+#proftabs a {
+  padding: .8em;
+}
+
+ol {
+  padding-left: 0;
+}
