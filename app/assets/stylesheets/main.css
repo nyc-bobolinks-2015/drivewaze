@@ -16,13 +16,15 @@ li{
 #totalDisplay{
   display:inline;
 }
-@media (max-width: 480px){
+@media (max-device-width: 480px){
   #message-title{
     text-align: center;
+    padding-bottom: 1.5em;
   }
   #messages{
-    height: 63em;
+    height: 60em;
     overflow-y: auto;
+    margin-bottom: 1.5em;
   }
   #messages > div {
     height: 160px;
@@ -40,15 +42,19 @@ li{
   }
   #toUser {
     font-size: 2.2em;
+    color: black;
   }
   #fromUser {
     font-size: 2.2em;
+    color: black;
+    margin-bottom: 1.5em;
   }
   #msgText{
     font-size: 2.2em;
   }
   #submit-message{
     height: 180px;
+    font-size: 1.7em;
   }
   .navbar{
     height: 2.2em;
@@ -57,6 +63,9 @@ li{
   }
   #logo{
     font-size: 1.5em
+  }
+  body {
+    width: 100%;
   }
 }
 
