@@ -12,7 +12,7 @@ class UserMailer < ActionMailer::Base
     @renter = booking.user
     @listing = booking.listing
     @booking = booking
-    mail(to: @listing.user.email, subject: "Your space has been booked!").deliver
+    mail(to: @renter.email, subject: "You booked your space!").deliver
   end
 
   def self.send_request(listing)
