@@ -46,8 +46,10 @@ document.addEventListener('DOMContentLoaded', function(){
           };
         };
       });
+      element.innerHTML = output;
+      //animates the scroll down
+      $('#messages').scrollTop($('#messages')[0].scrollHeight);
     });
-    element.innerHTML = output;
   });
 }
 

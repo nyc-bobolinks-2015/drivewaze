@@ -27,6 +27,10 @@ li{
 #message-title{
   text-align: center;
 }
+#messages{
+  height: 300px;
+  overflow-y: auto;
+}
 
 .bubble {
   background-image: linear-gradient(bottom, rgb(210,244,254) 25%, rgb(149,194,253) 100%);
