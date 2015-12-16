@@ -4,7 +4,7 @@
 		<div id="listingPageAddress">
 			<form id="newListingForm">
 				<div class="form-group">
-					<label for="address">Address</label>
+					<h2><label for="address">Address</label></h2>
 					<input type="text" name="address" id="listingAddress" class="form-control" placeHolder="123 Someplace St., New York, NY 10005">
 				</div>
 				<div class="form-group">
@@ -14,14 +14,15 @@
 		</div><!--listingPageAddress-->
 
 		<div id="listingPageInfo" class="hide">
-			<h3>Space Information</h3>
+			<h2>Space Information</h2>
 			<div class="listingPhotoUpload"></div>
 			<div class="listingInfo">
 				<%=form_for @listing, html: { multipart: true }, class: "form-control" do |f|%>
 					<%=f.hidden_field :address%>
 					<div class="row">
 					<div class="form-group">
-						<%= f.file_field :photo, class: "col-xs-12", id: 'listing-file-upload' %>
+						<%=f.label :upload_a_photo, class: "col-xs-12"%>
+						<%= f.file_field :photo, class: "col-xs-12", id: 'listing-file-upload'%>
 					</div>
 					</div>
 					<div class="row">
@@ -56,7 +57,7 @@
 				</div>
 				<div class="row">
 					<div class="form-group">
-					<%=f.submit "Continue", class: "col-xs-12", id: "space-continue-btn"%>
+					<%=f.submit "Continue", class: "col-xs-12 btn btn-default", id: "space-continue-btn"%>
 				</div>
 			</div>
 				<%end%>

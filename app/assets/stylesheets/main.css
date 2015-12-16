@@ -209,3 +209,6 @@ input#term:focus {
 ol {
   padding-left: 0;
 }
+#save-parking-spot {
+  margin-top: 3em;
+}
