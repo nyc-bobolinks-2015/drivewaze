@@ -1,14 +1,8 @@
-#map-container {
-  width: 100%;
+a{
+  text-decoration: none;
 }
-
-#map {
-  width: 100%;
-  height: 70vh;
-}
-
-li{
-  list-style-type: none;
+a:hover{
+  text-decoration: none;
 }
 #total-container{
   display:inline;
@@ -32,8 +26,8 @@ li{
   .new-message-container{
     margin-top: -2em;
   }
-
 }
+
 #message-title{
   text-align: center;
   font-size: 2em;
@@ -158,25 +152,29 @@ background-image: -webkit-gradient(
   right: -5px;
 }
 
+#map-container {
+  width: 80%;
+  margin:0 auto;
+}
+#map {
+  width: 100%;
+  height: 50vh;
+  border-radius: 2em;
+}
+
 .single-listing{
-  cursor: pointer;
+  /*width:80%;*/
+  margin:0 auto;
+  margin-top:1.5em;
+  /*height:300px;*/
 }
 
-input#term {
-  width: 300px;
-  border-radius: 10px;
+#listingPreviewInfo{
+  padding-top:0.1em;
+  padding-left:0px;
 }
-
-input#term:focus {
-  border-radius: 10px;
-}
-
-#search-div {
-  margin-bottom: .25em;
-}
-
-#logo {
-  margin: 0;
+#listingPreviewInfoBottomText{
+  margin-bottom:0px;
 }
 
 #listingPageInfo {
@@ -216,3 +214,8 @@ ol {
 #save-parking-spot {
   margin-top: 3em;
 }
+
+#listingPreviewImgDiv{
+  padding-right:5px;
+}
+

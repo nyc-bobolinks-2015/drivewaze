@@ -1,0 +1,29 @@
+<div class="table-responsive">
+<table class="table">
+<a href="#"style="display:inline;" onclick="toggleMonth('backward')"><h3 style="display:inline;">&lt; </h3></a><h3 style="display:inline; verticle-align:bottom;"><%=@inputTime.strftime("%B") %></h3><a href="#" style="display:inline;" onclick="toggleMonth('forward')"><h3 style="display:inline;"> &gt;</h3></a>
+
+<tr><th>Sunday</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th><th>Saturday</th></tr>
+<%@viewArray.each do |week|%>
+	<tr>
+		<%week.each do |day|%>
+			<%if day<@firstDayOfThisMonth%>
+				<td class="date past-month past" data-day="<%=day.strftime('%m-%d-%Y')%>"><%=day.strftime("%-d")%></td>
+
+			<%elsif day.strftime("%-m")==@today.strftime("%-m")%>
+				<%if day<@today %>
+					<td class="date this-month-past past" data-day="<%=day.strftime('%m-%d-%Y')%>" ><%=day.strftime("%-d")%></td>
+				<%elsif day.strftime("%-d")==@today.strftime("%-d")%>
+						<td class="date present future" data-day="<%=day.strftime('%m-%d-%Y')%>"><%=day.strftime("%-d")%></td>
+				<%else%>
+					<td class="date this-month-future future" data-day="<%=day.strftime('%m-%d-%Y')%>"><%=day.strftime("%-d")%></td>
+				<%end%>
+
+			<%else%>
+				<td class="date future-month future" data-day="<%=day.strftime('%m-%d-%Y')%>"><%=day.strftime("%-d")%></td>
+			<%end%>
+			
+		<%end%>
+	</tr>
+<%end%>
+</table>
+</div>

@@ -1,33 +1,9 @@
-<div class="listing-info" id="<%= @listing.id %>">
-  <h1><%= @listing.address %></h1>
-  <p>Owned by: <%= link_to @listing.user.first_name, user_path(@listing.user) %></p>
-
-  <div class = "listing-overall-rating">
-    <p> Overall rating:
-      <% @listing.average_rating.times do %>
-        <%= image_tag("star.png", size: "20x20") %>
-      <% end %></p>
-  </div>
-
-  <% unless current_user.favorite_listings.exists?(id: @listing.id) %>
-    <%= link_to 'Add to favorites', listing_favorite_listings_path(listing_id: @listing), method: :post, class: "btn btn-default" %>
-  <% else %>
-    <%= link_to 'Remove from favorites', listing_favorite_listing_path(listing_id:@listing.id, favorite_listing_id: @listing.id), method: :delete, class: "btn btn-default" %>
-  <% end %>
-
-  <div id = "list-tab-info tab-pane active">
-    <div id='listing-price-info'>
-        <ul>
-          <li>Daily Price: $<%= @listing.parking_slots.first.daily_price %></li>
-          <li>Weekly Price: $<%= @listing.parking_slots.first.weekly_price %></li>
-          <li>Monthly Price: $<%= @listing.parking_slots.first.monthly_price %></li>
-        </ul>
-    </div>
-    <div id="parking-spot-info">
-      <ul>
-        <li>Vehicle Class: <%= ParkingSlot::VEHICLE_CLASSES[@listing.parking_slots.first.vehicle_class] %></li>
-        <li>Slot Type: <%= ParkingSlot::SLOT_TYPES[@listing.parking_slots.first.slot_type] %></li>
-      </ul>
-    </div>
+<div class="col-xs-5" id="listingPreviewImgDiv">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/Wallstreet_-_A_New_Era.jpg" class="img-responsive pull-right" id="listingPreviewImg" style="border-radius:0.3em;">
+</div>
+<div class="col-xs-6" id="listingPreviewInfo">
+  <div style="border-right:1px solid #CACACA; border-bottom:1px solid #CACACA; float:left; background-color:rgba(255, 241, 241, 0.4);border-radius:0.5em; padding-top:2px; padding-bottom:4px; padding-right:3px; ">
+    <p><%= @listing.address.upcase %></p>
+    <p id="listingPreviewInfoBottomText">$<%= @listing.parking_slots.first.daily_price %>/Day | <%= @listing.parking_slots.first.vehicle_class %> Parking</p>
   </div>
 </div>

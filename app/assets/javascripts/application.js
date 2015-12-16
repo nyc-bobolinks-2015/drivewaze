@@ -12,5 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= firebase
 //= require sweet-alert
+//= require bootstrap
 //= require_tree .
