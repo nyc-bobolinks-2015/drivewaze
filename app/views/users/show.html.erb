@@ -2,7 +2,7 @@
 
   <div id="profile-pic" class="row">
     <div class = "col-xs-6 pull-left" id="user-profile-photo">
-      <%= image_tag @user.avatar.url(:thumb), class: "img-rounded" %>
+      <%= image_tag @user.avatar.url(:medium), class: "img-rounded" %>
     </div>
 
     <div id="profile-summary" class="col-xs-6 pull-right">
@@ -43,9 +43,11 @@
       <div class = "tabbable">
         <ul class = "nav nav-tabs" id = "proftabs">
           <li class="active"><a href = "#user-listings" data-toggle = "tab"> Available listings</a></li>
+          <% if current_user == @user %>
+          <li><a href = "#user-bookings" data-toggle = "tab"> Current Bookings</a></li>
+          <% end %>
           <li><a href = "#user-reviews" data-toggle = "tab"> Reviews</a></li>
-          <li><a href = "#favorite-listings" data-toggle = "tab"> Favorited Listings</a></li>
-          <li><a href = "#favorite-users" data-toggle = "tab"> Favorited Users</a></li>
+          <li><a href = "#favorites" data-toggle = "tab"> Favorites</a></li>
         </ul>
 
 
@@ -59,8 +61,8 @@
           </ol>
         </div>
 
-        <% unless current_user == @user %>
-          <div id="user-bookings">
+        <% if current_user == @user %>
+          <div class = "tab-pane" id="user-bookings">
             <h3>Current Bookings: </h3>
             <ol>
               <% @user.bookings.each do |booking| %>
@@ -93,7 +95,7 @@
             </ul>
           </div>
 
-          <div class="tab-pane" id="favorite-listings">
+          <div class="tab-pane" id="favorites">
             <h3> Favorited Listings </h3>
             <ul>
               <% @user.favorites.each do |favorite| %>
@@ -102,9 +104,7 @@
                 <% end %>
               <% end %>
             </ul>
-          </div>
 
-          <div class="tab-pane" id="favorite-users">
             <h3> Favorited Users </h3>
               <ul>
                 <% @user.favorites.each do |favorite| %>
