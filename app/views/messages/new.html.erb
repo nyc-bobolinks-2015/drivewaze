@@ -14,12 +14,12 @@
   data-booking-id="<%= @booking.id %>"
    ></div>
   <div id="to>">
-    <%= label_tag :to %>
+    <%= label_tag :to, nil, id: "to-user-tag" %>
     <%= text_field_tag :receiver,@booking.receipient(current_user), :id => "toUser", :disabled=>true %>
     <%= hidden_field_tag "booking_id", @booking.id%>
   </div>
   <div id = "from>">
-    <%= label_tag :from %>
+    <%= label_tag :from, nil, id: "from-user-tag" %>
     <%= text_field_tag :sender, current_user.first_name, :id => "fromUser", :disabled=>true%>
   </div>
 
