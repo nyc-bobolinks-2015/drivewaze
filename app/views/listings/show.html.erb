@@ -1,50 +1,94 @@
 <div id="listingShow" data-id="<%=@listing.id%>">
   <%= image_tag @listing.photo.url, class: "img-responsive"%>
-  <%= render 'listing_preview' %>
 
-  <div id="spot-info">
-  <p>Space Description: <%= @listing.space_description %></p>
-  <p>Neighborhood Information: <%= @listing.neighborhood_info %></p>
-  <p>Public Transit: <%= @listing.public_transit_info %></p>
-  <p>Additional Information: <%= @listing.other_info %></p>
+  <div class="listing-info" id="<%= @listing.id %>">
+    <h1><%= @listing.address %></h1>
+    <p>Owned by: <%= link_to @listing.user.first_name, user_path(@listing.user) %></p>
+
+    <div class = "listing-overall-rating">
+      <p> Overall rating:
+        <% @listing.average_rating.times do %>
+          <%= image_tag("star.png", size: "20x20") %>
+        <% end %></p>
+    </div>
+
+    <div class="row" id="listing-btns">
+      <div class="col-xs-6 btn-lg">
+      <% if owns?(@listing) %>
+        <div id="delete-listing-btn">
+          <%= link_to "Delete Listing", listing_path(@listing), {method: :delete, data: {confirm: "Are you sure you want to delete this listing?"}}  %>
+        </div>
+      <% else %>
+        <div id="book-listing-btn">
+          <button onClick="showCalendar()" class="btn btn-success">Check Availability</button>
+        </div>
+      <% end %>
+      </div>
+      <div class="col-xs-6 btn-lg">
+      <% unless current_user.favorite_listings.exists?(id: @listing.id) %>
+        <%= link_to 'Add to favorites', listing_favorite_listings_path(listing_id: @listing), method: :post, class: "btn btn-default" %>
+      <% else %>
+        <%= link_to 'Remove from favorites', listing_favorite_listing_path(listing_id:@listing.id, favorite_listing_id: @listing.id), method: :delete, class: "btn btn-default" %>
+      <% end %>
+      </div>
+    </div>
   </div>
-  <div id="listing-rules">
-  <p>Rules: <%= @listing.rules %></p>
+
+  <div class = "tabbable">
+    <ul class = "nav nav-tabs" id = "proftabs">
+      <li><a href = "#listing-price" data-toggle = "tab">Prices</a></li>
+      <li><a href = "#spot-info" data-toggle = "tab"> Listing Info </a></li>
+      <li><a href = "#listing-reviews" data-toggle = "tab">Reviews(<%= @listing.reviews.count %>)</a></li>
+    </ul>
+
+    <div class = "tab-content">
+       <div id = "listing-price" class = "tab-pane active">
+        <ul>
+          <li>Daily Price: $<%= @listing.parking_slots.first.daily_price %></li>
+          <li>Weekly Price: $<%= @listing.parking_slots.first.weekly_price %></li>
+          <li>Monthly Price: $<%= @listing.parking_slots.first.monthly_price %></li>
+       </ul>
+      </div>
+
+      <div class = "tab-pane" id="spot-info">
+        <ul>
+          <li>Vehicle Class: <%= ParkingSlot::VEHICLE_CLASSES[@listing.parking_slots.first.vehicle_class] %></li>
+          <li>Slot Type: <%= ParkingSlot::SLOT_TYPES[@listing.parking_slots.first.slot_type] %></li>
+          <li>Space Description: <%= @listing.space_description %></li>
+          <li>Neighborhood Information: <%= @listing.neighborhood_info %></li>
+          <li>Public Transit: <%= @listing.public_transit_info %></li>
+          <li>Additional Information: <%= @listing.other_info %></li>
+          <li>Rules: <%= @listing.rules %></li>
+        </ul>
+      </div>
+
+      <div class="tab-pane" id = "listing-reviews">
+        <h4> Reviews (<%= @listing.reviews.count %>) </h4>
+        <% if current_user && current_user != @listing.user %>
+          <%= link_to "Review this listing", new_listing_review_path(@listing), class: "btn btn-default" %>
+        <% end %>
+        <ul>
+        <% @listing.reviews.each do |review| %>
+          <li> Rating:
+            <% review.review_score.times do %>
+              <%= image_tag("star.png", size: "20x20") %>
+            <% end %>
+          </li>
+          <li>From <%= link_to review.reviewer.first_name, user_path(review.reviewer) %>
+            on <%= review.created_at.strftime("%B %d, %Y") %> <br>
+            <%= review.review_body %> <br>
+          </li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+    </div>
   </div>
 
-<% if owns?(@listing) %>
-	<div id="delete-listing-btn">
-		<%= link_to "Delete", listing_path(@listing), {method: :delete, data: {confirm: "Are you sure you want to delete this listing?"}}  %>
-	</div>
-<% else %>
-	<div id="book-listing-btn">
-	  <button onClick="showCalendar()" class="btn btn-default">Check Availability</button>
-	</div>
-<% end %>
 
-  <div id="static-map">
-    <%= image_tag @map_image, id: "listing-show-map", class: "img-responsive" %>
-  </div>
-
-
-
-<h4> Reviews (<%= @listing.reviews.count %>) </h4>
-<% if current_user && current_user != @listing.user %>
-  <%= link_to "Review this listing", new_listing_review_path(@listing), class: "btn btn-default" %>
-<% end %>
-<ul>
-<% @listing.reviews.each do |review| %>
-  <li> Rating:
-    <% review.review_score.times do %>
-      <%= image_tag("star.png", size: "20x20") %>
-    <% end %>
-  </li>
-	<li>From <%= link_to review.reviewer.first_name, user_path(review.reviewer) %>
-    on <%= review.created_at.strftime("%B %d, %Y") %> <br>
-    <%= review.review_body %> <br>
-  </li>
-<% end %>
-</ul>
+    <div id="static-map">
+      <%= image_tag @map_image, id: "listing-show-map", class: "img-responsive" %>
+    </div>
 </div>
 
 <div id="availabilityFilter" class="hide">

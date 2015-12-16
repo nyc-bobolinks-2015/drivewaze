@@ -15,4 +15,17 @@ class Listing < ActiveRecord::Base
   def first_name
     self.user.first_name
   end
+
+  def average_rating
+    if self.reviews.length > 0
+      ratings = self.reviews
+      sum = 0
+      ratings.each do |rating|
+        sum += rating.review_score
+      end
+      return sum / ratings.length
+    else
+      return 0
+    end
+  end
 end

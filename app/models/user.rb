@@ -12,4 +12,17 @@ class User < ActiveRecord::Base
 
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
+
+  def average_rating
+    if self.reviews.length > 0
+      ratings = self.reviews
+      sum = 0
+      ratings.each do |rating|
+        sum += rating.review_score
+      end
+      return sum / ratings.length
+    else
+      return 0
+    end
+  end
 end

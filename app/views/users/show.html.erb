@@ -36,6 +36,10 @@
 
       <div class = "inline">
         <div id="user-info">
+          <p>Overall rating:
+            <% @user.average_rating.times do %>
+              <%= image_tag("star.png", size: "20x20") %>
+            <% end %></p>
           <p> Member since: <%= @user.created_at.strftime("%B %d, %Y") %> </p
           <% unless @user.last_sign_in_at == nil %>
             <p> Last seen: <%= @user.last_sign_in_at.strftime("%B %d, %Y") %> </p>

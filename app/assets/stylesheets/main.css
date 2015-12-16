@@ -60,7 +60,16 @@ li{
   margin-top: 1em;
   margin-bottom: 1em;
 }
+#listing-btns {
+  margin-bottom: 1em;
+}
+.tabbable {
+  margin-top: 2em;
+}
 
+#static-map{
+  margin-top: 2em;
+}
 
 .bubble {
   background-image: linear-gradient(bottom, rgb(210,244,254) 25%, rgb(149,194,253) 100%);
