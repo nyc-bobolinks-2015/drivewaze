@@ -91,11 +91,11 @@ if ($('#all-messages').length) {
       });
 
       convs.forEach(function(conv){
-        var theLink = '<div><a class="btn btn-default" href="/bookings/' +
+        var theLink = '<div class = "user-messages-button"><a class="btn btn-default" href="/bookings/' +
           conv.bookingId + '/messages/new">' + conv.users +
           ' (' + conv.messages.length +
           (conv.messages.length == 1 ? 'message' : ' messages' ) +
-            ')</a> ' + "<br>" + "Regarding your booking at: " + conv.address + '</div>';
+            ')</a> ' + "<br>" + '<p class = "user-booking-address"> Regarding your booking at: ' + conv.address + '</div>';
         $('#all-messages').append(theLink);
       });
     });
