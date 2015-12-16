@@ -35,10 +35,13 @@ document.addEventListener('DOMContentLoaded', function(){
     snapshot.forEach(function(child){
       var conv = child;
       conv.forEach(function(child){
-        if (child.val().fromUser) {
-          console.log(child.val().fromUser)
+        var currentUser = $("#fromUser").val();
+        if (child.val().fromUser == currentUser) {
           var msg = child.val();
           output += ("<div class='bubble'>" + msg.sent_at + "<br>" +"From: " + msg.fromUser + " To: " + msg.toUser + "<br>" + msg.message + "<br></div>");
+        } else {
+          var msg = child.val();
+          output += ("<div class='bubble bubble--alt'>" + msg.sent_at + "<br>" +"From: " + msg.fromUser + " To: " + msg.toUser + "<br>" + msg.message + "<br></div>");
         }
       });
     });

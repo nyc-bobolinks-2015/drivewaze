@@ -56,6 +56,28 @@ background-image: -webkit-gradient(
   word-wrap: break-word;
 }
 
+.bubble:before, .bubble:after {
+  border-radius: 20px / 10px;
+  content: '';
+  display: block;
+  position: absolute;
+}
+
+.bubble:before {
+  border: 10px solid transparent;
+  border-bottom-color: rgba(0, 0, 0, 0.5);
+  bottom: 0;
+  left: -7px;
+  z-index: -2;
+}
+
+.bubble:after {
+  border: 8px solid transparent;
+  border-bottom-color: #d2f4fe;
+  bottom: 1px;
+  left: -5px;
+}
+
 .bubble--alt {
   background-image: linear-gradient(bottom, rgb(172,228,75) 25%, rgb(122,205,71) 100%);
 background-image: -o-linear-gradient(bottom, rgb(172,228,75) 25%, rgb(122,205,71) 100%);
