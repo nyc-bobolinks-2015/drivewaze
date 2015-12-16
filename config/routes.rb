@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :bookings, only: [] do
     resources :messages, only: [:new]
   end
+  get '/listings/calendar',to: 'listings#calendar'
   get '/listings/:id/total', to: "listings#total"
   get '/listings/:id/bookings/confirmation', to: "bookings#confirmation"
   

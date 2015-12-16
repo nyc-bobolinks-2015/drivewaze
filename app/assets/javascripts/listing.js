@@ -113,7 +113,9 @@ $(document).ready(function(){
             }).done(function(response){
               // window.map.setCenter(marker.position);
               $(".single-listing").html(response);
-             });
+              var targetHeight = $("#listingPreviewInfo").height()+1;
+              $("#listingPreviewImg").height(targetHeight);
+             })
           });
          }
       }).fail(function(error){
@@ -130,3 +132,42 @@ $(document).ready(function(){
   });
   };
 });
+
+function getCalendar(offset,type){
+  if(type){
+    $("#searchArrivalDate").attr("data-current",type);
+    $("#searchArrivalDate").attr("data-offset",0);
+  }
+  $.ajax({
+    method:"get",
+    url:"listings/calendar?offset="+offset
+  }).done(function(result){
+    $("#filterCalendarView").html(result);
+    $(".future").on("click",function(){
+      var calendar = $("#searchArrivalDate").attr("data-current");
+      if(calendar==="arrival"){
+        $("#searchArrivalDate").val($(event.target).attr("data-day"));
+        $("#filterCalendarView").html("");
+      }else{
+        $("#searchDepartureDate").val($(event.target).attr("data-day"));
+        $("#filterCalendarView").html("");
+      }
+    })
+  }).fail(function(error){
+    console.log(error);
+  });
+}
+
+function toggleMonth(direction){
+  offset=parseInt($("#searchArrivalDate").attr("data-offset"));
+  if(direction==="forward" && offset <2){
+    console.log("forward");
+    offset=offset+1;
+    $("#searchArrivalDate").attr("data-offset",offset);
+    getCalendar(offset);
+  }else if(direction==="backward" && offset>=0){
+    offset=offset-1;
+    $("#searchArrivalDate").attr("data-offset",offset);
+    getCalendar(offset);
+  }
+}

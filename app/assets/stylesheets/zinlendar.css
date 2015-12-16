@@ -1,0 +1,37 @@
+.selectedDate{
+    background-color: yellow;
+  }
+  td{
+    border: 1px solid #ECECEC;
+  }
+  .blackout{
+    background-color: #DDE8E8;
+  }
+  .past-month{
+    background-color: #8E8C8C;
+  }
+  .this-month-past{
+    background-color: #CCC9C9;
+  }
+
+  .present{
+    background-color: #5FDC9E;
+  }
+
+  .this-month .future{
+    background-color: #DCE8DA;
+  }
+
+  .future-month{
+    background-color: #80FB6C;
+  }
+  tr{
+    height:3em;
+  }
+  .selected{
+    /*background-color: #C1C1C1;*/
+    background-image: linear-gradient(to bottom,#BDBDBD 0,#BDBDBD 100%);
+  }
+  .selected:focus, .selected:hover{
+    background-color:#C1C1C1;
+  }

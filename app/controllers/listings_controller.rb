@@ -26,9 +26,9 @@ class ListingsController < ApplicationController
   end
 
   def index
-    @listings = Listing.all
 
     if request.xhr?
+      @listings = Listing.all
       return render json: @listings
     end
   end
@@ -40,6 +40,16 @@ class ListingsController < ApplicationController
     @listing.destroy
     redirect_to root_path
   end
+
+  def calendar
+    offset=params[:offset].to_i
+    @today=DateTime.now
+    @inputTime=(DateTime.now+offset.months).beginning_of_day
+    @firstDayOfThisMonth=@today.beginning_of_month
+    @viewArray=Listing.calendar(offset)
+    render "filter_calendar", layout:false
+  end
+
 
   def search
     westBound = params[:westBound]

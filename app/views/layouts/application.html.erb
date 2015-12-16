@@ -1,63 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta name="viewport" content="initial-scale=1.0">
+  <meta name=viewport content="width=device-width,initial-scale=1">
   <title>spcs: Rent Parking Socially</title>
   <%= stylesheet_link_tag 'application', media: 'all' %>
-
-  <%= javascript_include_tag "https://cdn.firebase.com/js/client/2.2.1/firebase.js" %>
-  <script src="https://maps.googleapis.com/maps/api/js?&libraries=places"></script>
   <%= javascript_include_tag 'application'%>
-  <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" %>
+  <!-- <link rel="stylesheet" href="css/themes/default/icon.css"> -->
+  <script src="https://maps.googleapis.com/maps/api/js?&libraries=places"></script>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
   <%= csrf_meta_tags %>
-
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-  <!-- Optional theme -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-
-  <!-- Latest compiled and minified JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-  <style>
-  .selectedDate{
-    background-color: yellow;
-  }
-  td{
-    border: 1px solid #ECECEC;
-  }
-  .blackout{
-    background-color: #DDE8E8;
-  }
-  .past-month{
-    background-color: #8E8C8C;
-  }
-  .this-month-past{
-    background-color: #CCC9C9;
-  }
-
-  .present{
-    background-color: #5FDC9E;
-  }
-
-  .this-month .future{
-    background-color: #DCE8DA;
-  }
-
-  .future-month{
-    background-color: #80FB6C;
-  }
-  tr{
-    height:3em;
-  }
-  .selected{
-    /*background-color: #C1C1C1;*/
-    background-image: linear-gradient(to bottom,#BDBDBD 0,#BDBDBD 100%);
-  }
-  .selected:focus, .selected:hover{
-    background-color:#C1C1C1;
-  }
-  </style>
 </head>
 <body>
   <nav class="navbar navbar-default">
@@ -90,18 +41,48 @@
       </div>
     </div>
   </nav>
-  <% if flash.any? %>
-    <div id="flash" class="container">
-       <% flash.each do |type, message| %>
-       <div class="<%= type %> ">
-            <%= message %>
-        </div>
+
+    <!-- <nav class="navbar navbar-default"> -->
+      <!-- <div class="container-fluid"> -->
+<!--         <div class="container-fluid">
+          <div id="botNav">
+            <div class="col-xs-2 col-xs-offset-1"><a href="#"><i class="road icon"></i></a></div>
+            <div class="col-xs-2"><a href="#"><span class="glyphicon glyphicon-heart-empty"></span></a></div>
+            <div class="col-xs-2"><a href="#"><span class="glyphicon glyphicon-envelope"></span></a></div>
+            <div class="col-xs-2"><a href="#"><span class="glyphicon glyphicon-briefcase"></span></a></div>
+            <div class="col-xs-2"><a href="#"><i class="user icon"></i></a></div>
+          </div>
+        </div> -->
+<!--           <ul class="nav navbar-nav navbar-right">
+            <% if user_signed_in? %>
+              <li id="username"><%= link_to current_user.first_name, user_path(current_user.id) %><li>
+              <% if current_user.publishable_key %>
+                <li><%=link_to "List Your Space",new_listing_path%></li>
+              <% else %>
+                <li><%= link_to "List Your Space", stripe_signup_path %></li>
+              <% end %>
+              <li id = "message-nav"> <%= link_to 'Messages', messages_path %> </li>
+              <li id="logout"><%= link_to 'Logout',  destroy_user_session_path, :method => :delete %></li>
+            <% else %>
+              <li id="login"><%= link_to 'Login', new_user_session_path %></li>
+              <li id="signup"><%= link_to 'Sign up', new_user_registration_path %></li>
+            <% end %>
+          </ul> -->
+      <!-- </div> -->
+    <!-- </nav> -->
+
+    <% if flash.any? %>
+      <div id="flash" class="container">
+        <% flash.each do |type, message| %>
+          <div class="<%= type %> ">
+              <%= message %>
+          </div>
         <% end %>
-    </div>
-  <% end %>
-  <div class="container">
+      </div>
+    <% end %>
+
     <%= yield %>
-  </div>
+    
   <script>
     <% if current_user %>
       window.appCurrentUserId = <%= current_user.id %>
