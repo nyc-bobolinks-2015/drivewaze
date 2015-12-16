@@ -102,5 +102,11 @@
   <div class="container">
     <%= yield %>
   </div>
+  <script>
+    <% if current_user %>
+      window.appCurrentUserId = <%= current_user.id %>
+    <% end %>
+  </script>
+
 </body>
 </html>
