@@ -35,14 +35,16 @@ document.addEventListener('DOMContentLoaded', function(){
     snapshot.forEach(function(child){
       var conv = child;
       conv.forEach(function(child){
-        var currentUser = $("#fromUser").val();
-        if (child.val().fromUser == currentUser) {
+          var currentUser = $("#fromUser").val();
+          var receiver = $("#toUser").val();
           var msg = child.val();
-          output += ("<div class='bubble'>" + msg.sent_at + "<br>" +"From: " + msg.fromUser + " To: " + msg.toUser + "<br>" + msg.message + "<br></div>");
-        } else {
-          var msg = child.val();
-          output += ("<div class='bubble bubble--alt'>" + msg.sent_at + "<br>" +"From: " + msg.fromUser + " To: " + msg.toUser + "<br>" + msg.message + "<br></div>");
-        }
+        if (msg instanceof Object){
+          if (child.val().fromUser == currentUser) {
+            output += ("<div class='bubble'>" + msg.sent_at + "<br>" +"From: " + msg.fromUser + " To: " + msg.toUser + "<br>" + msg.message + "<br></div>");
+          }else {
+            output += ("<div class='bubble bubble--alt'>" + msg.sent_at + "<br>" +"From: " + msg.fromUser + " To: " + msg.toUser + "<br>" + msg.message + "<br></div>");
+          };
+        };
       });
     });
     element.innerHTML = output;
@@ -63,7 +65,6 @@ function Message(args) {
 }
 
 if ($('#all-messages').length) {
-    var currentUser = $("#current_user_nav").text();
     var specificNode = 'msgs';
     myDataref.child(specificNode).on("value", function(snapshot) {
       var convs = [];
