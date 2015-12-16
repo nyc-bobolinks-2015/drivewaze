@@ -20,29 +20,23 @@ li{
   height: 20em;
   overflow-y: auto;
   margin-bottom: 1.5em;
-  width: 75%;
+  width: 80%;
   margin: auto;
+}
+#messages > div {
+  margin-left: 0.5em;
+  margin-right: 0.5em;
 }
 
 @media (max-device-width: 480px){
-  .nav {
-    display: inline;
-    text-align: center;
-  }
-  #logo {
-    width: 100%;
-    font-size: 2em;
-    text-align: center;
-  }
-  .container {
-    width: 100%;
-    margin: auto;
+  .new-message-container{
+    margin-top: -2em;
   }
 
 }
 #message-title{
   text-align: center;
-  padding-bottom: 1.5em;
+  font-size: 2em;
 }
 #to-user-tag{
   display: inline-block;
@@ -54,7 +48,7 @@ li{
 }
 
 #submit-message{
-  height: 86px;
+  height: 66px;
 }
 
 #favorites-button{
