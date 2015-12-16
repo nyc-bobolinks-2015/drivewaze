@@ -190,3 +190,21 @@ input#term:focus {
   margin: 0;
 }
 
+#listingPageInfo {
+  padding: 0 .5em 0 .5em;
+}
+
+#space-continue-btn {
+  margin: 1em 0;
+}
+
+#listing-file-upload {
+  margin-bottom: .5em;
+}
+#propertyTypeMenu p {
+  white-space: normal;
+}
+
+#vehicleClass p {
+  white-space: normal;
+}
