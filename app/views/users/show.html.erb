@@ -1,104 +1,123 @@
 <div class="container">
 
-  <div id="welcome-user">
-    <% if @user == current_user %>
-      <h1>Welcome Back <%= @user.first_name %>!</h1>
-    <% else %>
-      <h1> Hey, I'm <%= @user.first_name %>! </h1>
-    <% end %>
-  </div>
-
-  <div id="user-profile-photo">
-    <%= image_tag @user.avatar.url(:medium), class: "img-rounded" %>
-  </div>
-
-  <div id="favorites-button">
-    <% unless current_user == @user %>
-      <% unless current_user.favorite_users.exists?(id: @user.id) %>
-        <%= link_to 'Add to favorites', user_favorite_users_path(user_id: @user), method: :post, class: "btn btn-default" %>
-      <% else %>
-        <%= link_to 'Remove from favorites', user_favorite_user_path(user_id:@user.id, favorite_user_id: @user.id), method: :delete, class: "btn btn-default" %>
-      <% end %>
-    <% end %>
-  </div>
-
-  <div id="user-info">
-    <p> Member since: <%= @user.created_at.strftime("%B %d, %Y") %> </p>
-    <% unless @user.last_sign_in_at == nil %>
-      <p> Last seen: <%= @user.last_sign_in_at.strftime("%B %d, %Y") %> </p>
-    <% end %>
-    <p> Zip Code: <%= @user.zipcode %></p>
-    <p> Description: <%= @user.description %> </p>
-  </div>
-
-  <div id="user-listings">
-    <h3>Available Listings:</h3>
-    <ol>
-    <% @user.listings.each do |listing| %>
-      <li><%= link_to listing.address, listing_path(listing) %></li>
-    <% end %>
-    </ol>
-  </div>
-
-  <% unless current_user == @user %>
-    <div id="user-bookings">
-      <h3>Current Bookings: </h3>
-      <ol>
-        <% @user.bookings.each do |listing| %>
-          <li><%= link_to listing.address, listing_path(listing) %></li>
-        <% end %>
-      </ol>
+  <div id="profile-pic" class="row">
+    <div class = "col-xs-6 pull-left" id="user-profile-photo">
+      <%= image_tag @user.avatar.url(:medium), class: "img-rounded" %>
     </div>
-  <% end %>
 
-  <div id="user-reviews">
-    <h3> Reviews (<%= @user.reviews.count %>) </h3>
-    <% unless current_user == @user %>
-    <p><%= link_to "Add a Review", new_user_review_path(@user), class: "btn btn-default" %></p>
-    <% end %>
-      <ul>
-        <% @user.reviews.each do |review| %>
-        <li>Rating:
-          <% review.review_score.times do %>
-            <%= image_tag("star.png", size: "20x20") %>
+    <div id="profile-summary" class="col-xs-6 pull-right">
+      <div id="welcome-user">
+        <% if @user == current_user %>
+          <h1>Welcome Back <%= @user.first_name %>!</h1>
+        <% else %>
+          <h1> Hey, I'm <%= @user.first_name %>! </h1>
+        <% end %>
+      </div>
+
+      <% if @user == current_user %>
+        <p><%= link_to "Edit", user_edit_path %> | <%= link_to "Delete", user_delete_path(@user), method: :delete %> My Profile</p>
+      <% end %>
+
+      <div id="favorites-button">
+        <% unless current_user == @user %>
+          <% unless current_user.favorite_users.exists?(id: @user.id) %>
+            <%= link_to 'Add to favorites', user_favorite_users_path(user_id: @user), method: :post, class: "btn btn-default" %>
+          <% else %>
+            <%= link_to 'Remove from favorites', user_favorite_user_path(user_id:@user.id, favorite_user_id: @user.id), method: :delete, class: "btn btn-default" %>
           <% end %>
-        </li>
-        <li>From <%=link_to review.reviewer.first_name, user_path(review.reviewer) %>
-        on <%= review.created_at.strftime("%B %d, %Y") %> <br>
-        <%= review.review_body %>
-        <% if review.user_id == current_user.id %>
-          <%= link_to "Delete Review", user_review_path(user_id: @user, id: review), method: :delete %>
         <% end %>
-        </li>
+      </div>
+
+      <div id="user-info">
+        <p> Member since: <%= @user.created_at.strftime("%B %d, %Y") %> </p
+        <% unless @user.last_sign_in_at == nil %>
+          <p> Last seen: <%= @user.last_sign_in_at.strftime("%B %d, %Y") %> </p>
         <% end %>
-      </ul>
+        <p> Zip Code: <%= @user.zipcode %></p>
+        <p> Description: <%= @user.description %> </p>
+      </div>
+    </div>
   </div>
 
-  <div id="favorite-listings">
-    <h3> Favorited Listings </h3>
-    <ul>
-      <% @user.favorites.each do |favorite| %>
-        <% if favorite.favorited_type == "Listing" %>
-          <%= link_to favorite.favorited.address, listing_path(favorite.favorited_id) %>
+    <div id="profile-content" class="row">
+      <div class = "tabbable">
+        <ul class = "nav nav-tabs" id = "proftabs">
+          <li class="active"><a href = "#user-listings" data-toggle = "tab"> Available listings</a></li>
+          <li><a href = "#user-reviews" data-toggle = "tab"> Reviews</a></li>
+          <li><a href = "#favorite-listings" data-toggle = "tab"> Favorited Listings</a></li>
+          <li><a href = "#favorite-users" data-toggle = "tab"> Favorited Users</a></li>
+        </ul>
+
+
+      <div class = "tab-content">
+        <div class="tab-pane active" id="user-listings">
+          <h3>Available Listings:</h3>
+          <ol>
+          <% @user.listings.each do |listing| %>
+            <li><%= link_to listing.address, listing_path(listing) %></li>
+          <% end %>
+          </ol>
+        </div>
+
+        <% unless current_user == @user %>
+          <div id="user-bookings">
+            <h3>Current Bookings: </h3>
+            <ol>
+              <% @user.bookings.each do |booking| %>
+                <li><%= link_to booking.listing.address, listing_path(booking.listing) %></li>
+              <% end %>
+            </ol>
+          </div>
         <% end %>
-      <% end %>
-    </ul>
+
+        <div class="tab-pane" id="user-reviews">
+          <h3> Reviews (<%= @user.reviews.count %>) </h3>
+          <% unless current_user == @user %>
+          <p><%= link_to "Add a Review", new_user_review_path(@user), class: "btn btn-default" %></p>
+          <% end %>
+            <ul>
+              <% @user.reviews.each do |review| %>
+              <li>Rating:
+                <% review.review_score.times do %>
+                  <%= image_tag("star.png", size: "20x20") %>
+                <% end %>
+              </li>
+              <li>From <%=link_to review.reviewer.first_name, user_path(review.reviewer) %>
+              on <%= review.created_at.strftime("%B %d, %Y") %> <br>
+              <%= review.review_body %>
+              <% if review.user_id == current_user.id %>
+                <%= link_to "Delete Review", user_review_path(user_id: @user, id: review), method: :delete %>
+              <% end %>
+              </li>
+              <% end %>
+            </ul>
+          </div>
+
+          <div class="tab-pane" id="favorite-listings">
+            <h3> Favorited Listings </h3>
+            <ul>
+              <% @user.favorites.each do |favorite| %>
+                <% if favorite.favorited_type == "Listing" %>
+                  <%= link_to favorite.favorited.address, listing_path(favorite.favorited_id) %>
+                <% end %>
+              <% end %>
+            </ul>
+          </div>
+
+          <div class="tab-pane" id="favorite-users">
+            <h3> Favorited Users </h3>
+              <ul>
+                <% @user.favorites.each do |favorite| %>
+                  <% if favorite.favorited_type == "User" %>
+                    <%= link_to favorite.favorited.first_name, user_path(favorite.favorited_id) %>
+                  <% end %>
+                <% end %>
+              </ul>
+          </div>
+      </div>
+
+    </div>
   </div>
 
-  <div id="favorite-users">
-    <h3> Favorited Users </h3>
-    <ul>
-      <% @user.favorites.each do |favorite| %>
-        <% if favorite.favorited_type == "User" %>
-          <%= link_to favorite.favorited.first_name, user_path(favorite.favorited_id) %>
-        <% end %>
-      <% end %>
-    </ul>
-  </div>
-
-
-  <% if @user == current_user %>
-    <p><%= link_to "Edit", user_edit_path %> | <%= link_to "Delete", user_delete_path(@user), method: :delete %> My Profile</p>
-  <% end %>
 </div>
 
