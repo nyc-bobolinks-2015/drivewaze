@@ -36,7 +36,6 @@ document.addEventListener('DOMContentLoaded', function(){
       var conv = child;
       conv.forEach(function(child){
         if (child.val().fromUser) {
-          console.log(child.val().fromUser)
           var msg = child.val();
           output += ("<div class='bubble'>" + msg.sent_at + "<br>" +"From: " + msg.fromUser + " To: " + msg.toUser + "<br>" + msg.message + "<br></div>");
         }
