@@ -105,9 +105,12 @@ $(document).ready(function(){
               $("#listingPreviewImg").height(targetHeight);
              })
           });
-           list += "<p>"
+
+           list += "<div class='col-xs-12'><p>"
+           list += "<a href='/listings/"+response[i].id+"'>"
            list += response[i].address;
-           list += "</p>"
+           list += "</a>"
+           list += "</p></div>"
 
          }
         $("#listView").html(list);
@@ -129,6 +132,7 @@ $(document).ready(function(){
         var newLatLong = new google.maps.LatLng(response.results[0]["geometry"]["location"]["lat"], response.results[0]["geometry"]["location"]["lng"])
         window.map.setCenter(newLatLong)
         window.map.setZoom(14);
+        toggleList();
       }).fail(function(error){
         console.log(error);
     });
@@ -140,7 +144,6 @@ $(document).ready(function(){
   };
 
   $('#toggle-view-btn').on("click", function(event){
-    toggleMapListing();
   })
 });
 
@@ -183,12 +186,8 @@ function toggleMonth(direction){
   }
 }
 
-  function toggleMapListing() {
+  function toggleList() {
     if ($('#listView').hasClass('hide')) {
       $('#listView').removeClass("hide")
-      $('#map-container').addClass("hide")
-    } else {
-      $('#map-container').removeClass("hide")
-      $('#listView').addClass("hide")
     }
   }

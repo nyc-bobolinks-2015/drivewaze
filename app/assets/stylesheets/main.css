@@ -226,3 +226,7 @@ ol {
 #logo {
   margin: 0;
 }
+
+#searchSubmitButton {
+  margin-bottom: 1em;
+}
