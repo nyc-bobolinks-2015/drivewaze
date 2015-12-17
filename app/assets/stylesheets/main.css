@@ -219,3 +219,10 @@ ol {
   padding-right:5px;
 }
 
+.debugger {
+  border: 1px solid red;
+}
+
+#logo {
+  margin: 0;
+}

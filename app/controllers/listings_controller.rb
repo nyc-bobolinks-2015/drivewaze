@@ -26,10 +26,11 @@ class ListingsController < ApplicationController
   end
 
   def index
-
+     @listings = Listing.all
     if request.xhr?
-      @listings = Listing.all
-      return render json: @listings
+      render json: @listings
+    else
+      render :index
     end
   end
 
@@ -61,9 +62,11 @@ class ListingsController < ApplicationController
                 .where('longitude >= ?', westBound)
                 .where('longitude <= ?', eastBound)
     if params[:startTime] != "now"
-      @listings = filter_time(@listings, params[:startTime], params[:endTime])
+      @listings = Listing.filter_time(@listings, params[:startTime], params[:endTime])
+
     end
-    return render json: @listings
+
+    render json: @listings
   end
 
   def total

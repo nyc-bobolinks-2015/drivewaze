@@ -10,22 +10,9 @@ function initMap() {
   var input = (document.getElementById('term'));
 
   new google.maps.places.Autocomplete(input);
-  var searchBox = new google.maps.places.SearchBox(input);
-  searchBox.addListener('places_changed', function(event) {
-    var places = searchBox.getPlaces();
-    var place = {term: places[0].formatted_address}
-     $.ajax({
-        method: 'post',
-        url: '/search',
-        data: $.param(place),
-        dataType: 'json'
-      }).done(function(response){
-        var newLatLong = new google.maps.LatLng(response.results[0]["geometry"]["location"]["lat"], response.results[0]["geometry"]["location"]["lng"])
-        window.map.setCenter(newLatLong)
-        window.map.setZoom(14);
-      }).fail(function(error){
-        console.log(error);
-    });
+  searchBox = new google.maps.places.SearchBox(input);
+  // searchBox.addListener('places_changed', function(event) {
+
 
 
     google.maps.event.addDomListener(window, "resize", function() {
@@ -33,8 +20,7 @@ function initMap() {
       google.maps.event.trigger(map, "resize");
       window.map.setCenter(center);
     });
-  })
-
+  // })
 }
 
 //----------------
@@ -100,6 +86,7 @@ $(document).ready(function(){
            "&startTime=" + startTime +
            "&endTime=" + endTime
       }).done(function(response){
+        var list = "";
         for(var i = 0; i < response.length; i++) {
           var marker = new google.maps.Marker({
             map: window.map,
@@ -118,14 +105,33 @@ $(document).ready(function(){
               $("#listingPreviewImg").height(targetHeight);
              })
           });
+           list += "<p>"
+           list += response[i].address;
+           list += "</p>"
+
          }
+        $("#listView").html(list);
       }).fail(function(error){
         console.log(error);
       });
   });
 
-  $("#search_term").on('submit', function(event){
+  $("#searchSubmitButton").on('click', function(event){
     event.preventDefault();
+    var places = searchBox.getPlaces();
+    var place = {term: places[0].formatted_address}
+     $.ajax({
+        method: 'post',
+        url: '/search',
+        data: $.param(place),
+        dataType: 'json'
+      }).done(function(response){
+        var newLatLong = new google.maps.LatLng(response.results[0]["geometry"]["location"]["lat"], response.results[0]["geometry"]["location"]["lng"])
+        window.map.setCenter(newLatLong)
+        window.map.setZoom(14);
+      }).fail(function(error){
+        console.log(error);
+    });
   });
 
   $('.single-listing').on('click', '.listing-info', function(event) {
@@ -133,21 +139,9 @@ $(document).ready(function(){
   });
   };
 
-  $('#toggle-view-btn').on("click", toggleMapListing)
-
-  function toggleMapListing() {
-    if ($('#listView').hasClass('hide')) {
-      $('#listView').removeClass("hide")
-      $('#listView').addClass("show")
-      $('#mapView').removeClass("show")
-      $('#listView').addClass("hide")
-    } else {
-      $('#mapView').removeClass("hide")
-      $('#mapView').addClass("show")
-      $('#listView').removeClass("show")
-      $('#listView').addClass("hide")
-    }
-  }
+  $('#toggle-view-btn').on("click", function(event){
+    toggleMapListing();
+  })
 });
 
 function getCalendar(offset,type){
@@ -188,3 +182,13 @@ function toggleMonth(direction){
     getCalendar(offset);
   }
 }
+
+  function toggleMapListing() {
+    if ($('#listView').hasClass('hide')) {
+      $('#listView').removeClass("hide")
+      $('#map-container').addClass("hide")
+    } else {
+      $('#map-container').removeClass("hide")
+      $('#listView').addClass("hide")
+    }
+  }

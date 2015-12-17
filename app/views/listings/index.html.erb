@@ -20,19 +20,18 @@
   <button type="submit" class="btn btn-primary btn-block" id="searchSubmitButton">Search</button>
 </div>
 
-
-<!-- <div id="map-container" class="hide"> -->
-  <div id="map" class="hide"></div>
-<!-- </div> -->
-
 <!-- <div class="single-listing">
 </div>
  -->
 
- <div id="searchListing">
+ <div id="listView" class="hide">
    <%if @listings%>
-    <%@listings.each do |listing|%>
+     <%@listings.each do |listing|%>
       <p><%=listing.address%></p>
+      <%end%>
     <%end%>
-  <%end%>
  </div>
+
+<div id="map-container">
+  <div id="map"></div>
+</div>
