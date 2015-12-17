@@ -98,15 +98,17 @@
 		<option value="1">Full Size Vehicle</option>
 		<option value="2">SUV</option>
 	</select>
-	<button id="submitVehicleClass" class="btn btn-primary btn-lg btn-block" onclick="displayCalendar(0)">Check </button>
-	<div id="date-cal-div">
+	<button id="submitVehicleClass" class="btn btn-primary btn-lg btn-block" onclick="displayCalendar(0)" style="margin-bottom:1em; margin-top:1em;">Check </button>
+	<div id="date-cal-div" class="hide">
 		<button class="btn btn-md btn-primary" onclick="moveBookingCalendar('backward')">Last Month</button>
 		<button class="btn btn-md btn-primary" onclick="moveBookingCalendar('forward')">Next Month</button>
 		<button class="btn btn-md btn-default" onclick="changePsindex('backward')">Last Parking Slot</button>
 		<button class="btn btn-md btn-default" onclick="changePsindex('forward')">Next Parking Slot</button>
-		<table class="table" id="bookingCalendarTable" data-offset="0" data-psindex="0">
+    <div class="table-responsive">
+  		<table class="table" id="bookingCalendarTable" data-offset="0" data-psindex="0">
 
-		</table>
+  		</table>
+    </div>
 	</div>
 	<button id="saveFilterButton" class="btn btn-primary btn-lg btn-block" onclick="confirmBooking()">Continue to Payment</button>
 </div>
