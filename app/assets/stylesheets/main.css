@@ -230,3 +230,15 @@ ol {
 #searchSubmitButton {
   margin-bottom: 1em;
 }
+
+#map-container {
+  margin-bottom: 1.7em;
+}
+
+li{
+  list-style-type: none;
+}
+
+ul {
+  padding-left: 0;
+}
