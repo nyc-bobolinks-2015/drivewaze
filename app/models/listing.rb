@@ -27,6 +27,7 @@ class Listing < ActiveRecord::Base
     else
       return 0
     end
+  end
 
   def self.filter_time(input_listings,startDateInput,endDateInput)
     startDateBeginning=DateTime.parse(startDateInput).beginning_of_day
