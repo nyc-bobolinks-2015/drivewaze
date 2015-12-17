@@ -78,21 +78,23 @@
 	    </div>
 	    <div id="price" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
 	      <div class="panel-body">
-		    	<div id="priceMenu">
-
+		    	<div id="priceMenu" data-dailyp="<%=@parking_slot.daily_price%>" data-weeklyp="<%=@parking_slot.weekly_price%>" data-monthlyp="<%=@parking_slot.monthly_price%>">
 					<button class="btn btn-default btn-block btn-md" id="dailyButton" onclick="setPrice(1)">
 						<p>Daily</p>
 						<p>set daily price for this parking spot</p>
+						<p>Current price: $<span id="dailyPriceShow"></span></p>
 					</button>
 
 					<button class="btn btn-default btn-block btn-md" id="weeklyButton" onclick="setPrice(2)">
 						<p>Weekly</p>
 						<p>set weekly price for this parking spot</p>
+						<p>Current price: $<span id="weeklyPriceShow"></span></p>
 					</button>
 
 					<button class="btn btn-default btn-block btn-md" id="monthlyButton" onclick="setPrice(3)">
 						<p>Monthly</p>
 						<p>set monthly price for this parking spot</p>
+						<p>Current price: $<span id="monthlyPriceShow"></span></p>
 					</button>
 				</div>
 	      </div>

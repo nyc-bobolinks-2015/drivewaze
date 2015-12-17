@@ -1,36 +1,37 @@
-		<tr><th>Sunday</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th><th>Saturday</th></tr>
-	<%@viewArray.each do |week|%>
-		<tr>
-			<%week.each do |day|%>
-				<%if day<@firstDayOfThisMonth%>
-					<td class="date past-month past" data-day="<%=day%>" data-test="<%=@test%>"><%=day.strftime("%-d")%></td>
+<caption><%=@test.strftime("%B") %></caption>
+<tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>
+<%@viewArray.each do |week|%>
+	<tr>
+		<%week.each do |day|%>
+			<%if day<@firstDayOfThisMonth%>
+				<td class="date past-month past" data-day="<%=day%>" data-test="<%=@test%>"><%=day.strftime("%-d")%></td>
 
-				<%elsif day.strftime("%-m")==@today.strftime("%-m")%>
-					<%if day.beginning_of_day<@today.beginning_of_day%>
-						<td class="date this-month-past past" data-day="<%=day%>" data-test="<%=@test%>"><%=day.strftime("%-d")%></td>
-					<%elsif day.beginning_of_day==@today.beginning_of_day%>
-						<%if @blackoutArray.include?(day.beginning_of_day.strftime("%m/%d/%Y"))%>
-							<td class="date blackout" data-day="<%=day%>" data-test="<%=@test%>"><%=day.strftime("%-d")%></td>
-						<%else%>
-							<td class="date present future" data-day="<%=day%>" data-test="<%=@test%>"><%=day.strftime("%-d")%></td>
-						<%end%>
+			<%elsif day.strftime("%-m")==@today.strftime("%-m")%>
+				<%if day.beginning_of_day<@today.beginning_of_day%>
+					<td class="date this-month-past past" data-day="<%=day%>" data-test="<%=@test%>"><%=day.strftime("%-d")%></td>
+				<%elsif day.beginning_of_day==@today.beginning_of_day%>
+					<%if @blackoutArray.include?(day.beginning_of_day.strftime("%m/%d/%Y"))%>
+						<td class="date blackout" data-day="<%=day%>" data-test="<%=@test%>"><%=day.strftime("%-d")%></td>
 					<%else%>
-						<%if @blackoutArray.include?(day.beginning_of_day.strftime("%m/%d/%Y"))%>
-							<td class="date blackout" data-day="<%=day%>" data-test="<%=@test%>"><%=day.strftime("%-d")%></td>
-						<%else%>
-						<td class="date this-month-future future" data-day="<%=day%>" data-test="<%=@test%>"><%=day.strftime("%-d")%></td>
-						<%end%>
+						<td class="date present future" data-day="<%=day%>" data-test="<%=@test%>"><%=day.strftime("%-d")%></td>
 					<%end%>
-
 				<%else%>
 					<%if @blackoutArray.include?(day.beginning_of_day.strftime("%m/%d/%Y"))%>
 						<td class="date blackout" data-day="<%=day%>" data-test="<%=@test%>"><%=day.strftime("%-d")%></td>
 					<%else%>
-						<td class="date future-month future" data-day="<%=day%>" data-test="<%=@test%>"><%=day.strftime("%-d")%></td>
-					<%end%> 
+					<td class="date this-month-future future" data-day="<%=day%>" data-test="<%=@test%>"><%=day.strftime("%-d")%></td>
+					<%end%>
 				<%end%>
-					
-				
+
+			<%else%>
+				<%if @blackoutArray.include?(day.beginning_of_day.strftime("%m/%d/%Y"))%>
+					<td class="date blackout" data-day="<%=day%>" data-test="<%=@test%>"><%=day.strftime("%-d")%></td>
+				<%else%>
+					<td class="date future-month future" data-day="<%=day%>" data-test="<%=@test%>"><%=day.strftime("%-d")%></td>
+				<%end%> 
 			<%end%>
-		</tr>
-	<%end%>
+				
+			
+		<%end%>
+	</tr>
+<%end%>
