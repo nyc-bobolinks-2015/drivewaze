@@ -79,6 +79,9 @@
 
         <div class="tab-pane" id="user-reviews">
           <h4> Reviews (<%= @user.reviews.count %>) </h4>
+              <% unless current_user == @user %>
+                <p><%= link_to "Add a Review", new_user_review_path(@user), class: "btn btn-default" %></p>
+              <% end %>
             <ul>
               <% @user.reviews.each do |review| %>
               <li>Rating:
@@ -94,9 +97,6 @@
                 <%= link_to "Delete Review", user_review_path(user_id: @user, id: review), method: :delete %></p>
               <% end %>
               </li>
-              <% end %>
-              <% unless current_user == @user %>
-                <p><%= link_to "Add a Review", new_user_review_path(@user), class: "btn btn-default" %></p>
               <% end %>
             </ul>
           </div>

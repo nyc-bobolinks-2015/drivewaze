@@ -1,36 +1,59 @@
 <h2>Edit Profile</h2>
 
 <%= form_for @user, html: { multipart: true } do |f| %>
-<div id = "names">
-  <%=f.label :first_name %>
-  <%= f.text_field :first_name %>
-  <%=f.label :last_name %>
-  <%= f.text_field :last_name %>
+<div class="row">
+  <div id = "first_name" class="form-group">
+    <%=f.label :first_name %>
+    <%= f.text_field :first_name %>
+  </div>
 </div>
 
-<div id = "email-contact">
-  <%=f.label :email %>
-  <%= f.text_field :email %>
+<div class="row">
+  <div id = "last_name" class="form-group">
+    <%=f.label :last_name %>
+    <%= f.text_field :last_name %>
+  </div>
 </div>
 
-<div id = "phone-contact">
-  <%= f.label :phone %>
-  <%= f.text_field :phone %>
+<div class="row">
+  <div id = "email-contact" class="form-group">
+    <%=f.label :email %>
+    <%= f.text_field :email %>
+  </div>
 </div>
 
-<div id = "location">
-  <%= f.label :zipcode %>
-  <%= f.text_field :zipcode %>
+<div class="row">
+  <div id = "phone-contact" class="form-group">
+    <%= f.label :phone %>
+    <%= f.text_field :phone %>
+  </div>
 </div>
 
-<div id = "user-personalization">
-  <%= f.label :description %>
-  <%= f.text_area :description %>
-  <%= f.file_field :avatar %>
+<div class="row">
+  <div id = "location" class="form-group">
+    <%= f.label :zipcode %>
+    <%= f.text_field :zipcode %>
+  </div>
 </div>
 
-<div id = "submit">
-  <%= f.submit %>
+<div class="row">
+  <div id = "user-personalization" class="form-group">
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+</div>
+
+<div class="row">
+  <div id = "user-avatar" class="form-group">
+    <%= f.label :avatar %>
+    <%= f.file_field :avatar %>
+  </div>
+</div>
+
+<div class="row">
+  <div id = "submit" class="form-group">
+    <%= f.submit %>
+  </div>
 </div>
 
 <% end %>

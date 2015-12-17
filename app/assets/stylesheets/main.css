@@ -242,3 +242,11 @@ li{
 ul {
   padding-left: 0;
 }
+
+#review-listing-btn {
+  margin-bottom: .8em;
+}
+
+#listing-review {
+  padding: .5em;
+}
