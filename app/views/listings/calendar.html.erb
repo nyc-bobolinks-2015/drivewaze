@@ -1,4 +1,5 @@
-<tr><th>Sunday</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th><th>Saturday</th></tr>
+<caption><%=@test.strftime("%B") %></caption>
+<tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>
 <%@viewArray.each do |week|%>
 	<tr id="pstotal" data-pstotal="<%=@pstotal%>" data-psid="<%=@parking_slot.id%>">
 		<%week.each do |day|%>
