@@ -2,6 +2,7 @@ require 'zin_calendar'
 class ListingsController < ApplicationController
   include HTTParty
   skip_before_filter :verify_authenticity_token
+  before_action :authenticate_user!, except: [:index]
 
   def new
     @listing=Listing.new
@@ -130,7 +131,7 @@ class ListingsController < ApplicationController
       end
       return render "calendar",layout:false
     end
-    
+
   end
 
   def search_map
