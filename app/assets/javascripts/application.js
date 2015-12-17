@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap-sprockets
 //= firebase
 //= require sweet-alert
 //= require bootstrap
