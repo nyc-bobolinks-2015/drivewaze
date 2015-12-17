@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+ruby "2.2.1"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.3'
@@ -49,3 +49,5 @@ gem 'devise'
 
 gem 'stripe', git: 'https://github.com/stripe/stripe-ruby'
 gem 'omniauth-stripe-connect'
+
+gem 'rails_12factor', group: :production
