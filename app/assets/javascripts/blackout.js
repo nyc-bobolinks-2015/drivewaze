@@ -1,4 +1,6 @@
 function showBlackoutCal(offset){
+	$("#ajaxParkingSpotMenuContainer").removeClass("hide");
+	$("#ajaxParkingSpotMenuContainer").show();
 	var parkingSlotId=$('#parkingSpotMenuContainer').attr('data-id');
 	$.ajax({
 		method:"get",
@@ -6,7 +8,7 @@ function showBlackoutCal(offset){
 	}).done(function(result){
 		$("#calendarTable").html(result);
 
-		$(".future").on("click",function(event){
+		$(".future, .blackout").on("click",function(event){
 			var dateSelected=$(event.target).attr("data-day");
 			$.ajax({
 				method:"post",
@@ -15,6 +17,15 @@ function showBlackoutCal(offset){
 			}).done(function(result){
 				if(result.status=="success"){
 					$(event.target).css("background-color","pink");
+				}else{
+					// $(event.target).removeClass().addClass(result.status);
+					if(result.status=="present"){
+						$(event.target).css("background-color","#5FDC9E");
+					}else if(result.status=="this-month future"){
+						$(event.target).css("background-color","white");
+					}else{
+						$(event.target).css("background-color","#80FB6C")
+					}
 				}
 			}).fail(function(error){
 				console.log(error);
@@ -49,4 +60,9 @@ function moveCalendar(direction){
 			showBlackoutCal(calendarOffset);
 		}
 	}
+}
+
+
+function closeCalendar(){
+	$("#ajaxParkingSpotMenuContainer").hide();
 }

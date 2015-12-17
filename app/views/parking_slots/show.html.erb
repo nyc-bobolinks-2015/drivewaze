@@ -1,10 +1,3 @@
-<div id="ajaxParkingSpotMenuContainer">
-	<button class="btn btn-md btn-primary" onclick="moveCalendar('backward')">Last Month</button>
-	<button class="btn btn-md btn-primary" onclick="moveCalendar('forward')">Next Month</button>
-	<table class="table" id="calendarTable" data-offset="0">
-
-	</table>
-</div>
 <div id="parkingSpotMenuContainer" data-id="<%=@parking_slot.id%>">
 
 	<div class="panel-group" id="parkingSpotMenuAccordion" role="tablist" aria-multiselectable="true">
@@ -107,8 +100,17 @@
 	  </div>
 	</div>
 
-	<button class="btn btn-primary btn-block btn-lg" onclick="showBlackoutCal()">Blackout Dates</button>
-	<div id="blackout-cal"></div>
+	<button class="btn btn-primary btn-block btn-lg" onclick="showBlackoutCal()" style="margin-bottom:1em;">Blackout Dates</button>
+	<div id="ajaxParkingSpotMenuContainer" class="hide">
+		<button class="btn btn-md btn-primary" onclick="moveCalendar('backward')">Last Month</button>
+		<button class="btn btn-md btn-primary" onclick="moveCalendar('forward')">Next Month</button>
+		<button class="btn btn-md btn-success pull-right" onclick="closeCalendar()">Save Dates</button>
+		<div class="table-responsive">
+			<table class="table" id="calendarTable" data-offset="0">
+
+			</table>
+		</div>
+	</div>
 
 </div>
 	<%= link_to "Save Parking Space", listing_parking_slots_path(@parking_slot.listing), class: "btn btn-success btn-block btn-lg", id: "save-parking-spot" %>
