@@ -42,34 +42,6 @@
     </div>
   </nav>
 
-    <!-- <nav class="navbar navbar-default"> -->
-      <!-- <div class="container-fluid"> -->
-<!--         <div class="container-fluid">
-          <div id="botNav">
-            <div class="col-xs-2 col-xs-offset-1"><a href="#"><i class="road icon"></i></a></div>
-            <div class="col-xs-2"><a href="#"><span class="glyphicon glyphicon-heart-empty"></span></a></div>
-            <div class="col-xs-2"><a href="#"><span class="glyphicon glyphicon-envelope"></span></a></div>
-            <div class="col-xs-2"><a href="#"><span class="glyphicon glyphicon-briefcase"></span></a></div>
-            <div class="col-xs-2"><a href="#"><i class="user icon"></i></a></div>
-          </div>
-        </div> -->
-<!--           <ul class="nav navbar-nav navbar-right">
-            <% if user_signed_in? %>
-              <li id="username"><%= link_to current_user.first_name, user_path(current_user.id) %><li>
-              <% if current_user.publishable_key %>
-                <li><%=link_to "List Your Space",new_listing_path%></li>
-              <% else %>
-                <li><%= link_to "List Your Space", stripe_signup_path %></li>
-              <% end %>
-              <li id = "message-nav"> <%= link_to 'Messages', messages_path %> </li>
-              <li id="logout"><%= link_to 'Logout',  destroy_user_session_path, :method => :delete %></li>
-            <% else %>
-              <li id="login"><%= link_to 'Login', new_user_session_path %></li>
-              <li id="signup"><%= link_to 'Sign up', new_user_registration_path %></li>
-            <% end %>
-          </ul> -->
-      <!-- </div> -->
-    <!-- </nav> -->
 
     <% if flash.any? %>
       <div id="flash" class="container">
@@ -80,9 +52,10 @@
         <% end %>
       </div>
     <% end %>
+    <div class="container">
+      <%= yield %>
+    </div>
 
-    <%= yield %>
-    
   <script>
     <% if current_user %>
       window.appCurrentUserId = <%= current_user.id %>

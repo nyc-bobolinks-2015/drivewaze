@@ -7,21 +7,21 @@
 	<tr>
 		<%week.each do |day|%>
 			<%if day<@firstDayOfThisMonth%>
-				<td class="date past-month past" data-day="<%=day.strftime('%m-%d-%Y')%>"><%=day.strftime("%-d")%></td>
+				<td class="date past-month past" data-day="<%=day.strftime('%d-%m-%Y')%>"><%=day.strftime("%-d")%></td>
 
 			<%elsif day.strftime("%-m")==@today.strftime("%-m")%>
 				<%if day<@today %>
-					<td class="date this-month-past past" data-day="<%=day.strftime('%m-%d-%Y')%>" ><%=day.strftime("%-d")%></td>
+					<td class="date this-month-past past" data-day="<%=day.strftime('%d-%m-%Y')%>" ><%=day.strftime("%-d")%></td>
 				<%elsif day.strftime("%-d")==@today.strftime("%-d")%>
-						<td class="date present future" data-day="<%=day.strftime('%m-%d-%Y')%>"><%=day.strftime("%-d")%></td>
+						<td class="date present future" data-day="<%=day.strftime('%d-%m-%Y')%>"><%=day.strftime("%-d")%></td>
 				<%else%>
-					<td class="date this-month-future future" data-day="<%=day.strftime('%m-%d-%Y')%>"><%=day.strftime("%-d")%></td>
+					<td class="date this-month-future future" data-day="<%=day.strftime('%d-%m-%Y')%>"><%=day.strftime("%-d")%></td>
 				<%end%>
 
 			<%else%>
-				<td class="date future-month future" data-day="<%=day.strftime('%m-%d-%Y')%>"><%=day.strftime("%-d")%></td>
+				<td class="date future-month future" data-day="<%=day.strftime('%d-%m-%Y')%>"><%=day.strftime("%-d")%></td>
 			<%end%>
-			
+
 		<%end%>
 	</tr>
 <%end%>

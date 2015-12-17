@@ -30,8 +30,10 @@ class Listing < ActiveRecord::Base
   end
 
   def self.filter_time(input_listings,startDateInput,endDateInput)
-    startDateBeginning=DateTime.parse(startDateInput).beginning_of_day
-    endDateEnd=DateTime.parse(endDateInput).end_of_day
+    startDateBeginning=DateTime.parse(startDateInput)
+    startDateBeginning=startDateBeginning.beginning_of_day
+    endDateEnd=DateTime.parse(endDateInput)
+    endDateEnd=endDateEnd.end_of_day
 
     output_listings=[]
     input_listings.each do |listing|
@@ -60,7 +62,7 @@ class Listing < ActiveRecord::Base
         tmpWeekEnd=firstDayOfMonth
       else
         firstDayInView=firstDayOfMonth.beginning_of_week.yesterday #this is always be a sunday
-      
+
         firstRow=[]
         firstRow.push(firstDayInView)
 
