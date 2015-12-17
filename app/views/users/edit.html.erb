@@ -3,55 +3,55 @@
 <%= form_for @user, html: { multipart: true } do |f| %>
 <div class="row">
   <div id = "first_name" class="form-group">
-    <%=f.label :first_name %>
-    <%= f.text_field :first_name %>
+    <%=f.label :first_name, class: "col-xs-12"  %>
+    <%= f.text_field :first_name, class: "col-xs-9"  %>
   </div>
 </div>
 
 <div class="row">
   <div id = "last_name" class="form-group">
-    <%=f.label :last_name %>
-    <%= f.text_field :last_name %>
+    <%=f.label :last_name,  class: "col-xs-12"  %>
+    <%= f.text_field :last_name,  class: "col-xs-9"  %>
   </div>
 </div>
 
 <div class="row">
   <div id = "email-contact" class="form-group">
-    <%=f.label :email %>
-    <%= f.text_field :email %>
+    <%=f.label :email, class: "col-xs-12" %>
+    <%= f.text_field :email, class: "col-xs-9" %>
   </div>
 </div>
 
 <div class="row">
   <div id = "phone-contact" class="form-group">
-    <%= f.label :phone %>
-    <%= f.text_field :phone %>
+    <%= f.label :phone, class: "col-xs-12" %>
+    <%= f.text_field :phone, class: "col-xs-9" %>
   </div>
 </div>
 
 <div class="row">
   <div id = "location" class="form-group">
-    <%= f.label :zipcode %>
-    <%= f.text_field :zipcode %>
+    <%= f.label :zipcode, class: "col-xs-12" %>
+    <%= f.text_field :zipcode, class: "col-xs-9" %>
   </div>
 </div>
 
 <div class="row">
   <div id = "user-personalization" class="form-group">
-    <%= f.label :description %>
-    <%= f.text_area :description %>
+    <%= f.label :description, class: "col-xs-12" %>
+    <%= f.text_area :description, class: "col-xs-9" %>
   </div>
 </div>
 
 <div class="row">
   <div id = "user-avatar" class="form-group">
-    <%= f.label :avatar %>
-    <%= f.file_field :avatar %>
+    <%= f.label :avatar, class: "col-xs-12" %>
+    <%= f.file_field :avatar, class: "col-xs-9" %>
   </div>
 </div>
 
 <div class="row">
-  <div id = "submit" class="form-group">
+  <div id = "edit-user-submit" class="form-group">
     <%= f.submit %>
   </div>
 </div>
