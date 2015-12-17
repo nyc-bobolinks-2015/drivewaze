@@ -2,7 +2,7 @@
 <table class="table">
 <a href="#"style="display:inline;" onclick="toggleMonth('backward')"><h3 style="display:inline;">&lt; </h3></a><h3 style="display:inline; verticle-align:bottom;"><%=@inputTime.strftime("%B") %></h3><a href="#" style="display:inline;" onclick="toggleMonth('forward')"><h3 style="display:inline;"> &gt;</h3></a>
 
-<tr><th>Sunday</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th><th>Saturday</th></tr>
+<tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>
 <%@viewArray.each do |week|%>
 	<tr>
 		<%week.each do |day|%>
