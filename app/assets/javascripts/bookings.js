@@ -1,4 +1,6 @@
 function displayCalendar(psindex){
+	$("#date-cal-div").removeClass("hide");
+
 	var vehicleClass=$("#vehicleClassSelect").val();
 	var listingId=$('#listingShow').attr('data-id');
 	var offset=$("#bookingCalendarTable").attr("data-offset");

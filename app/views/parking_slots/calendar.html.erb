@@ -6,9 +6,9 @@
 					<td class="date past-month past" data-day="<%=day%>" data-test="<%=@test%>"><%=day.strftime("%-d")%></td>
 
 				<%elsif day.strftime("%-m")==@today.strftime("%-m")%>
-					<%if day<@today %>
+					<%if day.beginning_of_day<@today.beginning_of_day%>
 						<td class="date this-month-past past" data-day="<%=day%>" data-test="<%=@test%>"><%=day.strftime("%-d")%></td>
-					<%elsif day.strftime("%-d")==@today.strftime("%-d")%>
+					<%elsif day.beginning_of_day==@today.beginning_of_day%>
 						<%if @blackoutArray.include?(day.beginning_of_day.strftime("%m/%d/%Y"))%>
 							<td class="date blackout" data-day="<%=day%>" data-test="<%=@test%>"><%=day.strftime("%-d")%></td>
 						<%else%>
