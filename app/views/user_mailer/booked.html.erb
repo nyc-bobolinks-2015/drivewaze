@@ -10,7 +10,7 @@
 	<p></p>
 	<p>Mazel Tov! <%= @renter.first_name %> wants to rent your space at <%= @listing.address %> between <%= @booking.time_slots.first.start_time.to_s %> and <%= @booking.time_slots.last.end_time.to_s %>.</p>
 
-	<p>Why not log in and send them a message?</p>
+	<p>Why not log in and send them a message? Please remember to check your <%= link_to 'messages', messages_path %> in case <%= @renter.first_name %> needs to contact you! </p></p>
 
 	<p>Sincerely,</p>
 	<p>Team spcs</p>
