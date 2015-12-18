@@ -16,7 +16,7 @@
       <div class="col-xs-6 btn-lg">
       <% if owns?(@listing) %>
         <div id="delete-listing-btn">
-          <%= link_to "Delete Listing", listing_path(@listing), {method: :delete, data: {confirm: "Are you sure you want to delete this listing?"}} %>
+          <%= link_to "Delete Listing", listing_path(@listing), {method: :delete, data: {confirm: "Are you sure you want to delete this listing?"}, class: "btn btn-danger" }%>
         </div>
       <% else %>
         <div id="book-listing-btn">
@@ -28,7 +28,7 @@
       <% unless current_user.favorite_listings.exists?(id: @listing.id) %>
         <%= link_to 'Add to favorites', listing_favorite_listings_path(listing_id: @listing), method: :post, class: "btn btn-default" %>
       <% else %>
-        <%= link_to 'Remove from favorites', listing_favorite_listing_path(listing_id:@listing.id, favorite_listing_id: @listing.id), method: :delete, class: "btn btn-default" %>
+        <%= link_to 'Remove Favorite', listing_favorite_listing_path(listing_id:@listing.id, favorite_listing_id: @listing.id), method: :delete, class: "btn btn-default" %>
       <% end %>
       </div>
     </div>
@@ -38,7 +38,7 @@
     <ul class = "nav nav-tabs" id = "proftabs">
       <li><a href = "#listing-price" data-toggle = "tab">Prices</a></li>
       <li><a href = "#spot-info" data-toggle = "tab"> Listing Info </a></li>
-      <li><a href = "#listing-reviews" data-toggle = "tab">Reviews(<%= @listing.reviews.count %>)</a></li>
+      <li><a href = "#listing-reviews" data-toggle = "tab">Reviews (<%= @listing.reviews.count %>)</a></li>
     </ul>
 
     <div class = "tab-content">
@@ -63,21 +63,23 @@
       </div>
 
       <div class="tab-pane" id = "listing-reviews">
-        <h4> Reviews (<%= @listing.reviews.count %>) </h4>
+        <h4>Reviews (<%= @listing.reviews.count %>)</h4>
         <% if current_user && current_user != @listing.user %>
-          <%= link_to "Review this listing", new_listing_review_path(@listing), class: "btn btn-default" %>
+          <%= link_to "Review this listing", new_listing_review_path(@listing), class: "btn btn-default", id: 'review-listing-btn' %>
         <% end %>
         <ul>
         <% @listing.reviews.each do |review| %>
-          <li> Rating:
-            <% review.review_score.times do %>
-              <%= image_tag("star.png", size: "20x20") %>
-            <% end %>
-          </li>
-          <li>From <%= link_to review.reviewer.first_name, user_path(review.reviewer) %>
-            on <%= review.created_at.strftime("%B %d, %Y") %> <br>
-            <%= review.review_body %> <br>
-          </li>
+          <div id="listing-review">
+            <li> Rating:
+              <% review.review_score.times do %>
+                <%= image_tag("star.png", size: "20x20") %>
+              <% end %>
+            </li>
+            <li>From <%= link_to review.reviewer.first_name, user_path(review.reviewer) %>
+              on <%= review.created_at.strftime("%B %d, %Y") %> <br>
+              <%= review.review_body %> <br>
+            </li>
+          </div>
         <% end %>
         </ul>
       </div>
@@ -98,15 +100,17 @@
 		<option value="1">Full Size Vehicle</option>
 		<option value="2">SUV</option>
 	</select>
-	<button id="submitVehicleClass" class="btn btn-primary btn-lg btn-block" onclick="displayCalendar(0)">Check </button>
-	<div id="date-cal-div">
+	<button id="submitVehicleClass" class="btn btn-primary btn-lg btn-block" onclick="displayCalendar(0)" style="margin-bottom:1em; margin-top:1em;">Check </button>
+	<div id="date-cal-div" class="hide">
 		<button class="btn btn-md btn-primary" onclick="moveBookingCalendar('backward')">Last Month</button>
 		<button class="btn btn-md btn-primary" onclick="moveBookingCalendar('forward')">Next Month</button>
 		<button class="btn btn-md btn-default" onclick="changePsindex('backward')">Last Parking Slot</button>
 		<button class="btn btn-md btn-default" onclick="changePsindex('forward')">Next Parking Slot</button>
-		<table class="table" id="bookingCalendarTable" data-offset="0" data-psindex="0">
+    <div class="table-responsive">
+  		<table class="table" id="bookingCalendarTable" data-offset="0" data-psindex="0">
 
-		</table>
+  		</table>
+    </div>
 	</div>
 	<button id="saveFilterButton" class="btn btn-primary btn-lg btn-block" onclick="confirmBooking()">Continue to Payment</button>
 </div>

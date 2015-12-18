@@ -219,3 +219,38 @@ ol {
   padding-right:5px;
 }
 
+.debugger {
+  border: 1px solid red;
+}
+
+#logo {
+  margin: 0;
+}
+
+#searchSubmitButton {
+  margin-bottom: 1em;
+}
+
+#map-container {
+  margin-bottom: 1.7em;
+}
+
+li{
+  list-style-type: none;
+}
+
+ul {
+  padding-left: 0;
+}
+
+#review-listing-btn {
+  margin-bottom: .8em;
+}
+
+#listing-review {
+  padding: .5em;
+}
+
+#edit-user-submit {
+  margin-top: 1em
+}

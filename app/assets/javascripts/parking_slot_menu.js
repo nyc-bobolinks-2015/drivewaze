@@ -10,6 +10,9 @@ $(document).ready(function(){
 	if(currentVehicleClass>-1){
 	$('#vehicleClassMenu button:nth-child('+currentVehicleClass+')').addClass('selected');
 	}
+	$("#dailyPriceShow").text($("#priceMenu").attr('data-dailyp'));
+	$("#weeklyPriceShow").text($("#priceMenu").attr('data-weeklyp'));
+	$("#monthlyPriceShow").text($("#priceMenu").attr('data-monthlyp'));
 });
 
 function capitalize(string){
@@ -79,16 +82,17 @@ function selectVehicleClass(vehicleClass){
 
 function setPrice(priceType){
 	var timeFrame;
-	if(priceType===0){
-		timeFrame="hourly";
-	}else if(priceType===1){
+	var field;
+	if(priceType===1){
 		timeFrame="daily";
+		field="#dailyPriceShow";
 	}else if(priceType===2){
 		timeFrame="weekly";
+		field="#weeklyPriceShow";
 	}else{
 		timeFrame="monthly";
+		field="#monthlyPriceShow";
 	}
-	console.log(priceType);
 	swal({
 		title:"Set "+capitalize(timeFrame)+" Rate",
 		text:"Please enter number only:",
@@ -101,7 +105,6 @@ function setPrice(priceType){
 	},
 	function(inputValue){
 		var id = $('#parkingSpotMenuContainer').attr('data-id');
-		console.log(inputValue);
 		if(inputValue===false) return false;
 		if(inputValue===""){
 			swal.showInputError("Please set "+timeFrame+" rate for your parking slot.");
@@ -110,6 +113,7 @@ function setPrice(priceType){
 			swal.showInputError("Please enter numbers only");
 			return false;
 		}
+		$(field).text(inputValue);
 		$.ajax({
 			method:"put",
 			url:"/parking_slots/"+id,

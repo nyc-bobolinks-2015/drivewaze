@@ -3,12 +3,13 @@
   }
   td{
     border: 1px solid #ECECEC;
+    border-radius: 0.5em;
   }
   .blackout{
     background-color: #DDE8E8;
   }
   .past-month{
-    background-color: #8E8C8C;
+    background-color: #CCC9C9;
   }
   .this-month-past{
     background-color: #CCC9C9;
@@ -23,7 +24,7 @@
   }
 
   .future-month{
-    background-color: #80FB6C;
+    background-color: white;
   }
   tr{
     height:3em;

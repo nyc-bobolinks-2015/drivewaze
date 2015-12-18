@@ -30,14 +30,16 @@ class Listing < ActiveRecord::Base
   end
 
   def self.filter_time(input_listings,startDateInput,endDateInput)
-    startDateBeginning=DateTime.parse(startDateInput).beginning_of_day
-    endDateEnd=DateTime.parse(endDateInput).end_of_day
+    startDateBeginning=DateTime.parse(startDateInput)
+    startDateBeginning=startDateBeginning.beginning_of_day
+    endDateEnd=DateTime.parse(endDateInput)
+    endDateEnd=endDateEnd.end_of_day
 
     output_listings=[]
     input_listings.each do |listing|
       listing.parking_slots.each do |ps|
         unless ps.time_slots.where("start_time >= ? AND start_time <= ?",startDateBeginning, endDateEnd).exists?
-          output_listings.push(ps.listing)
+          output_listings.push(listing)
           break
         end
       end
