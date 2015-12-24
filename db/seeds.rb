@@ -15,7 +15,7 @@ sam = User.create!(email: "sam@example.com",
                 phone: "818-307-6583",
                 zipcode: '10005')
 
-michael = User.create!(email: "michael.r.landon@gmail.com",
+michael = User.create!(email: "michael@example.com",
 	password: '12345678', first_name: "Michael", last_name: "Landon", phone: "1234567890", zipcode: "10005")
 
 
