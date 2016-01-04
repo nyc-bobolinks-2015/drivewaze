@@ -70,10 +70,12 @@ $(document).ready(function(){
 
   window.map.addListener('bounds_changed', function(event){
     var latLong = window.map.getBounds()
-    var westBound = latLong.j.j
-    var eastBound = latLong.j.O
-    var northBound = latLong.O.j
-    var southBound = latLong.O.O
+    var ne = latLong.getNorthEast()
+    var sw = latLong.getSouthWest()
+    var westBound = sw.lng()
+    var eastBound = ne.lng()
+    var northBound = ne.lat()
+    var southBound = sw.lat()
     var startTime = $('#searchArrivalDate').val() || "now"
     var endTime = $('#searchDepartureDate').val() || "now"
     $.ajax({
