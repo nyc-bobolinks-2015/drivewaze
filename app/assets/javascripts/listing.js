@@ -1,7 +1,7 @@
 function initMap() {
   window.map = new google.maps.Map(document.getElementById('map'),
    {
-    center: {lat: 40.681793, lng: -73.979605},
+    center: {lat: 40.7127, lng: -74.0059},
     scrollwheel: false,
     zoom: 14,
     mapTypeControl: false
@@ -68,12 +68,33 @@ $(document).ready(function(){
       });
   })();
 
+  $("#searchSubmitButton").on('click', function(event){
+    event.preventDefault();
+    var places = searchBox.getPlaces();
+    var place = {term: places[0].formatted_address}
+     $.ajax({
+        method: 'post',
+        url: '/search',
+        data: $.param(place),
+        dataType: 'json'
+      }).done(function(response){
+        var newLatLong = new google.maps.LatLng(response.results[0]["geometry"]["location"]["lat"], response.results[0]["geometry"]["location"]["lng"])
+        window.map.setCenter(newLatLong)
+        window.map.setZoom(14);
+        toggleList();
+      }).fail(function(error){
+        console.log(error);
+    });
+  });
+
   window.map.addListener('bounds_changed', function(event){
     var latLong = window.map.getBounds()
-    var westBound = latLong.j.j
-    var eastBound = latLong.j.O
-    var northBound = latLong.O.j
-    var southBound = latLong.O.O
+    var ne = latLong.getNorthEast()
+    var sw = latLong.getSouthWest()
+    var westBound = sw.lng()
+    var eastBound = ne.lng()
+    var northBound = ne.lat()
+    var southBound = sw.lat()
     var startTime = $('#searchArrivalDate').val() || "now"
     var endTime = $('#searchDepartureDate').val() || "now"
     $.ajax({
@@ -117,25 +138,6 @@ $(document).ready(function(){
       }).fail(function(error){
         console.log(error);
       });
-  });
-
-  $("#searchSubmitButton").on('click', function(event){
-    event.preventDefault();
-    var places = searchBox.getPlaces();
-    var place = {term: places[0].formatted_address}
-     $.ajax({
-        method: 'post',
-        url: '/search',
-        data: $.param(place),
-        dataType: 'json'
-      }).done(function(response){
-        var newLatLong = new google.maps.LatLng(response.results[0]["geometry"]["location"]["lat"], response.results[0]["geometry"]["location"]["lng"])
-        window.map.setCenter(newLatLong)
-        window.map.setZoom(14);
-        toggleList();
-      }).fail(function(error){
-        console.log(error);
-    });
   });
 
   $('.single-listing').on('click', '.listing-info', function(event) {

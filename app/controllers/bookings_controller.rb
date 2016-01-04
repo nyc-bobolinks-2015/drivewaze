@@ -1,8 +1,4 @@
 class BookingsController < ApplicationController
-	#current_user was returning nil in the create method because the ajax call
-	#wasn't returning the CSRF token with Ajax
-	#looks like the exact same problem as here: http://stackoverflow.com/questions/18423718/rails-devise-current-user-is-nil
-	#this is a temporary solution.
 	skip_before_filter :verify_authenticity_token
 
 	def new
@@ -69,7 +65,7 @@ class BookingsController < ApplicationController
 		listing = Listing.find_by(id: params[:listing_id])
 		time_slots=listing.bookings.last.time_slots
 		@amount= total(time_slots) * 100 #turns to pennies
-	  
+
 	  customer = Stripe::Customer.create(
 	    :email => params[:stripeEmail],
 	    :source  => params[:stripeToken]
