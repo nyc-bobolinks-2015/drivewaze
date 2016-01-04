@@ -2,7 +2,8 @@ require 'zin_calendar'
 class ListingsController < ApplicationController
   include HTTParty
   skip_before_filter :verify_authenticity_token
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, only: [:new, :create]
+
 
   def new
     @listing=Listing.new
@@ -65,7 +66,6 @@ class ListingsController < ApplicationController
                 .where('longitude <= ?', eastBound)
     if params[:startTime] != "now"
       @listings = Listing.filter_time(@listings, params[:startTime], params[:endTime])
-
     end
 
     render json: @listings

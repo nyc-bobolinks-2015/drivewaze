@@ -20,15 +20,21 @@
         </div>
       <% else %>
         <div id="book-listing-btn">
+          <% if current_user %>
           <button onClick="showCalendar()" class="btn btn-success">Check Availability</button>
+          <% else %>
+          <%= link_to "Check Availability", new_user_session_path, class: "btn btn-success" %>
+          <% end %>
         </div>
       <% end %>
       </div>
       <div class="col-xs-6 btn-lg" id="favorites">
+      <% if current_user %>
       <% unless current_user.favorite_listings.exists?(id: @listing.id) %>
         <%= link_to 'Add to favorites', listing_favorite_listings_path(listing_id: @listing), method: :post, class: "btn btn-default" %>
       <% else %>
         <%= link_to 'Remove Favorite', listing_favorite_listing_path(listing_id:@listing.id, favorite_listing_id: @listing.id), method: :delete, class: "btn btn-default" %>
+      <% end %>
       <% end %>
       </div>
     </div>

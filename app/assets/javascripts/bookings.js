@@ -66,14 +66,14 @@ function displayCalendar(psindex){
 function changePsindex(direction){
 	var psindex=parseInt($("#bookingCalendarTable").attr("data-psindex"));
 	var totalps=parseInt($("#pstotal").attr("data-pstotal"));
-	// console.log("psindex");
+
 	if(direction=="forward"){
 		if(psindex<(totalps-1)){
 			psindex=psindex+1;
 			$("#bookingCalendarTable").attr("data-offset",0);
 			$("#bookingCalendarTable").attr("data-psindex",psindex);
 			displayCalendar(psindex);
-		}			
+		}
 	}else{
 		if(psindex>0){
 			psindex=psindex-1;
